@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fce0027f-2f5c-43e2-9daa-1e61e8c4c1c0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="C:\inetpub\wwwroot\WFCATPRODUTOS\WFCATPRODUTOS\Service References\ActiveDirectoryGroupUsers\UsersServiceAD.wsdl" Protocol="file" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UsersServiceAD.xsd" MetadataType="Schema" ID="cbe67f23-0e89-4622-aef1-224bf8b6f615" SourceId="1" SourceUrl="http://semzseiqld11/ActiveDirectoryGroupUsers/Servico/UsersServiceAD.svc?xsd=xsd2" />
+    <MetadataFile FileName="UsersServiceAD1.xsd" MetadataType="Schema" ID="c1d5eaf4-7e60-46d6-922a-ac5e94cf225e" SourceId="1" SourceUrl="http://semzseiqld11/ActiveDirectoryGroupUsers/Servico/UsersServiceAD.svc?xsd=xsd3" />
+    <MetadataFile FileName="UsersServiceAD2.xsd" MetadataType="Schema" ID="4928f575-b605-4619-8b65-90d038396960" SourceId="1" SourceUrl="http://semzseiqld11/ActiveDirectoryGroupUsers/Servico/UsersServiceAD.svc?xsd=xsd0" />
+    <MetadataFile FileName="UsersServiceAD3.xsd" MetadataType="Schema" ID="ce606bc1-5311-4ab4-85ed-bebcc415a00b" SourceId="1" SourceUrl="http://semzseiqld11/ActiveDirectoryGroupUsers/Servico/UsersServiceAD.svc?xsd=xsd1" />
+    <MetadataFile FileName="UsersServiceAD.wsdl" MetadataType="Wsdl" ID="19b1af4e-7df5-4025-9228-c31074ff1c9c" SourceId="1" SourceUrl="file:///C:/inetpub/wwwroot/WFCATPRODUTOS/WFCATPRODUTOS/Service References/ActiveDirectoryGroupUsers/UsersServiceAD.wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

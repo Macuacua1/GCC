@@ -1,0 +1,770 @@
+USE [GCC]
+GO
+/****** Object:  Table [dbo].[tblRede]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblRede](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Rede] [nvarchar](50) NULL,
+	[DataRegisto] [datetime] NULL,
+	[Estado] [bit] NULL,
+	[UserRegisto] [nvarchar](10) NULL,
+ CONSTRAINT [PK_tblRede] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblRecorrencia]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblRecorrencia](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Recorrencia] [nvarchar](20) NULL,
+	[NumDias] [int] NULL,
+	[DataRegisto] [datetime] NULL,
+	[Estado] [bit] NULL,
+ CONSTRAINT [PK_tblRecorrencia] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblRazaoContacto]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblRazaoContacto](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[RazaoContacto] [nvarchar](50) NULL,
+	[Estado] [bit] NULL,
+	[DataRegisto] [datetime] NULL,
+	[UserRegisto] [nvarchar](51) NULL,
+ CONSTRAINT [PK_tblRazaoContacto] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblProvincia]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblProvincia](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Provincia] [nvarchar](50) NULL,
+	[DataRegisto] [datetime] NULL,
+	[Estado] [bit] NULL,
+ CONSTRAINT [PK_tblProvincia] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblPrioridade]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblPrioridade](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Prioridade] [nvarchar](50) NULL,
+	[Estado] [bit] NULL,
+	[DataRegisto] [datetime] NULL,
+	[UserRegisto] [nvarchar](50) NULL,
+ CONSTRAINT [PK_tblPrioridade] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblErrorLog]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblErrorLog](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Date] [datetime] NULL,
+	[Thread] [varchar](255) NULL,
+	[Level] [varchar](50) NULL,
+	[Logger] [varchar](255) NULL,
+	[Message] [varchar](4000) NULL,
+	[Exception] [varchar](2000) NULL,
+	[FromSource] [int] NULL,
+ CONSTRAINT [PK_LogWorkflow] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblCanal]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblCanal](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Canal] [nvarchar](50) NULL,
+	[Estado] [bit] NULL,
+	[DataRegisto] [datetime] NULL,
+	[UserRegisto] [nvarchar](10) NULL,
+ CONSTRAINT [PK_tblCanal] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblCampanha_Por_Provincia]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblCampanha_Por_Provincia](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[ProvinciaID] [int] NOT NULL,
+	[CampanhaID] [int] NOT NULL,
+	[Provincia] [nvarchar](50) NOT NULL,
+	[Estado] [bit] NULL,
+	[DataRegisto] [datetime] NULL,
+	[UserRegisto] [nvarchar](10) NULL,
+ CONSTRAINT [PK_tblCampanha_Por_Provincia] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblCampanha]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblCampanha](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CodCampanha] [nvarchar](8) NOT NULL,
+	[NomeCampanha] [nvarchar](50) NOT NULL,
+	[DataInicio] [datetime] NOT NULL,
+	[DataFim] [datetime] NOT NULL,
+	[MaxAlvosBalcao] [int] NULL,
+	[MaxAlvosGestor] [int] NULL,
+	[RazaoContactoID] [int] NOT NULL,
+	[CanalID] [int] NOT NULL,
+	[PrioridadeID] [int] NULL,
+	[RecorrenciaID] [int] NOT NULL,
+	[UserRegisto] [nvarchar](10) NULL,
+	[DataRegisto] [datetime] NULL,
+	[Estado] [bit] NOT NULL,
+	[DataRecorrMensal] [datetime] NULL,
+	[DataRecorrSemanal] [int] NULL,
+ CONSTRAINT [PK_tblCampanha] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[tblAssunto]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tblAssunto](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CodProduto] [nvarchar](50) NOT NULL,
+	[NomeProduto] [nvarchar](50) NOT NULL,
+	[ProdutoID] [bigint] NOT NULL,
+	[CampanhaID] [int] NOT NULL,
+	[Estado] [bit] NULL,
+	[DataRegisto] [datetime] NULL,
+	[UserRegisto] [nvarchar](10) NULL,
+ CONSTRAINT [PK_tblAssunto] PRIMARY KEY CLUSTERED 
+(
+	[ProdutoID] ASC,
+	[CampanhaID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Rede_da_Campanha]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Rede_da_Campanha](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[RedeID] [int] NOT NULL,
+	[CampanhaID] [int] NOT NULL,
+	[Rede] [nvarchar](50) NOT NULL,
+	[Estado] [bit] NULL,
+	[DataRegisto] [datetime] NULL,
+	[UserRegisto] [nvarchar](10) NULL,
+ CONSTRAINT [PK_Rede_da_Campanha] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LOG_RECORRENCIAS]    Script Date: 08/21/2020 13:42:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[LOG_RECORRENCIAS](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CampanhaID] [int] NOT NULL,
+	[Codigo_da_Campanha] [varchar](8) NOT NULL,
+	[Canal] [int] NOT NULL,
+	[Lista_Rede] [varchar](max) NULL,
+	[Nome_da_Campanha] [varchar](250) NOT NULL,
+	[Razao_do_Contacto] [int] NOT NULL,
+	[Lista_Assunto] [varchar](max) NOT NULL,
+	[Data_Hora_Inicio] [datetime] NOT NULL,
+	[Data_Hora_Fim] [datetime] NOT NULL,
+	[Recorrencia] [int] NOT NULL,
+	[Max_Alvos_Balcao] [int] NULL,
+	[Max_Alvos_Gestor] [int] NULL,
+	[Codigo_de_Prioridade] [int] NULL,
+	[Lista_Provincia] [varchar](max) NULL,
+	[Estado] [bit] NULL,
+	[ErroMessage] [varchar](max) NULL,
+	[DataRegisto] [datetime] NULL,
+ CONSTRAINT [PK_LOG_CALL_BY_GESTOR_DE_CAMPANHAS] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  View [dbo].[Aux_Recorrencia]    Script Date: 08/21/2020 13:42:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[Aux_Recorrencia]
+AS
+SELECT     CampanhaID, MAX(ID) AS ID
+FROM         dbo.LOG_RECORRENCIAS
+GROUP BY CampanhaID
+GO
+/****** Object:  View [dbo].[vw_Log_Recorrencia]    Script Date: 08/21/2020 13:42:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[vw_Log_Recorrencia]
+AS
+SELECT     dbo.LOG_RECORRENCIAS.ID,dbo.LOG_RECORRENCIAS.CampanhaID ,dbo.LOG_RECORRENCIAS.Codigo_da_Campanha as CodCampanha, dbo.LOG_RECORRENCIAS.Nome_da_Campanha as NomeCampanha, dbo.LOG_RECORRENCIAS.Data_Hora_Inicio as DataInicio, 
+dbo.LOG_RECORRENCIAS.Data_Hora_Fim as DataFim, dbo.LOG_RECORRENCIAS.Max_Alvos_Balcao as MaxAlvosBalcao, 
+dbo.LOG_RECORRENCIAS.Max_Alvos_Gestor as MaxAlvosGestor, LOG_RECORRENCIAS.Canal as CanalID,dbo.tblCanal.Canal, LOG_RECORRENCIAS.Codigo_de_Prioridade as PrioridadeID,dbo.tblPrioridade.Prioridade, 
+LOG_RECORRENCIAS.Razao_do_Contacto as RazaoContactoID,dbo.tblRazaoContacto.RazaoContacto,LOG_RECORRENCIAS.Recorrencia as RecorrenciaID ,dbo.tblRecorrencia.Recorrencia, dbo.tblRecorrencia.NumDias, 
+dbo.LOG_RECORRENCIAS.Estado, dbo.LOG_RECORRENCIAS.ErroMessage, dbo.LOG_RECORRENCIAS.DataRegisto,DATEDIFF(DAY,LOG_RECORRENCIAS.DataRegisto,GETDATE()) AS DiasDecorridos
+FROM         dbo.LOG_RECORRENCIAS INNER JOIN
+                      dbo.tblCanal ON dbo.LOG_RECORRENCIAS.Canal = dbo.tblCanal.ID INNER JOIN
+                      dbo.tblPrioridade ON dbo.LOG_RECORRENCIAS.Codigo_de_Prioridade = dbo.tblPrioridade.ID LEFT JOIN
+                      dbo.tblRazaoContacto ON dbo.LOG_RECORRENCIAS.Razao_do_Contacto = dbo.tblRazaoContacto.ID INNER JOIN
+                      dbo.tblRecorrencia ON dbo.LOG_RECORRENCIAS.Recorrencia = dbo.tblRecorrencia.ID
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "tblCanal"
+            Begin Extent = 
+               Top = 6
+               Left = 273
+               Bottom = 126
+               Right = 433
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblPrioridade"
+            Begin Extent = 
+               Top = 6
+               Left = 471
+               Bottom = 126
+               Right = 631
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblRazaoContacto"
+            Begin Extent = 
+               Top = 6
+               Left = 669
+               Bottom = 126
+               Right = 832
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblRecorrencia"
+            Begin Extent = 
+               Top = 6
+               Left = 870
+               Bottom = 126
+               Right = 1030
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblCampanha"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 126
+               Right = 212
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vw_Log_Recorrencia'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vw_Log_Recorrencia'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vw_Log_Recorrencia'
+GO
+/****** Object:  View [dbo].[VW_Campanha]    Script Date: 08/21/2020 13:42:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[VW_Campanha]
+AS
+SELECT     dbo.tblCampanha.ID, dbo.tblCampanha.CodCampanha, dbo.tblCampanha.NomeCampanha, dbo.tblCampanha.DataInicio, dbo.tblCampanha.DataFim, dbo.tblCampanha.MaxAlvosBalcao, 
+                      dbo.tblCampanha.MaxAlvosGestor, dbo.tblCanal.Canal, dbo.tblPrioridade.Prioridade, 
+                      dbo.tblRazaoContacto.RazaoContacto, dbo.tblRecorrencia.Recorrencia, dbo.tblRecorrencia.NumDias, dbo.tblCampanha.Estado, dbo.tblCampanha.UserRegisto, dbo.tblCampanha.DataRegisto
+FROM         dbo.tblCampanha INNER JOIN
+                      dbo.tblCanal ON dbo.tblCampanha.CanalID = dbo.tblCanal.ID LEFT JOIN
+                      dbo.tblPrioridade ON dbo.tblCampanha.PrioridadeID = dbo.tblPrioridade.ID LEFT JOIN
+                      dbo.tblRazaoContacto ON dbo.tblCampanha.RazaoContactoID = dbo.tblRazaoContacto.ID INNER JOIN
+                      dbo.tblRecorrencia ON dbo.tblCampanha.RecorrenciaID = dbo.tblRecorrencia.ID
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = -96
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "tblCampanha"
+            Begin Extent = 
+               Top = 191
+               Left = 347
+               Bottom = 311
+               Right = 521
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblCanal"
+            Begin Extent = 
+               Top = 0
+               Left = 13
+               Bottom = 120
+               Right = 173
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblPrioridade"
+            Begin Extent = 
+               Top = 8
+               Left = 568
+               Bottom = 128
+               Right = 728
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblRazaoContacto"
+            Begin Extent = 
+               Top = 281
+               Left = 685
+               Bottom = 401
+               Right = 848
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "tblRecorrencia"
+            Begin Extent = 
+               Top = 280
+               Left = 32
+               Bottom = 400
+               Right = 192
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+        ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'VW_Campanha'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N' Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'VW_Campanha'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'VW_Campanha'
+GO
+/****** Object:  View [dbo].[vw_Assunto]    Script Date: 08/21/2020 13:42:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[vw_Assunto]
+AS
+SELECT   a.ID
+      ,a.CodProduto
+      ,a.NomeProduto
+      ,a.ProdutoID
+      ,a.CampanhaID,c.NomeCampanha
+      ,a.Estado
+      ,a.DataRegisto
+      ,a.UserRegisto
+FROM         tblAssunto a inner join tblCampanha c on
+a.CampanhaID=c.ID
+GO
+/****** Object:  View [dbo].[Ultima_Recorrencia]    Script Date: 08/21/2020 13:42:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[Ultima_Recorrencia]
+AS
+SELECT     dbo.LOG_RECORRENCIAS.CampanhaID, dbo.LOG_RECORRENCIAS.Codigo_da_Campanha, dbo.LOG_RECORRENCIAS.Nome_da_Campanha, dbo.LOG_RECORRENCIAS.DataRegisto,DATEDIFF(DAY,dbo.LOG_RECORRENCIAS.DataRegisto,GETDATE()) AS NumDias,dbo.LOG_RECORRENCIAS.Estado
+FROM         Aux_Recorrencia INNER JOIN
+                      dbo.LOG_RECORRENCIAS ON Aux_Recorrencia.CampanhaID = dbo.LOG_RECORRENCIAS.CampanhaID AND 
+                      Aux_Recorrencia.ID = dbo.LOG_RECORRENCIAS.ID
+GO
+/****** Object:  View [dbo].[VW_Recorrencia]    Script Date: 08/21/2020 13:42:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[VW_Recorrencia]
+AS
+SELECT     dbo.tblCampanha.ID as CampanhaID, dbo.tblCampanha.CodCampanha, dbo.tblCampanha.NomeCampanha, dbo.tblCampanha.DataInicio, dbo.tblCampanha.DataFim,ISNULL(dbo.tblCampanha.MaxAlvosBalcao,0) AS MaxAlvosBalcao, 
+                      ISNULL(dbo.tblCampanha.MaxAlvosGestor,0) AS MaxAlvosGestor, dbo.tblCampanha.CanalID AS CanalID, dbo.tblCanal.Canal,dbo.tblCampanha.PrioridadeID AS PrioridadeID,dbo.tblPrioridade.Prioridade, 
+                      dbo.tblCampanha.RazaoContactoID as RazaoContactoID,dbo.tblRazaoContacto.RazaoContacto,  dbo.tblRecorrencia.ID as RecorrenciaID,dbo.tblRecorrencia.Recorrencia, dbo.tblRecorrencia.NumDias AS DiasRecorrencia, 
+                      dbo.tblCampanha.Estado, dbo.tblCampanha.UserRegisto, dbo.tblCampanha.DataRegisto as DataRegistoCampanha,Ultima_Recorrencia.DataRegisto as DataRegistoLog,
+                      ISNULL(Ultima_Recorrencia.NumDias,0) as NumDiasLog,ISNULL(Ultima_Recorrencia.Estado,0) as EstadoRecorrencia,dbo.tblCampanha.DataRecorrSemanal,dbo.tblCampanha.DataRecorrMensal
+                      
+FROM         dbo.tblCampanha INNER JOIN
+                      dbo.tblCanal ON dbo.tblCampanha.CanalID = dbo.tblCanal.ID LEFT JOIN
+                      dbo.tblPrioridade ON dbo.tblCampanha.PrioridadeID = dbo.tblPrioridade.ID INNER JOIN
+                      dbo.tblRazaoContacto ON dbo.tblCampanha.RazaoContactoID = dbo.tblRazaoContacto.ID INNER JOIN
+                      dbo.tblRecorrencia ON dbo.tblCampanha.RecorrenciaID = dbo.tblRecorrencia.ID LEFT JOIN
+                      Ultima_Recorrencia ON dbo.tblCampanha.ID=Ultima_Recorrencia.CampanhaID
+
+WHERE (((dbo.tblCampanha.Estado=1 AND DATEDIFF(DAY,dbo.tblCampanha.DataFim,GETDATE())<=0 AND dbo.tblRecorrencia.ID=1) AND (Ultima_Recorrencia.DataRegisto is null or (DATEDIFF(DAY,Ultima_Recorrencia.DataRegisto,GETDATE())>0 AND ISNULL(Ultima_Recorrencia.Estado,0)=1) or (DATEDIFF(DAY,Ultima_Recorrencia.DataRegisto,GETDATE())>=0 AND ISNULL(Ultima_Recorrencia.Estado,0)=0))) OR 
+((dbo.tblCampanha.Estado=1 AND DATEDIFF(DAY,dbo.tblCampanha.DataFim,GETDATE())<=0 AND dbo.tblRecorrencia.ID=2 AND DataRecorrSemanal=DATEPART(dw,GETDATE())) AND (Ultima_Recorrencia.DataRegisto is null or (DATEDIFF(DAY,Ultima_Recorrencia.DataRegisto,GETDATE())>0 AND ISNULL(Ultima_Recorrencia.Estado,0)=1) or (DATEDIFF(DAY,Ultima_Recorrencia.DataRegisto,GETDATE())>=0 AND ISNULL(Ultima_Recorrencia.Estado,0)=0))) or 
+((dbo.tblCampanha.Estado=1 AND DATEDIFF(DAY,dbo.tblCampanha.DataFim,GETDATE())<=0 AND dbo.tblRecorrencia.ID=3 AND DAY(isnull(DataRecorrMensal,0))=day(GETDATE())) AND (Ultima_Recorrencia.DataRegisto is null or (DATEDIFF(DAY,Ultima_Recorrencia.DataRegisto,GETDATE())>0 AND ISNULL(Ultima_Recorrencia.Estado,0)=1) or (DATEDIFF(DAY,Ultima_Recorrencia.DataRegisto,GETDATE())>=0 AND ISNULL(Ultima_Recorrencia.Estado,0)=0))))
+GO
+/****** Object:  Default [DF_LOG_RECORRENCIAS_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[LOG_RECORRENCIAS] ADD  CONSTRAINT [DF_LOG_RECORRENCIAS_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_Rede_da_Campanha_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[Rede_da_Campanha] ADD  CONSTRAINT [DF_Rede_da_Campanha_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_Rede_da_Campanha_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[Rede_da_Campanha] ADD  CONSTRAINT [DF_Rede_da_Campanha_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblAssunto_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblAssunto] ADD  CONSTRAINT [DF_tblAssunto_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblAssunto_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblAssunto] ADD  CONSTRAINT [DF_tblAssunto_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblCampanha_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblCampanha] ADD  CONSTRAINT [DF_tblCampanha_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblCampanha_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblCampanha] ADD  CONSTRAINT [DF_tblCampanha_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblCampanha_Por_Provincia_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblCampanha_Por_Provincia] ADD  CONSTRAINT [DF_tblCampanha_Por_Provincia_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblCampanha_Por_Provincia_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblCampanha_Por_Provincia] ADD  CONSTRAINT [DF_tblCampanha_Por_Provincia_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblCanal_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblCanal] ADD  CONSTRAINT [DF_tblCanal_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblCanal_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblCanal] ADD  CONSTRAINT [DF_tblCanal_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblPrioridade_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblPrioridade] ADD  CONSTRAINT [DF_tblPrioridade_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblPrioridade_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblPrioridade] ADD  CONSTRAINT [DF_tblPrioridade_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblProvincia_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblProvincia] ADD  CONSTRAINT [DF_tblProvincia_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblProvincia_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblProvincia] ADD  CONSTRAINT [DF_tblProvincia_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblRazaoContacto_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblRazaoContacto] ADD  CONSTRAINT [DF_tblRazaoContacto_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblRazaoContacto_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblRazaoContacto] ADD  CONSTRAINT [DF_tblRazaoContacto_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblRecorrencia_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblRecorrencia] ADD  CONSTRAINT [DF_tblRecorrencia_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblRecorrencia_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblRecorrencia] ADD  CONSTRAINT [DF_tblRecorrencia_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+/****** Object:  Default [DF_tblRede_DataRegisto]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblRede] ADD  CONSTRAINT [DF_tblRede_DataRegisto]  DEFAULT (getdate()) FOR [DataRegisto]
+GO
+/****** Object:  Default [DF_tblRede_Estado]    Script Date: 08/21/2020 13:42:33 ******/
+ALTER TABLE [dbo].[tblRede] ADD  CONSTRAINT [DF_tblRede_Estado]  DEFAULT ((1)) FOR [Estado]
+GO
+
+
+
+
+/****/
+
+USE [GCC]
+GO
+/****** Object:  Table [dbo].[tblRede]    Script Date: 08/21/2020 13:57:37 ******/
+SET IDENTITY_INSERT [dbo].[tblRede] ON
+INSERT [dbo].[tblRede] ([ID], [Rede], [DataRegisto], [Estado], [UserRegisto]) VALUES (1, N'Corporate', CAST(0x0000ABF2011EE618 AS DateTime), 0, NULL)
+INSERT [dbo].[tblRede] ([ID], [Rede], [DataRegisto], [Estado], [UserRegisto]) VALUES (2, N'Empresas', CAST(0x0000ABF2011EE627 AS DateTime), 1, NULL)
+INSERT [dbo].[tblRede] ([ID], [Rede], [DataRegisto], [Estado], [UserRegisto]) VALUES (3, N'Mass Market', CAST(0x0000ABF2011EE633 AS DateTime), 1, NULL)
+INSERT [dbo].[tblRede] ([ID], [Rede], [DataRegisto], [Estado], [UserRegisto]) VALUES (4, N'Prestige', CAST(0x0000ABF2011EE63E AS DateTime), 1, NULL)
+INSERT [dbo].[tblRede] ([ID], [Rede], [DataRegisto], [Estado], [UserRegisto]) VALUES (5, N'Private', CAST(0x0000ABF2011EE649 AS DateTime), 1, NULL)
+INSERT [dbo].[tblRede] ([ID], [Rede], [DataRegisto], [Estado], [UserRegisto]) VALUES (6, N'Serviços Centrais', CAST(0x0000ABF2011EE65E AS DateTime), 0, NULL)
+SET IDENTITY_INSERT [dbo].[tblRede] OFF
+/****** Object:  Table [dbo].[tblRazaoContacto]    Script Date: 08/21/2020 13:57:37 ******/
+SET IDENTITY_INSERT [dbo].[tblRazaoContacto] ON
+INSERT [dbo].[tblRazaoContacto] ([ID], [RazaoContacto], [Estado], [DataRegisto], [UserRegisto]) VALUES (1, N'Aquisição', 1, CAST(0x0000ABF2011F76FF AS DateTime), NULL)
+INSERT [dbo].[tblRazaoContacto] ([ID], [RazaoContacto], [Estado], [DataRegisto], [UserRegisto]) VALUES (2, N'Fidelização do Produto', 1, CAST(0x0000ABF2011F7717 AS DateTime), NULL)
+INSERT [dbo].[tblRazaoContacto] ([ID], [RazaoContacto], [Estado], [DataRegisto], [UserRegisto]) VALUES (3, N'Fidelização do Cliente', 1, CAST(0x0000ABF2011F7724 AS DateTime), NULL)
+INSERT [dbo].[tblRazaoContacto] ([ID], [RazaoContacto], [Estado], [DataRegisto], [UserRegisto]) VALUES (4, N'Obrigatório', 1, CAST(0x0000ABF2011F7730 AS DateTime), NULL)
+INSERT [dbo].[tblRazaoContacto] ([ID], [RazaoContacto], [Estado], [DataRegisto], [UserRegisto]) VALUES (15, N'TESTE AM', 1, CAST(0x0000AC1C00AACE86 AS DateTime), N'X140212')
+SET IDENTITY_INSERT [dbo].[tblRazaoContacto] OFF
+/****** Object:  Table [dbo].[tblProvincia]    Script Date: 08/21/2020 13:57:37 ******/
+SET IDENTITY_INSERT [dbo].[tblProvincia] ON
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (1, N'Maputo Provincia', CAST(0x0000ABF2011E0823 AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (2, N'Maputo Cidade', CAST(0x0000ABF2011E0833 AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (3, N'Gaza', CAST(0x0000ABF2011E0845 AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (4, N'Inhambane', CAST(0x0000ABF2011E084F AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (5, N'Sofala', CAST(0x0000ABF2011E085E AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (6, N'Manica', CAST(0x0000ABF2011E086A AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (7, N'Tete', CAST(0x0000ABF2011E0875 AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (8, N'Zambezia', CAST(0x0000ABF2011E0882 AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (9, N'Nampula', CAST(0x0000ABF2011E088D AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (10, N'Niassa', CAST(0x0000ABF2011E0898 AS DateTime), 1)
+INSERT [dbo].[tblProvincia] ([ID], [Provincia], [DataRegisto], [Estado]) VALUES (11, N'Cabo Delgado', CAST(0x0000ABF2011E08A3 AS DateTime), 1)
+SET IDENTITY_INSERT [dbo].[tblProvincia] OFF
+/****** Object:  Table [dbo].[tblPrioridade]    Script Date: 08/21/2020 13:57:37 ******/
+SET IDENTITY_INSERT [dbo].[tblPrioridade] ON
+INSERT [dbo].[tblPrioridade] ([ID], [Prioridade], [Estado], [DataRegisto], [UserRegisto]) VALUES (1, N'Sub Tipo de Cliente', 1, CAST(0x0000ABF2011FBABD AS DateTime), NULL)
+INSERT [dbo].[tblPrioridade] ([ID], [Prioridade], [Estado], [DataRegisto], [UserRegisto]) VALUES (2, N'Demográfico', 1, CAST(0x0000ABF2011FBAD6 AS DateTime), NULL)
+INSERT [dbo].[tblPrioridade] ([ID], [Prioridade], [Estado], [DataRegisto], [UserRegisto]) VALUES (3, N'Património', 1, CAST(0x0000ABF2011FBAE8 AS DateTime), NULL)
+INSERT [dbo].[tblPrioridade] ([ID], [Prioridade], [Estado], [DataRegisto], [UserRegisto]) VALUES (4, N'Cross Selling', 1, CAST(0x0000ABF2011FBAF5 AS DateTime), NULL)
+INSERT [dbo].[tblPrioridade] ([ID], [Prioridade], [Estado], [DataRegisto], [UserRegisto]) VALUES (5, N'Grau de Risco', 1, CAST(0x0000ABF2011FBB01 AS DateTime), NULL)
+INSERT [dbo].[tblPrioridade] ([ID], [Prioridade], [Estado], [DataRegisto], [UserRegisto]) VALUES (6, N'Score', 1, CAST(0x0000ABF2011FBB0E AS DateTime), NULL)
+INSERT [dbo].[tblPrioridade] ([ID], [Prioridade], [Estado], [DataRegisto], [UserRegisto]) VALUES (7, N'Geográfica', 1, CAST(0x0000ABF2011FBB1A AS DateTime), NULL)
+SET IDENTITY_INSERT [dbo].[tblPrioridade] OFF
+/****** Object:  Table [dbo].[tblCanal]    Script Date: 08/21/2020 13:57:37 ******/
+SET IDENTITY_INSERT [dbo].[tblCanal] ON
+INSERT [dbo].[tblCanal] ([ID], [Canal], [Estado], [DataRegisto], [UserRegisto]) VALUES (1, N'MillePac', 1, CAST(0x0000ABF2011E7709 AS DateTime), NULL)
+INSERT [dbo].[tblCanal] ([ID], [Canal], [Estado], [DataRegisto], [UserRegisto]) VALUES (5, N'SMS', 0, CAST(0x0000AC1700A90E89 AS DateTime), N'X181797')
+SET IDENTITY_INSERT [dbo].[tblCanal] OFF

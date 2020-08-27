@@ -1,0 +1,107 @@
+INFO  2020-08-06 17:38:49,614 [GetCampanhaListChart]  - [06/08/2020 17:38:49 -Recorrencia_Manager - GetRecorrenciasListChart()- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at System.DateTimeParse.ParseExact(String s, String format, DateTimeFormatInfo dtfi, DateTimeStyles style)
+   at GCC.Managers.Recorrencia_Manager.GetCampanhaListChart(String con, Int32 Periodo, Nullable`1 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Managers\Recorrencia_Manager.cs:line 23
+INFO  2020-08-06 17:38:49,921 [GetRecorrenciaChart]  - [06/08/2020 17:38:49 -RecorrenciaController - GetRecorrenciaChart)- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at GCC.Managers.Recorrencia_Manager.GetCampanhaListChart(String con, Int32 Periodo, Nullable`1 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Managers\Recorrencia_Manager.cs:line 50
+   at GCC.Controllers.RecorrenciaController.GetRecorrenciaChart(Int32 Periodo, Int32 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Controllers\RecorrenciaController.cs:line 48
+INFO  2020-08-06 17:38:49,935 [Application_Error]  - [06/08/2020 17:38:49 -Global()- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at GCC.Controllers.RecorrenciaController.GetRecorrenciaChart(Int32 Periodo, Int32 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Controllers\RecorrenciaController.cs:line 56
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO  2020-08-06 18:24:52,526 [GetCampanhaListChart]  - [06/08/2020 18:24:52 -Recorrencia_Manager - GetRecorrenciasListChart()- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at GCC.Managers.Recorrencia_Manager.GetCampanhaListChart(String con, Int32 Periodo, Nullable`1 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Managers\Recorrencia_Manager.cs:line 32
+INFO  2020-08-06 18:24:52,589 [GetRecorrenciaChart]  - [06/08/2020 18:24:52 -RecorrenciaController - GetRecorrenciaChart)- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at GCC.Managers.Recorrencia_Manager.GetCampanhaListChart(String con, Int32 Periodo, Nullable`1 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Managers\Recorrencia_Manager.cs:line 49
+   at GCC.Controllers.RecorrenciaController.GetRecorrenciaChart(Int32 Periodo, Int32 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Controllers\RecorrenciaController.cs:line 48
+INFO  2020-08-06 18:24:52,598 [Application_Error]  - [06/08/2020 18:24:52 -Global()- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at GCC.Controllers.RecorrenciaController.GetRecorrenciaChart(Int32 Periodo, Int32 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Controllers\RecorrenciaController.cs:line 56
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+INFO  2020-08-06 18:28:10,032 [GetCampanhaListChart]  - [06/08/2020 18:28:10 -Recorrencia_Manager - GetRecorrenciasListChart()- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value)
+   at GCC.Managers.Recorrencia_Manager.GetCampanhaListChart(String con, Int32 Periodo, Nullable`1 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Managers\Recorrencia_Manager.cs:line 33
+INFO  2020-08-06 18:28:10,094 [GetRecorrenciaChart]  - [06/08/2020 18:28:10 -RecorrenciaController - GetRecorrenciaChart)- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at GCC.Managers.Recorrencia_Manager.GetCampanhaListChart(String con, Int32 Periodo, Nullable`1 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Managers\Recorrencia_Manager.cs:line 50
+   at GCC.Controllers.RecorrenciaController.GetRecorrenciaChart(Int32 Periodo, Int32 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Controllers\RecorrenciaController.cs:line 48
+INFO  2020-08-06 18:28:10,105 [Application_Error]  - [06/08/2020 18:28:10 -Global()- ]
+System.FormatException: String was not recognized as a valid DateTime.
+   at GCC.Controllers.RecorrenciaController.GetRecorrenciaChart(Int32 Periodo, Int32 Recorrencia) in C:\inetpub\wwwroot\GCC\GCC\Controllers\RecorrenciaController.cs:line 56
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

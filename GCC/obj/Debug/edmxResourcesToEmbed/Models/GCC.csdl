@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GCCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Rede_da_Campanha">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RedeID" Type="Int32" />
+    <Property Name="CampanhaID" Type="Int32" />
+    <Property Name="Rede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblAssunto">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodProduto" Type="Int64" />
+    <Property Name="NomeProduto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CampanhaID" Type="Int32" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblCampanha">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodCampanha" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="NomeCampanha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataInicio" Type="DateTime" Precision="3" />
+    <Property Name="DataFim" Type="DateTime" Precision="3" />
+    <Property Name="MaxAlvosBalcao" Type="Int32" />
+    <Property Name="MaxAlvosGestor" Type="Int32" />
+    <Property Name="RazaoContactoID" Type="Int32" />
+    <Property Name="CanalID" Type="Int32" />
+    <Property Name="PrioridadeID" Type="Int32" />
+    <Property Name="RecorrenciaID" Type="Int32" />
+    <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="Estado" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblCampanha_Por_Provincia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProvinciaID" Type="Int32" />
+    <Property Name="CampanhaID" Type="Int32" />
+    <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblCanal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Canal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="Boolean" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblPrioridade">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Prioridade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="Boolean" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="UserRegisto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblProvincia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="Estado" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblRazaoContacto">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RazaoContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="Boolean" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="UserRegisto" Type="String" MaxLength="51" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblRecorrencia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Recorrencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NumDias" Type="Int32" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+    <Property Name="Estado" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblRede">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="GCCEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Rede_da_Campanha" EntityType="Self.Rede_da_Campanha" />
+    <EntitySet Name="tblAssunto" EntityType="Self.tblAssunto" />
+    <EntitySet Name="tblCampanha" EntityType="Self.tblCampanha" />
+    <EntitySet Name="tblCampanha_Por_Provincia" EntityType="Self.tblCampanha_Por_Provincia" />
+    <EntitySet Name="tblCanal" EntityType="Self.tblCanal" />
+    <EntitySet Name="tblPrioridade" EntityType="Self.tblPrioridade" />
+    <EntitySet Name="tblProvincia" EntityType="Self.tblProvincia" />
+    <EntitySet Name="tblRazaoContacto" EntityType="Self.tblRazaoContacto" />
+    <EntitySet Name="tblRecorrencia" EntityType="Self.tblRecorrencia" />
+    <EntitySet Name="tblRede" EntityType="Self.tblRede" />
+  </EntityContainer>
+</Schema>

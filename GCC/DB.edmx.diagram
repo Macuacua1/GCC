@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5d5b09edfb814f9d82b2442708f229a1" Name="Diagram1">
+        <EntityTypeShape EntityType="GCCModel.tblPrioridade" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCCModel.tblProvincia" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCCModel.tblRazaoContacto" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCCModel.tblRecorrencia" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GCCModel.VW_Campanha" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GCCModel.Rede_da_Campanha" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GCCModel.tblAssunto" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GCCModel.tblCampanha_Por_Provincia" Width="1.5" PointX="3.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GCCModel.tblCanal" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GCCModel.tblRede" Width="1.5" PointX="10.375" PointY="5.75" />
+        <EntityTypeShape EntityType="GCCModel.VW_Recorrencia" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="GCCModel.vw_Log_Recorrencia" Width="1.5" PointX="6.375" PointY="10.75" />
+        <EntityTypeShape EntityType="GCCModel.vw_Assunto" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GCCModel.tblCampanha" Width="2.125" PointX="0.75" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

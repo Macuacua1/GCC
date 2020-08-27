@@ -1,0 +1,83 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = ViewBag.Title ?? "Ocorreu um erro Inesperado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row clearfix">
+     
+        <div class="row clearfix" aria-hidden="true">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header bg-pink">
+                        <h2>
+
+                            Erro : @ViewBag.Title
+
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="list-sfs-holder">
+                            @*<button type="submit" id="btnReportar" class="btn waves-effect" ata-toggle="tooltip" data-placement="top" title="Clique aqui para enviar um email a reportar o erro." style="margin:0px 0 10px 0;background-color:#009688;color:white">Reportar Erro!</button>*@
+                            <div class="row clearfix">
+                                <div class="col-sm-10">
+                                    <div class="alert alert-error" style="background-color: red;color:white;font-weight:bold;">
+                                        Ocorreu um erro inesperado. Por favor contacte o HelpDesk!.
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" id="btnReportar" class="btn waves-effect" ata-toggle="tooltip" data-placement="top" title="Clique aqui para enviar um email a reportar o erro." style="margin:0px 0 10px 0;background-color:#009688;color:white;height:50px;width: 120px;">Reportar Erro!</button>
+                                </div>
+                                </div>
+                            @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+                            {
+                                <div class="erro" id="erro">
+                                    <p>
+                                        <b>Exception:</b> @Model.Exception.Message<br />
+                                        <b>Controller:</b> @Model.ControllerName<br />
+                                        <b>Action:</b> @Model.ActionName
+                                    </p>
+                                    <div style="overflow: scroll">
+                                        <pre>
+                                            @Model.Exception.StackTrace
+                                        </pre>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+@section scripts{
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#btnReportar").on("click", function (e) {
+                e.preventDefault();
+                var message = $("#erro").text().trim();
+                mailToOutlook(message);
+            });
+
+            function mailToOutlook(message) {
+                
+                var to = "hdesk@millenniumbim.co.mz";
+                var subject = "ERRO! GESTOR DE CAMPANHAS COMERCIAIS!";
+                var msg = "Ocorreu um erro inesperado! " +
+                "Por favor volte a tentar, se o problema percistir contacte o HelpDesk."
+                location.href = "mailto:" + to + "?subject= " + subject + "&body= " + message;
+            }
+        });
+</script>
+}

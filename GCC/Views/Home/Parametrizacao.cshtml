@@ -1,0 +1,872 @@
+﻿@model GCC.Models.ParametrizacaoGeral
+
+@{
+    ViewBag.Title = "Parametrizacao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row clearfix">
+        @*<a class='btn waves-effect' style='padding : 3px 6px !important;color: #eee;background-color:#f44336;' href="@Url.Action("Create", "Campanha")" data-toggle='tooltip' data-placement='top' title='Voltar a Listagem de Campanhas'><i class="material-icons">keyboard_backspace</i>Voltar</a>*@
+
+        <div class="row clearfix" aria-hidden="true">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header bg-pink">
+                        <h2>
+
+                            PARAMETRIZAÇÃO GERAL
+                           
+                        </h2>
+                    </div>
+                    <div class="body">
+                     
+                        @*Div abas*@
+                        <div class="row clearfix"  aria-hidden="false" style="display :block">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tab-nav-right tab-col-pink" role="tablist" id="tablink">
+                                <li role="presentation" style="cursor: pointer;" class="active"><a data-target="#Razoes"  data-toggle="tab">RAZÃO DE CONTACTO</a></li>
+                                <li role="presentation" style="cursor: pointer;"><a data-target="#Prioridades" data-toggle="tab">PRIORIDADE</a></li>
+                                <li role="presentation" style="cursor: pointer;"><a data-target="#Canais" data-toggle="tab">CANAL</a></li>
+                                <li role="presentation" style="cursor: pointer;" ><a data-target="#Redes" data-toggle="tab">REDE</a></li>
+
+                            </ul>
+                            <div class="tab-content" id="tabs">
+                                <input id="pagina" style="display: none" value="1"/>
+                                <input id="ID" style="display: none" />
+                                <div role="tabpanel" class="tab-pane active" id="Razoes">
+                                    <div class="contentor" style="padding: 0 10px">
+                                        <form id="form_Razoes">
+                                            @Html.HiddenFor(model => model.razaoContacto.RazaoContactoID, new { htmlAttributes = new { @class = "form-control", required = "true",id= "RazaoContactoID" } })
+                                            <fieldset>
+                                                <legend>Novo Registo</legend>
+                                                <div class="row clearfix">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            @Html.EditorFor(model => model.razaoContacto.NomeRazaoContacto, new { htmlAttributes = new { @class = "form-control", required = "true", id = "NomeRazaoContacto" } })
+                                                            <label class="form-label">Razão de Contacto</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <button type="submit" id="btnGravarRazao" class="btn btn-success waves-effect">GRAVAR</button>
+                                                </div>
+                                            </div>
+                                           </fieldset>
+                                        </form>
+                                        
+
+                                    </div>
+                                    <div layout-wrap="" class="layout-wrap">
+
+                                        <div id="RazaoListDiv">
+                                            <div>
+                                                @*<p><b> Lista de Produtos da Campanha</b></p>*@
+
+                                                <div class="body table-responsive">
+                                                    <table id="RazaoTable" class="table table-bordered table-striped table-hover">
+                                                        <thead>
+                                                            <tr class="bg-pink">
+
+                                                                <th>
+                                                                    #
+                                                                </th>
+                                                               <th>
+                                                                   Razão de Contacto
+
+                                                                </th>
+                                                                <th>Acção</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody id="Razaolinhas" style="font-size: 12px;">
+                                                           
+                                                        </tbody>
+                                                    </table>
+                                                    <br />
+                                                    <div class="Pager"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="Prioridades">
+                                    <div class="contentor" style="padding: 0 10px">
+                                        <form id="form_Prioridades">
+                                            @Html.HiddenFor(model => model.prioridade.PrioridadeID, new { htmlAttributes = new { @class = "form-control", required = "true", id = "PrioridadeID" } })
+                                            <fieldset>
+                                                <legend>Novo Registo</legend>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.EditorFor(model => model.prioridade.NomePrioridade, new { htmlAttributes = new { @class = "form-control", required = "true", id = "NomePrioridade" } })
+                                                                <label class="form-label">Ordem de Prioridade</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <button type="submit" id="btnGravarPrioridade" class="btn btn-success waves-effect">GRAVAR</button>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+
+                                    </div>
+                                    <div layout-wrap="" class="layout-wrap">
+
+                                        <div id="PrioridadeListDiv">
+                                            <div>
+                                                @*<p><b> Lista de Produtos da Campanha</b></p>*@
+
+                                                <div class="body table-responsive">
+                                                    <table id="PrioridadeTable" class="table table-bordered table-striped table-hover">
+                                                        <thead>
+                                                            <tr class="bg-pink">
+                                                            <tr class="bg-pink">
+
+                                                                <th>
+                                                                    #
+                                                                </th>
+                                                                <th>
+                                                                   Prioridade
+
+                                                                </th>
+                                                                <th>Acção</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody id="Prioridadelinhas" style="font-size: 12px;"></tbody>
+                                                    </table>
+                                                    <br />
+                                                    <div class="Paginas"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="Canais">
+                                    <div class="contentor" style="padding: 0 10px">
+                                        <form id="form_Canais">
+                                            @Html.HiddenFor(model => model.canal.CanalID, new { htmlAttributes = new { @class = "form-control", required = "true", id = "CanalID" } })
+                                            <fieldset>
+                                                <legend>Novo Registo</legend>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.EditorFor(model => model.canal.NomeCanal, new { htmlAttributes = new { @class = "form-control", required = "true", id = "NomeCanal" } })
+                                                                <label class="form-label">Canal</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <button type="submit" id="btnGravarCanal" class="btn btn-success waves-effect">GRAVAR</button>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+
+                                    </div>
+                                    <div layout-wrap="" class="layout-wrap">
+
+                                        <div id="CanalListDiv">
+                                            <div>
+                                                @*<p><b> Lista de Produtos da Campanha</b></p>*@
+
+                                                <div class="body table-responsive">
+                                                    <table id="CanalTable" class="table table-bordered table-striped table-hover">
+                                                        <thead>
+                                                            <tr class="bg-pink">
+                                                            <tr class="bg-pink">
+
+                                                                <th>
+                                                                    #
+                                                                </th>
+                                                                <th>
+                                                                  Nome do Canal
+
+                                                                </th>
+                                                                <th>Acção</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody id="Canallinhas" style="font-size: 12px;"></tbody>
+                                                    </table>
+                                                    <br />
+                                                    <div class="Pager"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="Redes">
+                                    <div class="contentor" style="padding: 0 10px">
+                                        <form id="form_Redes">
+                                            @Html.HiddenFor(model => model.rede.RedeID, new { htmlAttributes = new { @class = "form-control", required = "true", id = "RedeID" } })
+                                            <fieldset>
+                                                <legend>Novo Registo</legend>
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.EditorFor(model => model.rede.NomeRede, new { htmlAttributes = new { @class = "form-control", required = "true", id = "NomeRede" } })
+                                                                <label class="form-label">Rede</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <button type="submit" id="btnGravarRede" class="btn btn-success waves-effect">GRAVAR</button>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+
+                                    </div>
+                                    <div layout-wrap="" class="layout-wrap">
+
+                                        <div id="RedeListDiv">
+                                            <div>
+                                                @*<p><b> Lista de Produtos da Campanha</b></p>*@
+
+                                                <div class="body table-responsive">
+                                                    <table id="RedeTable" class="table table-bordered table-striped table-hover">
+                                                        <thead>
+                                                            <tr class="bg-pink">
+                                                            <tr class="bg-pink">
+
+                                                                <th>
+                                                                    #
+                                                                </th>
+                                                                <th>
+                                                                 Nome da Rede
+
+                                                                </th>
+                                                                <th>Acção</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody id="Redelinhas" style="font-size: 12px;"></tbody>
+                                                    </table>
+                                                    <br />
+                                                    <div class="Pager"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        @*End div abas*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/ASPSnippets_Pager.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            GetRazaoList(1);
+            GetPrioridadeList(1);
+            GetCanalList(1);
+            GetRedeList(1);
+            if (checkSession() == false) {
+                swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+            }
+            $("#ID").val('');
+            function ReloadPage() { window.location.reload(true); }
+
+            $("#form_Razoes").on("click", "#btnGravarRazao", function (e) {
+                e.preventDefault();
+                var ID = 0;
+                if (checkSession() == false) {
+                    swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+                    return false;
+                }
+                if ($("#NomeRazaoContacto").val() == '')
+                {
+                    swal("Erro...", "Campo de Texto vazio!", "error");
+                    return false;
+                }
+                if ($("#ID").val() != '' && $("#ID").val() != undefined) {
+                    ID = $("#ID").val();
+                }
+                $.post("/GCC/Home/CreateParametrizacao", { texto: $("#NomeRazaoContacto").val(), Tipo: "Razao", ID: ID })
+                   .done(function (response) {
+                       if (response.status) {
+                           toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                           GetRazaoList(1);
+                           $("#NomeRazaoContacto").val('');
+                           $("#ID").val('');
+                           $("#btnGravarRazao").text("GRAVAR");
+                       } else
+                       {
+                           swal("Erro...", response.msg, "error");
+                           $("#ID").val('');
+                           $("#btnGravarRazao").text("GRAVAR");
+                       }
+                   })
+               .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                   $("#ID").val('');
+                   $("#btnGravarRazao").text("GRAVAR");
+               });
+            });
+
+            $("#form_Prioridades").on("click", "#btnGravarPrioridade", function (e) {
+                e.preventDefault();
+                var ID = 0;
+                if (checkSession() == false) {
+                    swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+                    return false;
+                }
+                if ($("#NomePrioridade").val() == '') {
+                    swal("Erro...", "Campo de Texto vazio!", "error");
+                    return false;
+                }
+                if ($("#ID").val() != '' && $("#ID").val() != undefined) {
+                    ID = $("#ID").val();
+                }
+                $.post("/GCC/Home/CreateParametrizacao", { texto: $("#NomePrioridade").val(), Tipo: "Prioridade", ID: ID })
+                   .done(function (response) {
+                       if (response.status) {
+                           toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                           GetPrioridadeList(1);
+                           $("#NomePrioridade").val('');
+                           $("#ID").val('');
+                           $("#btnGravarPrioridade").text("GRAVAR");
+                       } else {
+                           swal("Erro...", response.msg, "error");
+                           $("#ID").val('');
+                           $("#btnGravarPrioridade").text("GRAVAR");
+                       }
+                   })
+               .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                   $("#ID").val('');
+                   $("#btnGravarPrioridade").text("GRAVAR");
+               });
+            });
+            $("#form_Canais").on("click", "#btnGravarCanal", function (e) {
+                e.preventDefault();
+                var ID = 0;
+                if (checkSession() == false) {
+                    swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+                    return false;
+                }
+                if ($("#NomeCanal").val() == '') {
+                    swal("Erro...", "Campo de Texto vazio!", "error");
+                    return false;
+                }
+                if ($("#ID").val() != '' && $("#ID").val() != undefined) {
+                    ID = $("#ID").val();
+                }
+                $.post("/GCC/Home/CreateParametrizacao", { texto: $("#NomeCanal").val(), Tipo: "Canal", ID: ID })
+                   .done(function (response) {
+                       if (response.status) {
+                           toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                           GetCanalList(1);
+                           $("#NomeCanal").val('');
+                           $("#ID").val('');
+                           $("#btnGravarCanal").text("GRAVAR");
+                       } else {
+                           swal("Erro...", response.msg, "error");
+                           $("#ID").val('');
+                           $("#btnGravarCanal").text("GRAVAR");
+                       }
+                   })
+               .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                   $("#ID").val('');
+                   $("#btnGravarCanal").text("GRAVAR");
+               });
+            });
+            $("#form_Redes").on("click", "#btnGravarRede", function (e) {
+                e.preventDefault();
+                var ID = 0;
+                if (checkSession() == false) {
+                    swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+                    return false;
+                }
+                if ($("#NomeRede").val() == '') {
+                    swal("Erro...", "Campo de Texto vazio!", "error");
+                    return false;
+                }
+                if ($("#ID").val() != '' && $("#ID").val() != undefined) {
+                    ID = $("#ID").val();
+                }
+                $.post("/GCC/Home/CreateParametrizacao", { texto: $("#NomeRede").val(), Tipo: "Rede",ID:ID })
+                   .done(function (response) {
+                       if (response.status) {
+                           toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                           GetRedeList(1);
+                           $("#NomeRede").val('');
+                           $("#ID").val('');
+                           $("#btnGravarRede").text("GRAVAR");
+                       } else {
+                           swal("Erro...", response.msg, "error");
+                           $("#ID").val('');
+                           $("#btnGravarRede").text("GRAVAR");
+                       }
+                   })
+               .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                   $("#ID").val('');
+                   $("#btnGravarRede").text("GRAVAR");
+               });
+            });
+
+
+            $("#RazaoTable").on("click", ".ActivarRazao", function (e) {
+                e.preventDefault();
+                var accao = "";
+                var texto = "";
+                var ID = $(this).attr("data-id");
+
+                var estado = $(this).attr("pid");
+                var Tipo = "Razao";
+                if (estado == 1) { accao = "Activar"; } else { accao = "Desctivar"; }
+
+                swal({
+                    title: "Tem certeza?",
+                    text: "Deseja " + accao + " o Registo?",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: true,
+                    closeOnCancel: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: accao,
+                    confirmButtonColor: "#4CAF50"
+                }, function () {
+
+                    $.post("/GCC/Home/UpdateParametrizacao", { estado: estado, ID: ID, Tipo: Tipo })
+                    .done(function (response) {
+                    if (response.status)
+                    {
+                        toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                        GetRazaoList($("#pagina").val());
+                    } else { swal("Erro...", response.msg, "error"); }
+                    })
+                .fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                });
+                });
+            });
+            $("#RedeTable").on("click", ".ActivarRede", function (e) {
+                e.preventDefault();
+                var accao = "";
+                var texto = "";
+                var ID = $(this).attr("data-id");
+
+                var estado = $(this).attr("pid");
+                var Tipo = "Rede";
+                if (estado == 1) { accao = "Activar"; } else { accao = "Desctivar"; }
+
+                swal({
+                    title: "Tem certeza?",
+                    text: "Deseja " + accao + " o Registo?",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: true,
+                    closeOnCancel: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: accao,
+                    confirmButtonColor: "#9eec62"
+                }, function () {
+
+                    $.post("/GCC/Home/UpdateParametrizacao", { estado: estado, ID: ID, Tipo: Tipo })
+                    .done(function (response) {
+                        if (response.status) {
+                            toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+
+                            GetRedeList($("#pagina").val());
+                        } else { swal("Erro...", response.msg, "error"); }
+                    })
+                .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                });
+                });
+            });
+            $("#CanalTable").on("click", ".ActivarCanal", function (e) {
+                e.preventDefault();
+                var accao = "";
+                var texto = "";
+                var ID = $(this).attr("data-id");
+
+                var estado = $(this).attr("pid");
+                var Tipo = "Canal";
+                if (estado == 1) { accao = "Activar"; } else { accao = "Desctivar"; }
+
+                swal({
+                    title: "Tem certeza?",
+                    text: "Deseja " + accao + " o Registo?",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: true,
+                    closeOnCancel: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: accao,
+                    confirmButtonColor: "#4CAF50"
+                }, function () {
+
+                    $.post("/GCC/Home/UpdateParametrizacao", { estado: estado, ID: ID, Tipo: Tipo })
+                    .done(function (response) {
+                        if (response.status) {
+                            toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+
+                            GetCanalList($("#pagina").val());
+                        } else { swal("Erro...", response.msg, "error"); }
+                    })
+                .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                });
+                });
+            });
+            $("#PrioridadeTable").on("click", ".ActivarPrioridade", function (e) {
+                e.preventDefault();
+                var accao = "";
+                var texto = "";
+                var ID = $(this).attr("data-id");
+
+                var estado = $(this).attr("pid");
+                var Tipo = "Prioridade";
+                if (estado == 1) { accao = "Activar"; } else { accao = "Desctivar"; }
+
+                swal({
+                    title: "Tem certeza?",
+                    text: "Deseja " + accao + " o Registo?",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: true,
+                    closeOnCancel: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: accao,
+                    confirmButtonColor: "#4CAF50"
+                }, function () {
+
+                    $.post("/GCC/Home/UpdateParametrizacao", { estado: estado, ID: ID, Tipo: Tipo })
+                    .done(function (response) {
+                        if (response.status) {
+                            toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                            GetPrioridadeList($("#pagina").val());
+                        } else { swal("Erro...", response.msg, "error"); }
+                    })
+                .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                });
+                });
+            });
+
+            $("#RazaoListDiv").on("click", ".Pager .page", function () {
+                var index = $(this).attr('page');
+                document.getElementById("pagina").value = index;
+
+                GetRazaoList(index);
+            });
+            $("#PrioridadeListDiv").on("click", ".Paginas .page", function () {
+                var index = $(this).attr('page');
+                document.getElementById("pagina").value = index;
+                GetPrioridadeList(index);
+            });
+            $("#CanalListDiv").on("click", ".Pager .page", function () {
+                var index = $(this).attr('page');
+                document.getElementById("pagina").value = index;
+
+                GetCanalList(index);
+            });
+            $("#RedeListDiv").on("click", ".Pager .page", function () {
+                var index = $(this).attr('page');
+                document.getElementById("pagina").value = index;
+
+                GetRedeList(index);
+            });
+            function GetRazaoList(pageIndex) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetRazaoContacto", "Home")",
+                    data: { pagina: pageIndex},
+                dataType: 'json',
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (response) {
+                    var row="";
+                    if (response.status) {
+                        $.each(response.data, function (index, item) {
+
+                            row += "<tr><td>" + item.ID + "</td><td>" + item.RazaoContacto + "</td>";
+                            if (item.Estado == true) {
+                                row += "<td><button type='button' class='btn bg-green waves-effect ActivarRazao' pid='0' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Desactivar Razão de Contacto' style='padding : 3px 6px !important;'><i class='material-icons'>lock_open</i></button><a class='btn bg-green waves-effect editar' nome='" + item.RazaoContacto + "' Tipo='Razao' data-id='" + item.ID + "' style='padding : 3px 6px !important;margin-left : 10px'  data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>"
+                            } else { row += "<td><button type='button' class='btn bg-red waves-effect ActivarRazao' pid='1' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Activar Razão de Contacto' style='padding : 3px 6px !important;'><i class='material-icons'>lock_outline</i></button><a class='btn bg-green waves-effect editar' nome='" + item.RazaoContacto + "' data-id='" + item.ID + "' Tipo='Razao' style='padding : 3px 6px !important;margin-left : 10px'  data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>" }
+
+                        });
+                        $("#Razaolinhas > tr").remove();
+                        $("#Razaolinhas").html(row);
+
+                        $("#RazaoListDiv .Pager").ASPSnippets_Pager({
+                            ActiveCssClass: "current",
+                            PagerCssClass: "pager",
+                            PageIndex: response.pagina.PageIndex,
+                            PageSize: response.pagina.PageSize,
+                            RecordCount: response.pagina.RecordCount
+                        });
+                    } else { swal("Erro...", response.msg, "error"); }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+                },
+                failure: function (response) {
+                    swal("Oops...", "Erro parametrizacao GetRazaoList ", "error")
+                }
+            });
+
+            }
+
+            $("#tabs").on("click", ".editar", function (e) {
+                e.preventDefault();
+                var tipo = $(this).attr("Tipo");
+                var nome = $(this).attr("nome");
+                var ID = $(this).attr("data-id");
+
+                switch (tipo)
+                {
+                    case "Razao":
+                        $('.form-line').addClass('focused');
+                        $("#ID").val(ID);
+                        $("#NomeRazaoContacto").val(nome);
+                        $("#btnGravarRazao").text("ACTUALIZAR");
+
+                        break;
+
+                    case "Prioridade":
+                        $('.form-line').addClass('focused');
+                        $("#ID").val(ID);
+                        $("#NomePrioridade").val(nome);
+                        $("#btnGravarPrioridade").text("ACTUALIZAR");
+
+                        break;
+
+                    case "Canal":
+                        $('.form-line').addClass('focused');
+                        $("#ID").val(ID);
+                        $("#NomeCanal").val(nome);
+                        $("#btnGravarCanal").text("ACTUALIZAR");
+
+                        break;
+
+                    case "Rede":
+                        $('.form-line').addClass('focused');
+                        $("#ID").val(ID);
+                        $("#NomeRede").val(nome);
+                        $("#btnGravarRede").text("ACTUALIZAR");
+
+                        break;
+                }
+
+            });
+
+
+            function GetPrioridadeList(pageIndex) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetPrioridade", "Home")",
+                    data: { pagina: pageIndex},
+                dataType: 'json',
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (response) {
+                    var row="";
+                    if (response.status) {
+                        $.each(response.data, function (index, item) {
+
+                            row += "<tr><td>" + item.ID + "</td><td>" + item.Prioridade + "</td>";
+                            if (item.Estado == true) {
+                                row += "<td><button type='button' class='btn bg-green waves-effect ActivarPrioridade' pid='0' data-id='" + item.ID + "' data-toggle='tooltip' data-placement='top' title='Desactivar Prioridade' style='padding : 3px 6px !important;'><i class='material-icons'>lock_open</i></button><a class='btn bg-green waves-effect editar' data-id='" + item.ID + "' nome='" + item.Prioridade + "' Tipo='Prioridade' style='padding : 3px 6px !important;margin-left : 10px'  data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>"
+                            } else { row += "<td><button type='button' class='btn bg-red waves-effect ActivarPrioridade' pid='1' data-id='" + item.ID + "' data-toggle='tooltip' data-placement='top' title='Activar Prioridade' style='padding : 3px 6px !important;'><i class='material-icons'>lock_outline</i></button><a class='btn bg-green waves-effect editar' data-id='" + item.ID + "' nome='" + item.Prioridade + "' Tipo='Prioridade' style='padding : 3px 6px !important;margin-left : 10px'  data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>" }
+
+                        });
+                        $("#Prioridadelinhas > tr").remove();
+                        $("#Prioridadelinhas").html(row);
+                        $(".Paginas").ASPSnippets_Pager({
+                            ActiveCssClass: "current",
+                            PagerCssClass: "pager",
+                            PageIndex: response.pagina.PageIndex,
+                            PageSize: response.pagina.PageSize,
+                            RecordCount: response.pagina.RecordCount
+                        });
+                    } else { swal("Erro...", response.msg, "error"); }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+                },
+                failure: function (response) {
+                    swal("Oops...", "Erro parametrizacao GetPrioridadeList ", "error")
+                }
+            });
+
+        }
+
+            function GetCanalList(pageIndex) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetCanal", "Home")",
+                    data: { pagina: pageIndex},
+                dataType: 'json',
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (response) {
+                    var row="";
+                    if (response.status) {
+                        $.each(response.data, function (index, item) {
+
+                            row += "<tr><td>" + item.ID + "</td><td>" + item.Canal + "</td>";
+                            if (item.Estado == true) {
+                                row += "<td><button type='button' class='btn bg-green waves-effect ActivarCanal' pid='0' data-id='" + item.ID + "' data-toggle='tooltip' data-placement='top' title='Desactivar Canal' style='padding : 3px 6px !important;'><i class='material-icons'>lock_open</i></button><a class='btn bg-green waves-effect editar' style='padding : 3px 6px !important;margin-left : 10px' data-id='" + item.ID + "' nome='" + item.Canal + "' Tipo='Canal' data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>"
+                            } else { row += "<td><button type='button' class='btn bg-red waves-effect ActivarCanal' pid='1' data-id='" + item.ID + "' data-toggle='tooltip' data-placement='top' title='Activar Canal' style='padding : 3px 6px !important;'><i class='material-icons'>lock_outline</i></button><a class='btn bg-green waves-effect editar' style='padding : 3px 6px !important;margin-left : 10px' data-id='" + item.ID + "' nome='" + item.Canal + "' Tipo='Canal'  data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>" }
+
+                        });
+                        $("#Canallinhas > tr").remove();
+                        $("#Canallinhas").html(row);
+
+                        $("#CanalListDiv .Pager").ASPSnippets_Pager({
+                            ActiveCssClass: "current",
+                            PagerCssClass: "pager",
+                            PageIndex: response.pagina.PageIndex,
+                            PageSize: response.pagina.PageSize,
+                            RecordCount: response.pagina.RecordCount
+                        });
+                    } else { swal("Erro...", response.msg, "error"); }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+                },
+                failure: function (response) {
+                    swal("Oops...", "Erro parametrizacao GetCanalList ", "error")
+                }
+            });
+
+            }
+            function GetRedeList(pageIndex) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetRede", "Home")",
+                    data: { pagina: pageIndex},
+                dataType: 'json',
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (response) {
+                    var row="";
+                    if (response.status) {
+                        $.each(response.data, function (index, item) {
+
+                            row += "<tr><td>" + item.ID + "</td><td>" + item.Rede + "</td>";
+                            if (item.Estado == true) {
+                                row += "<td><button type='button' class='btn bg-green waves-effect ActivarRede' pid='0' data-id='" + item.ID + "' data-toggle='tooltip' data-placement='top' title='Desactivar Rede' style='padding : 3px 6px !important;'><i class='material-icons'>lock_open</i></button><a class='btn bg-green waves-effect editar' data-id='" + item.ID + "' nome='" + item.Rede + "' Tipo='Rede'  style='padding : 3px 6px !important;margin-left : 10px'  data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>"
+                            } else { row += "<td><button type='button' class='btn bg-red waves-effect ActivarRede' pid='1' data-id='" + item.ID + "' data-toggle='tooltip' data-placement='top' title='Activar Rede' style='padding : 3px 6px !important;'><i class='material-icons'>lock_outline</i></button><a class='btn bg-green waves-effect editar' data-id='" + item.ID + "' nome='" + item.Rede + "' Tipo='Rede'  style='padding : 3px 6px !important;margin-left : 10px'  data-toggle='tooltip' data-placement='top' title='Editar Dados'><i class='material-icons'>mode_edit</i></a></td></tr>" }
+
+                        });
+                        $("#Redelinhas > tr").remove();
+                        $("#Redelinhas").html(row);
+
+                        $("#RedeListDiv .Pager").ASPSnippets_Pager({
+                            ActiveCssClass: "current",
+                            PagerCssClass: "pager",
+                            PageIndex: response.pagina.PageIndex,
+                            PageSize: response.pagina.PageSize,
+                            RecordCount: response.pagina.RecordCount
+                        });
+                    } else { swal("Erro...", response.msg, "error"); }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+                },
+                failure: function (response) {
+                    swal("Oops...", "Erro parametrizacao GetRedeList ", "error")
+                }
+            });
+
+        }
+            function checkSession()
+           {
+               var result;
+               $.ajax({
+
+                   type: 'POST',
+                   dataType: 'json',
+                   contentType: 'application/json',
+                   url: "@Url.Action("checkSession", "Home")",
+                   data: '{}',
+               success: function (data) {
+
+                   result = data.sessionValue;
+
+               },
+               error: function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", titleText, "error");
+
+               }
+           });
+           return result;
+           }
+        function textFromHTMLString(html, target) {
+            if (!html || !target) {
+                return false;
+            }
+            else {
+                var fragment = document.createDocumentFragment(),
+                    container = document.createElement('div');
+                container.innerHTML = html;
+                fragment.appendChild(container);
+                var targets = fragment.firstChild.getElementsByTagName(target),
+                    result = [];
+
+                for (var i = 0, len = targets.length; i < len; i++) {
+                    result.push(targets[i].textContent || targets[i].innerText);
+                }
+                return result;
+            }
+        }
+        });
+    </script>
+}

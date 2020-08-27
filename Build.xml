@@ -1,0 +1,83 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+
+	<!--
+<Target Name="Compile" DependsOnTargets="Clean">  
+-->
+
+	<Target Name="Compile" >  
+		<MSBuild Projects="GCC\GCC.csproj" />  
+	</Target> 
+	<ItemGroup>
+
+		<Root Include="GCC\Global.asax; GCC\*.config;**\*.log4net;" />  
+
+		<BinFiles Include="GCC\bin\**\*.*"/>	
+		
+		<Content Include="GCC\Content\**\*.*"/>	
+		
+		<Uploads Include="GCC\Anexos\*.*"/>
+		
+		<Fonts Include="GCC\Fonts\**\*.*"/>	
+
+		<Documents Include="GCC\Documents\**\*.*"/>
+		
+		<Images Include="GCC\Images\*.*"/>		
+		
+		<Scripts Include="GCC\Scripts\**\*.*"/>	
+
+		<Service_References Include="GCC\Service References\**\*.*" />
+
+		<Views Include="GCC\Views\**\*.*"/>		
+
+	</ItemGroup>
+
+	<Target Name="Clean">  
+		
+		<Delete Files="@(Root)" /> 
+		<Delete Files="@(BinFiles)" />  		
+		<Delete Files="@(Content)" /> 
+		<Delete Files="@(Uploads)" />
+		<Delete Files="@(Documents)" /> 
+		<Delete Files="@(Fonts)" /> 
+		<Delete Files="@(Images)" /> 
+		<Delete Files="@(Scripts)" /> 
+		<Delete Files="@(Service_References)" /> 
+		<Delete Files="@(Views)" /> 
+	</Target>  
+	<Target Name="Publish">  
+
+		<Copy SourceFiles ="@(Root)" DestinationFolder="C:\Inetpub\wwwroot\GCC" />
+		<Copy SourceFiles ="@(Root)" DestinationFolder="C:\Work\Deploy\Web\GCC" />
+
+		<Copy SourceFiles ="@(BinFiles)" DestinationFolder="C:\Inetpub\wwwroot\GCC\bin\%(RecursiveDir)" /> 
+		<Copy SourceFiles ="@(BinFiles)" DestinationFolder="C:\Work\Deploy\Web\GCC\bin\%(RecursiveDir)" /> 		
+
+		<Copy SourceFiles ="@(Content)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Content\%(RecursiveDir)"  />
+		<Copy SourceFiles ="@(Content)" DestinationFolder="C:\Work\Deploy\Web\GCC\Content\%(RecursiveDir)"  />
+		
+		<Copy SourceFiles ="@(Uploads)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Anexos" /> 
+		<Copy SourceFiles ="@(Uploads)" DestinationFolder="C:\Work\Deploy\Web\GCC\Anexos" /> 
+		
+		<Copy SourceFiles ="@(Fonts)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Fonts\%(RecursiveDir)"  />
+		<Copy SourceFiles ="@(Fonts)" DestinationFolder="C:\Work\Deploy\Web\GCC\Fonts\%(RecursiveDir)"  />
+
+		<Copy SourceFiles ="@(Documents)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Documents\%(RecursiveDir)" /> 
+		<Copy SourceFiles ="@(Documents)" DestinationFolder="C:\Work\Deploy\Web\GCC\Documents\%(RecursiveDir)" /> 
+ 
+
+		<Copy SourceFiles ="@(Images)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Images"  />  
+		<Copy SourceFiles ="@(Images)" DestinationFolder="C:\Work\Deploy\Web\GCC\Images"  />  
+
+		<Copy SourceFiles="@(Scripts)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Scripts\%(RecursiveDir)"  />
+		<Copy SourceFiles="@(Scripts)" DestinationFolder="C:\Work\Deploy\Web\GCC\Scripts\%(RecursiveDir)"  />
+
+		<Copy SourceFiles ="@(Service_References)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Service References\%(RecursiveDir)" /> 
+		<Copy SourceFiles ="@(Service_References)" DestinationFolder="C:\Work\Deploy\Web\GCC\Service References\%(RecursiveDir)" /> 
+
+		<Copy SourceFiles ="@(Views)" DestinationFolder="C:\Inetpub\wwwroot\GCC\Views\%(RecursiveDir)"  />
+		<Copy SourceFiles ="@(Views)" DestinationFolder="C:\Work\Deploy\Web\GCC\Views\%(RecursiveDir)"  />
+
+		
+
+	</Target> 
+</Project> 

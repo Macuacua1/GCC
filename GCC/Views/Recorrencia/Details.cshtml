@@ -1,0 +1,84 @@
+﻿@model GCC.vw_Log_Recorrencia
+
+
+@**@<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+    <link href="~/Content/plugins/node-waves/waves.css" rel="stylesheet" type="text/css" />
+   
+    <link href="~/Content/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+   
+    <script src="~/Scripts/waves.js"></script>
+    <script src="~/Content/plugins/momentjs/moment.js" type="text/javascript"></script>
+    
+    <script src="~/Scripts/js/admin.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/pages/forms/basic-form-elements.js"></script>
+
+
+
+</head>
+<body>
+    <div>
+        <div class="row clearfix">
+            <div class="modal-header" style="background-color: #009688;color: white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="largeModalLabel">ESTADO DA RECORRÊNCIA   CAMPANHA :  @Model.NomeCampanha</h4>
+            </div>
+        </div>
+        <div>
+            <div class="contentor" style="padding: 0 10px;margin-top: 15px!important">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    </div>
+
+                </div>
+            
+                <div class="form-group form-float">
+                    <div class="form-line focused">
+                        @Html.EditorFor(model => model.CodCampanha, new { htmlAttributes = new { @class = "form-control",disabled=true } })
+                        <label class="form-label" style="color:#B32251">Código da Campanha</label>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line focused">
+                        @Html.EditorFor(model => model.NomeCampanha, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                        <label class="form-label" style="color:#B32251">Nome Campanha</label>
+                    </div>
+                </div>
+                <div class="form-group form-float">
+                    <div class="form-line focused">
+                        @if (@Model.Estado==true)
+                        {
+                            <textarea name="ErroMessage" id="ErroMessage" cols="30" rows="5" class="form-control no-resize" disabled>SUCESSO</textarea>
+                        }
+                        else
+                        {<textarea name="ErroMessage" id="ErroMessage" cols="30" rows="5" class="form-control no-resize" disabled>@Model.ErroMessage</textarea>
+                        }
+                        
+                        <label class="form-label" style="color:#B32251">Mensagem</label>
+                    </div>
+                </div>
+               
+            </div>
+
+        </div>
+
+    </div>
+    @section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+                alert('entrei');
+                $('.form-line').addClass('focused');
+            });
+    </script>
+        }
+</body>
+</html>

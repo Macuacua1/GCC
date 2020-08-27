@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CONTACTOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CONTACTOS.dbo.Colaborador' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Colaborador">
+          <Key>
+            <PropertyRef Name="NUM" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="NUM" Type="int" Nullable="false" />
+          <Property Name="EMPGRUPO" Type="nvarchar" MaxLength="255" />
+          <Property Name="NUMUNICO" Type="int" />
+          <Property Name="TITULO" Type="nvarchar" MaxLength="255" />
+          <Property Name="NOME" Type="nvarchar" MaxLength="255" />
+          <Property Name="DATANASCIM" Type="int" />
+          <Property Name="DATADMISSAO" Type="int" />
+          <Property Name="CATEGORIA" Type="nvarchar" MaxLength="255" />
+          <Property Name="FUNCAO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CODUO" Type="int" />
+          <Property Name="CODIGO_UO" Type="nvarchar" MaxLength="12" />
+          <Property Name="DESCUO" Type="nvarchar" MaxLength="255" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FOTO" Type="nvarchar" MaxLength="255" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" />
+          <Property Name="VCORP" Type="nvarchar" MaxLength="6" />
+          <Property Name="MORADA" Type="nvarchar" MaxLength="255" />
+          <Property Name="LOCALIDADE" Type="nvarchar" MaxLength="255" />
+          <Property Name="CODPOSTAL" Type="nvarchar" MaxLength="255" />
+          <Property Name="TELGERAL" Type="nvarchar" MaxLength="50" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="50" />
+          <Property Name="TELDIRECTO" Type="nvarchar" MaxLength="255" />
+          <Property Name="EXTENSAO" Type="nvarchar" MaxLength="255" />
+          <Property Name="CELULAR" Type="nvarchar" MaxLength="255" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="255" />
+          <Property Name="AVALIADOR" Type="int" />
+          <Property Name="PASSWORD" Type="nvarchar" MaxLength="15" />
+          <Property Name="Telcasa" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tipoassina" Type="nvarchar" MaxLength="3" />
+          <Property Name="Assina" Type="nvarchar" MaxLength="15" />
+          <Property Name="TIPO_AVALIACAO" Type="tinyint" />
+          <Property Name="PASS" Type="bit" />
+          <Property Name="NIVEL" Type="nvarchar" MaxLength="255" />
+          <Property Name="HABILITACOES" Type="nvarchar" MaxLength="255" />
+          <Property Name="SITCONT" Type="nvarchar" MaxLength="50" />
+          <Property Name="NUIT" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOMEABREV" Type="nchar" MaxLength="40" />
+          <Property Name="UserALT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataALT" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="CONTACTOSModelStoreContainer">
+          <EntitySet Name="Colaborador" EntityType="Self.Colaborador" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Colaborador].[NUM] AS [NUM], 
+[Colaborador].[EMPGRUPO] AS [EMPGRUPO], 
+[Colaborador].[NUMUNICO] AS [NUMUNICO], 
+[Colaborador].[TITULO] AS [TITULO], 
+[Colaborador].[NOME] AS [NOME], 
+[Colaborador].[DATANASCIM] AS [DATANASCIM], 
+[Colaborador].[DATADMISSAO] AS [DATADMISSAO], 
+[Colaborador].[CATEGORIA] AS [CATEGORIA], 
+[Colaborador].[FUNCAO] AS [FUNCAO], 
+[Colaborador].[CODUO] AS [CODUO], 
+[Colaborador].[CODIGO_UO] AS [CODIGO_UO], 
+[Colaborador].[DESCUO] AS [DESCUO], 
+[Colaborador].[ID] AS [ID], 
+[Colaborador].[FOTO] AS [FOTO], 
+[Colaborador].[Username] AS [Username], 
+[Colaborador].[VCORP] AS [VCORP], 
+[Colaborador].[MORADA] AS [MORADA], 
+[Colaborador].[LOCALIDADE] AS [LOCALIDADE], 
+[Colaborador].[CODPOSTAL] AS [CODPOSTAL], 
+[Colaborador].[TELGERAL] AS [TELGERAL], 
+[Colaborador].[FAX] AS [FAX], 
+[Colaborador].[TELDIRECTO] AS [TELDIRECTO], 
+[Colaborador].[EXTENSAO] AS [EXTENSAO], 
+[Colaborador].[CELULAR] AS [CELULAR], 
+[Colaborador].[EMAIL] AS [EMAIL], 
+[Colaborador].[AVALIADOR] AS [AVALIADOR], 
+[Colaborador].[PASSWORD] AS [PASSWORD], 
+[Colaborador].[Telcasa] AS [Telcasa], 
+[Colaborador].[Tipoassina] AS [Tipoassina], 
+[Colaborador].[Assina] AS [Assina], 
+[Colaborador].[TIPO_AVALIACAO] AS [TIPO_AVALIACAO], 
+[Colaborador].[PASS] AS [PASS], 
+[Colaborador].[NIVEL] AS [NIVEL], 
+[Colaborador].[HABILITACOES] AS [HABILITACOES], 
+[Colaborador].[SITCONT] AS [SITCONT], 
+[Colaborador].[NUIT] AS [NUIT], 
+[Colaborador].[NOMEABREV] AS [NOMEABREV], 
+[Colaborador].[UserALT] AS [UserALT], 
+[Colaborador].[DataALT] AS [DataALT]
+FROM [dbo].[Colaborador] AS [Colaborador]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CONTACTOSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Colaborador">
+          <Key>
+            <PropertyRef Name="NUM" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="NUM" Type="Int32" Nullable="false" />
+          <Property Name="EMPGRUPO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NUMUNICO" Type="Int32" />
+          <Property Name="TITULO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NOME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DATANASCIM" Type="Int32" />
+          <Property Name="DATADMISSAO" Type="Int32" />
+          <Property Name="CATEGORIA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FUNCAO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CODUO" Type="Int32" />
+          <Property Name="CODIGO_UO" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="DESCUO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FOTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VCORP" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="MORADA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LOCALIDADE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CODPOSTAL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TELGERAL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FAX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TELDIRECTO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EXTENSAO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CELULAR" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AVALIADOR" Type="Int32" />
+          <Property Name="PASSWORD" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Telcasa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tipoassina" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Assina" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TIPO_AVALIACAO" Type="Byte" />
+          <Property Name="PASS" Type="Boolean" />
+          <Property Name="NIVEL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HABILITACOES" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SITCONT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NUIT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOMEABREV" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="UserALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataALT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="CONTACTOSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Colaborador" EntityType="Self.Colaborador" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CONTACTOSModelStoreContainer" CdmEntityContainer="CONTACTOSEntities">
+          <EntitySetMapping Name="Colaborador">
+            <EntityTypeMapping TypeName="CONTACTOSModel.Colaborador">
+              <MappingFragment StoreEntitySet="Colaborador">
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="EMPGRUPO" ColumnName="EMPGRUPO" />
+                <ScalarProperty Name="NUMUNICO" ColumnName="NUMUNICO" />
+                <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="DATANASCIM" ColumnName="DATANASCIM" />
+                <ScalarProperty Name="DATADMISSAO" ColumnName="DATADMISSAO" />
+                <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+                <ScalarProperty Name="FUNCAO" ColumnName="FUNCAO" />
+                <ScalarProperty Name="CODUO" ColumnName="CODUO" />
+                <ScalarProperty Name="CODIGO_UO" ColumnName="CODIGO_UO" />
+                <ScalarProperty Name="DESCUO" ColumnName="DESCUO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="VCORP" ColumnName="VCORP" />
+                <ScalarProperty Name="MORADA" ColumnName="MORADA" />
+                <ScalarProperty Name="LOCALIDADE" ColumnName="LOCALIDADE" />
+                <ScalarProperty Name="CODPOSTAL" ColumnName="CODPOSTAL" />
+                <ScalarProperty Name="TELGERAL" ColumnName="TELGERAL" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="TELDIRECTO" ColumnName="TELDIRECTO" />
+                <ScalarProperty Name="EXTENSAO" ColumnName="EXTENSAO" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="AVALIADOR" ColumnName="AVALIADOR" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="Telcasa" ColumnName="Telcasa" />
+                <ScalarProperty Name="Tipoassina" ColumnName="Tipoassina" />
+                <ScalarProperty Name="Assina" ColumnName="Assina" />
+                <ScalarProperty Name="TIPO_AVALIACAO" ColumnName="TIPO_AVALIACAO" />
+                <ScalarProperty Name="PASS" ColumnName="PASS" />
+                <ScalarProperty Name="NIVEL" ColumnName="NIVEL" />
+                <ScalarProperty Name="HABILITACOES" ColumnName="HABILITACOES" />
+                <ScalarProperty Name="SITCONT" ColumnName="SITCONT" />
+                <ScalarProperty Name="NUIT" ColumnName="NUIT" />
+                <ScalarProperty Name="NOMEABREV" ColumnName="NOMEABREV" />
+                <ScalarProperty Name="UserALT" ColumnName="UserALT" />
+                <ScalarProperty Name="DataALT" ColumnName="DataALT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

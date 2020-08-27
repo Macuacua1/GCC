@@ -1,0 +1,579 @@
+﻿
+@{
+    ViewBag.Title = "Log de Recorrencia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section metatags
+{
+    <style>
+         h2 {
+        margin-bottom: 20px;
+    }
+        .campo{margin-top: 10px;}
+       
+         a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+    background-color: cyan;
+}
+
+a:hover {
+  text-decoration: underline;
+    
+}
+
+a:active,a.active {
+  text-decoration: underline;
+    font-weight:bold;
+}
+    .highcharts-credits {
+display: none !important;
+}
+    </style>
+
+}
+<div class="container-fluid">
+
+    <div class="row clearfix">
+
+        <div class="row clearfix" aria-hidden="true">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header bg-pink">
+                        <h2>
+
+                            HISTÓRICO DE RECORRÊNCIAS 
+                            
+                        </h2>
+                    </div>
+                    <div class="body">
+                        @*Div addnew*@
+                        <div class="form-group form-float addnew" id="addnew" style="display:block">
+                          
+                            <div layout-wrap="" class="layout-wrap" id="RecorrenciaListDiv">
+
+                                <div>
+                                    <div>
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-md-8"></div>
+                                            <div class="col-md-4">
+                                                Visualizar :
+                                               @* <strong>Lista</strong> |*@
+                                                <a class="ui-btn" id="Lista" style="color:#2196f3">Lista</a> |
+                                                <a class="ui-btn" id="Chart" style="color:#2196f3">Grafico</a>
+                                                |
+
+                                            </div>
+                                        </div>
+                                       
+                                            
+
+                                        @*Div TabelaLista*@
+                                        <div class="TabelaLista" id="TabelaLista">
+                                            <div class="row" style="border-style: solid;border-color: green;height:60px;margin:0px 0px !important">
+                                                <div class="col-md-2 campo">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <select id="Recorrencia" class="form-control selectpicker opcao" title="--Tipo Recorrência  --" data-selected-text-format="count > 5">
+                                                                <option value="100">Todas</option>
+                                                                <option value="" data-divider="true"></option>
+                                                                @foreach (var item in ViewBag.listaRecorrencia)
+                                                                {
+                                                                    <option value="@item.ID">@item.Recorrencia</option>
+                                                                }
+
+                                                            </select>
+
+                                                            <label class="form-label titulos" style="margin-top: 0px!important">Recorrência</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 campo">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <select id="Estado" class="form-control selectpicker opcao" title="--Estado Recorrência--" data-selected-text-format="count > 5">
+                                                                <option value="100">Todas</option>
+                                                                <option value="" data-divider="true"></option>
+                                                                <option value="1">Sucesso</option>
+                                                                <option value="0">Falha</option>
+
+                                                            </select>
+
+                                                            <label class="form-label titulos" style="margin-top: -3px!important">Estado</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 campo">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <select id="Periodo" class="form-control selectpicker opcao" title="-- Periodo Recorrência--" data-selected-text-format="count > 5">
+                                                                <option value="100">Todas</option>
+                                                                <option value="" data-divider="true"></option>
+                                                                <option value="0" selected>Hoje</option>
+                                                                <option value="7">Última Semana</option>
+                                                                <option value="30">Último Mês</option>
+
+                                                            </select>
+
+                                                            <label class="form-label titulos" style="margin-top: -3px!important">Periodo</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6"></div>
+                                            </div>
+
+                                            <hr />
+                                            @if (@Session["Pagina"] != null)
+                                            {
+                                                <input type="hidden" id="Pagina" name="Pagina" value="@Session["Pagina"]">
+                                            }
+                                            else
+                                            {
+                                                <input type="hidden" id="Pagina" name="Pagina" value="1">
+                                            }
+                                            <div class="body table-responsive" style="margin-top: -8px!important">
+                                                <div>
+                                                    <span id="lbllegenda" style="display:inline-block;font-size:12px;font-weight:bold;">LEGENDA DE CORES:</span>
+
+                                                    <span id="lblVerde" style="display:inline-block;color:white;background-color:green;border-width:1px;border-style:solid;font-family:Tahoma;font-size:X-Small;font-weight:normal;width:130px;text-align: center">SUCESSO</span>
+                                                    <span id="lblVermelho" style="display:inline-block;color:white;background-color:red;border-width:1px;border-style:solid;font-family:Tahoma;font-size:X-Small;font-weight:normal;width:130px;text-align: center">FALHA</span>
+                                                    &nbsp;
+                                                </div>
+                                                <table id="RecorrenciaTable" class="table table-bordered table-striped table-hover">
+                                                    <thead>
+                                                        <tr class="bg-pink">
+
+                                                            <th>
+                                                                #
+                                                            </th>
+
+                                                            <th>
+                                                                Cód. Campanha
+
+                                                            </th>
+                                                            <th>
+                                                                Nome Campanha
+
+                                                            </th>
+                                                            <th>
+                                                                Recorrência
+
+                                                            </th>
+                                                            <th>
+                                                                Data Inicio
+
+                                                            </th>
+                                                            <th>
+                                                                Data Fim
+
+                                                            </th>
+                                                            <th>
+                                                                Canal
+
+                                                            </th>
+                                                            <th>
+                                                                Prioridade
+
+                                                            </th>
+                                                            <th>
+                                                                Razão Contacto
+
+                                                            </th>
+                                                            <th>
+                                                                Data Recorrência
+
+                                                            </th>
+                                                            <th style="display:none">
+                                                                Mensagem
+
+                                                            </th>
+
+                                                            <th>Acção</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody id="lines" style="font-size: 12px;">
+                                                        <tr></tr>
+
+                                                    </tbody>
+                                                </table>
+                                                <br />
+                                                <div class="Paginas"></div>
+                                            </div>
+                                        </div>
+                                        @* End Div TabelaLista*@
+                                        @*Div CHartLista*@
+                                        <div class="CHartLista" id="CHartLista" style="display:none">
+                                            <div class="row" style="border-style: solid;border-color: green;height:60px;margin:0px 0px !important">
+                                                <div class="col-md-2 campo">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <select id="RecorrenciaChart" class="form-control selectpicker" title="--Tipo Recorrência  --" data-selected-text-format="count > 5">
+                                                                <option value="100">Todas</option>
+                                                                <option value="" data-divider="true"></option>
+                                                                @foreach (var item in ViewBag.listaRecorrencia)
+                                                                {
+                                                                    <option value="@item.ID">@item.Recorrencia</option>
+                                                                }
+
+                                                            </select>
+
+                                                            <label class="form-label titulos" style="margin-top: 0px!important">Recorrência</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             
+                                                <div class="col-md-2 campo">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            <select id="PeriodoChart" class="form-control selectpicker" title="-- Periodo Recorrência--" data-selected-text-format="count > 5">
+                                                                <option value="100">Todas</option>
+                                                                <option value="" data-divider="true"></option>
+                                                                <option value="0" selected>Hoje</option>
+                                                                <option value="7">Última Semana</option>
+                                                                <option value="30">Último Mês</option>
+
+                                                            </select>
+
+                                                            <label class="form-label titulos" style="margin-top: -3px!important">Periodo</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8"></div>
+                                            </div>
+                                            <div class="row">
+                                               
+                                                <div class="col-md-12" id="barCharts"></div>
+                                               
+                                                @*<div class="col-md-12" id="lineCharts"></div>*@
+                                            </div>
+                                        </div>
+
+                                        @*Div CHartLista*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*End div addnew*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+@section scripts{
+<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Scripts/exporting.js"></script>
+<script src="~/Scripts/export-data.js"></script>
+<script src="~/Scripts/accessibility.js"></script>
+<script src="~/Scripts/ASPSnippets_Pager.min.js"></script>
+<script src="~/Scripts/Charts.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            var Pagina = $("#Pagina").val();
+            GetRecorrencias(Pagina, 0, 100, 100);
+
+            //document.getElementsByClassName("highcharts-credits").style.visibility = 'hidden';
+            
+            function ReloadPage() { window.location.reload(true); }
+
+            $("#Lista").on("click", function (e) {
+                e.preventDefault();
+                $("#Chart").removeClass("active");
+                $(this).addClass("active");
+                document.getElementById("CHartLista").style.display = "none";
+                document.getElementById("TabelaLista").style.display = "block";
+                $(".selectpicker").val('default').selectpicker("refresh");
+                $('#Periodo').selectpicker('val', 0).change();
+                
+                
+            });
+          
+            $("#Recorrencia").on("change", function (e) {
+                e.preventDefault();
+
+                var Pagina = $("#Pagina").val();
+                var Periodo = $("#Periodo").val();
+                var Recorrencia = $("#Recorrencia").val();
+                var Estado = $("#Estado").val();
+
+                GetRecorrencias(1, Periodo, Recorrencia, Estado);
+            });
+            $("#Periodo").on("change", function (e) {
+                e.preventDefault();
+
+                var Pagina = $("#Pagina").val();
+                var Periodo = $("#Periodo").val();
+                var Recorrencia = $("#Recorrencia").val();
+                var Estado = $("#Estado").val();
+
+                GetRecorrencias(1, Periodo, Recorrencia, Estado);
+            });
+            $("#Estado").on("change", function (e) {
+                e.preventDefault();
+
+                var Pagina = $("#Pagina").val();
+                var Periodo = $("#Periodo").val();
+                var Recorrencia = $("#Recorrencia").val();
+                var Estado = $("#Estado").val();
+
+                GetRecorrencias(1, Periodo, Recorrencia, Estado);
+            });
+       
+
+            $("#RecorrenciaListDiv").on("click", ".Paginas .page", function () {
+            var index = $(this).attr('page');
+            document.getElementById("Pagina").value = index;
+            var Periodo = $("#Periodo").val();
+            var Recorrencia = $("#Recorrencia").val();
+            var Estado = $("#Estado").val();
+            
+            GetRecorrencias(index,Periodo,Recorrencia,Estado);
+        });
+      
+            $("#RecorrenciaTable").on("click", ".VerErro", function (e) {
+           
+                e.preventDefault();
+                var log = [];
+                var id = $(this).attr('data-id');
+                //var codigo = $("#cod" + id).text();
+                //var nome = $("#nome" + id).text();
+                //var mensagem = $("#erro" + id).text().trim();
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("Details", "Recorrencia")",
+                    contentType: "application/json; charset=utf-8",
+                    data: { id: id },
+                datatype: "html",
+                success: function (data) {
+               
+                    $('#RecorrenciaModalBody').html(data);
+                    //$('#myModal').modal(options);
+                    $('#RecorrenciaModal').modal('show');
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", titleText, "error");
+
+                },
+                failure: function (response) {
+                    swal("Oops...", "Erro Load Modal", "error")
+                }
+            });
+
+        });
+
+      
+        $("#campanhaTable").on("click", ".ActivarCampanha", function (e) {
+            e.preventDefault();
+
+            var accao = "";
+            var texto = "";
+            var pagina = $("#PaginaCampanha").val();
+            var estado = $(this).attr('pid');
+            var campanhaID = $(this).attr('data-id');
+            if (estado == 1){accao = "Activar";}else {accao = "Desctivar"; }
+
+            swal({
+                title: "Tem certeza?",
+                text: "Deseja " + accao + "  Campanha?",
+                type: "warning",
+                showCancelButton: true,
+                closeOnConfirm: true,
+                closeOnCancel: true,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: accao,
+                confirmButtonColor: "#4CAF50"
+            }, function () {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SetCampanhaStatus", "Campanha")",
+                        data: { pagina: pagina, estado: estado, campanhaID: campanhaID },
+                        dataType: 'json',
+                        cache: false,
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        success: function (response) {
+
+                            if (response.status) {
+
+                                toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                                GetCampanhas(pagina);
+                            } else { swal("Erro...", response.msg, "error"); }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                            swal("Erro...", titleText, "error");
+
+                        },
+                        failure: function (response) {
+                            swal("Oops...", "Erro Actualiza_Estado Campanha", "error")
+                        }
+                    });
+
+            });
+
+        })
+            function FormatDate(d) {
+
+                var data = d.toString();
+                var date_components = data.split("/");
+                var current_day = date_components[0];
+                var current_month = date_components[1].toString();
+                var current_year = date_components[2].toString().slice(0, 5);
+                var datestring = current_day + "-" + current_month + "-" + current_year;
+
+                return datestring;
+            }
+            function getFormattedDate(data) {
+                debugger;
+                var date = new Date(data);
+                var year = date.getFullYear();
+
+                var month = (1 + date.getMonth()).toString();
+                month = month.length > 1 ? month : '0' + month;
+
+                var day = date.getDate().toString();
+                day = day.length > 1 ? day : '0' + day;
+
+                return day + '-' + month + '-' + year;
+            }
+
+            function GetRecorrencias(pageIndex, Periodo, Recorrencia, Estado) {
+            $.post("/GCC/Recorrencia/GetRecorrencias", { pagina: pageIndex, Periodo: Periodo, Recorrencia: Recorrencia, Estado: Estado }, function (response) {
+                document.getElementById("Pagina").value = pageIndex;
+                var Pagina = $("#Pagina").val();
+                var row = "";
+                $.each(response.data, function (index, item) {
+                   
+                    var DataInicio = FormatDate(new Date(moment.utc(item.DataInicio)).toLocaleString());
+                    var DataFim = FormatDate(new Date(moment.utc(item.DataFim)).toLocaleString());
+                    var DataRegisto = FormatDate(new Date(moment.utc(item.DataRegisto)).toLocaleString());
+                    
+                    if (item.Estado == true) {
+                        row += "<tr style='background-color:green;color:white' data-toggle='tooltip' data-placement='top' title='SUCESSO'><td>" + item.ID + "</td><td id='cod" + item.ID + "'>" + item.CodCampanha + "</td><td id='nome" + item.ID + "'>" + item.NomeCampanha + "</td><td>" + item.Recorrencia + "</td><td>" + DataInicio + "</td><td>" + DataFim + "</td><td>" + item.Canal + "</td><td>" + item.Prioridade + "</td><td>" + item.RazaoContacto + "</td><td>" + DataRegisto + "</td><td id='erro" + item.ID + "' style = 'display:none'>SUCESSO</td><td><button type='button' class='btn bg-light-green waves-effect VerErro' pid='1' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Ver Detalhes da Campanha' style='padding : 3px 6px !important;'><i class='material-icons'>visibility</i></button></td></tr>";
+                    } else
+                    { row += "<tr style='background-color:red;color:white' data-toggle='tooltip' data-placement='top' title='" + item.ErroMessage + "'><td>" + item.ID + "</td><td id='cod" + item.ID + "'>" + item.CodCampanha + "</td><td id='nome" + item.ID + "'>" + item.NomeCampanha + "</td><td>" + item.Recorrencia + "</td><td>" + DataInicio + "</td><td>" + DataFim + "</td><td>" + item.Canal + "</td><td>" + item.Prioridade + "</td><td>" + item.RazaoContacto + "</td><td>" + DataRegisto + "</td><td id='erro" + item.ID + "' style = 'display:none'>" + item.ErroMessage + "</td><td><button type='button' class='btn bg-light-green waves-effect VerErro' pid='1' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Ver Detalhes da Campanha' style='padding : 3px 6px !important;'><i class='material-icons'>visibility</i></button></td></tr>"; }
+                  
+
+                   });
+                $("#lines").html(row);
+                //$("#Lista").css("text-decoration","underline");
+                $("#Lista").addClass("active");
+                $(".Paginas").ASPSnippets_Pager({
+                    ActiveCssClass: "current",
+                    PagerCssClass: "pager",
+                    PageIndex: response.pagina.PageIndex,
+                    PageSize: response.pagina.PageSize,
+                    RecordCount: response.pagina.RecordCount
+                });
+
+            });
+
+            }
+            function getFormattedDate(date) {
+               
+                var year = date.getFullYear();
+
+                var month = (1 + date.getMonth()).toString();
+                month = month.length > 1 ? month : '0' + month;
+
+                var day = date.getDate().toString();
+                day = day.length > 1 ? day : '0' + day;
+
+                return day + '-' + month + '-' + year;
+            }
+           
+        function getCampanhaProducts(pageIndex, campanhaID) {
+
+            $.ajax({
+                type: "POST",
+                url:"@Url.Action("BuscaProdutoCampanha", "Campanha")",
+                data: { campanhaID: campanhaID, pagina: pageIndex },
+                dataType: 'json',
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+               success: OnSuccess,
+               error: function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", titleText, "error");
+
+               },
+               failure: function (response) {
+                   swal("Oops...", "Erro Busca Produto da Campanha", "error")
+               }
+            });
+        };
+            function OnSuccess(response) {
+                document.getElementById("PaginaProduto").value = response.pagina.PageIndex;
+                var row = "";
+                $.each(response.data, function (index, item) {
+                    row += "<tr id='linha" + item.ID + "'><td>" + item.ID + "</td><td>" + item.CampanhaID + "</td><td>" + item.CodProduto + "</td><td>" + item.NomeProduto + "</td><td><button type='button' class='btn bg-red waves-effect RemoverProduto' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Remover Produto na Campanha' style='padding : 3px 6px !important;'><i class='material-icons'>delete</i></button></td></tr>";
+
+                });
+                $("#linhas").html(row);
+                document.getElementById('addnew').style.display = 'block';
+                document.getElementById('CampanhaListDiv').style.display = 'none';
+
+            $(".Pager").ASPSnippets_Pager({
+                ActiveCssClass: "current",
+                PagerCssClass: "pager",
+                PageIndex: response.pagina.PageIndex,
+                PageSize: response.pagina.PageSize,
+                RecordCount: response.pagina.RecordCount
+            });
+            };
+
+        function textFromHTMLString(html, target) {
+            if (!html || !target) {
+                return false;
+            }
+            else {
+                var fragment = document.createDocumentFragment(),
+                    container = document.createElement('div');
+                container.innerHTML = html;
+                fragment.appendChild(container);
+                var targets = fragment.firstChild.getElementsByTagName(target),
+                    result = [];
+
+                for (var i = 0, len = targets.length; i < len; i++) {
+                    result.push(targets[i].textContent || targets[i].innerText);
+                }
+                return result;
+            }
+        }
+
+
+    })
+    </script>
+}
+
+<!-- Large Size -->
+<div class="modal fade" id="RecorrenciaModal" tabindex="-1" role="dialog" style="">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body" id="RecorrenciaModalBody">
+
+            </div>
+            @*<div class="modal-footer">
+                    <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                </div>*@
+        </div>
+    </div>
+</div>

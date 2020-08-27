@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Rede_da_Campanha">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RedeID" Type="int" />
+    <Property Name="CampanhaID" Type="int" />
+    <Property Name="Rede" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblAssunto">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodProduto" Type="bigint" />
+    <Property Name="NomeProduto" Type="nvarchar" MaxLength="50" />
+    <Property Name="CampanhaID" Type="int" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblCampanha">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodCampanha" Type="nvarchar" MaxLength="8" />
+    <Property Name="NomeCampanha" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataInicio" Type="datetime" />
+    <Property Name="DataFim" Type="datetime" />
+    <Property Name="MaxAlvosBalcao" Type="int" />
+    <Property Name="MaxAlvosGestor" Type="int" />
+    <Property Name="RazaoContactoID" Type="int" />
+    <Property Name="CanalID" Type="int" />
+    <Property Name="PrioridadeID" Type="int" />
+    <Property Name="RecorrenciaID" Type="int" />
+    <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblCampanha_Por_Provincia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProvinciaID" Type="int" />
+    <Property Name="CampanhaID" Type="int" />
+    <Property Name="Provincia" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tblCanal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Canal" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="DataRegisto" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblPrioridade">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Prioridade" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="UserRegisto" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblProvincia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Provincia" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblRazaoContacto">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RazaoContacto" Type="nvarchar" MaxLength="50" />
+    <Property Name="Estado" Type="bit" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="UserRegisto" Type="nvarchar" MaxLength="51" />
+  </EntityType>
+  <EntityType Name="tblRecorrencia">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Recorrencia" Type="nvarchar" MaxLength="20" />
+    <Property Name="NumDias" Type="int" />
+    <Property Name="DataRegisto" Type="datetime" />
+    <Property Name="Estado" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblRede">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rede" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataRegisto" Type="datetime" />
+  </EntityType>
+  <EntityContainer Name="GCCModelStoreContainer">
+    <EntitySet Name="Rede_da_Campanha" EntityType="Self.Rede_da_Campanha" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAssunto" EntityType="Self.tblAssunto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCampanha" EntityType="Self.tblCampanha" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCampanha_Por_Provincia" EntityType="Self.tblCampanha_Por_Provincia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCanal" EntityType="Self.tblCanal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPrioridade" EntityType="Self.tblPrioridade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProvincia" EntityType="Self.tblProvincia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRazaoContacto" EntityType="Self.tblRazaoContacto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRecorrencia" EntityType="Self.tblRecorrencia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRede" EntityType="Self.tblRede" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,155 @@
+﻿@model List<GCC.VW_Recorrencia>
+@{
+    ViewBag.Title = "PorExecutar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section metatags
+{
+
+    <style>
+        label,.dataTables_info{
+            color:darkred;
+            font-weight:bold;
+        }
+        .pagination li.active a{
+            background-color:darkred;
+        }
+    </style>
+
+}
+<div class="container-fluid">
+
+    <div class="row clearfix">
+
+        <div class="row clearfix" aria-hidden="true">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header bg-pink">
+                        <h2>
+
+                            RECORRÊNCIAS POR EXECUTAR
+
+                        </h2>
+                    </div>
+                    <div class="body">
+                        @*Div addnew*@
+                        <div class="form-group form-float addnew" id="addnew" style="display:block">
+                           
+                            <div layout-wrap="" class="layout-wrap" id="RecorrenciaListDiv">
+
+                                <div>
+                                    <div>
+                                        @*<br />
+                                        <p style="margin-top: 10px"><b> Lista de Campanhas</b></p>
+                                        <hr />*@
+                                       
+                                        <div class="body table-responsive">
+                                           
+                                            @*<table id="RecorrenciaTable" class="table table-bordered table-striped table-hover">*@
+                                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                    <thead>
+                                                        <tr class="bg-pink">
+
+                                                            <th>
+                                                                #
+                                                            </th>
+
+                                                            <th>
+                                                                Cód. Campanha
+
+                                                            </th>
+                                                            <th>
+                                                                Nome Campanha
+
+                                                            </th>
+                                                            <th>
+                                                                Recorrência
+
+                                                            </th>
+                                                            <th>
+                                                                Data Inicio
+
+                                                            </th>
+                                                            <th>
+                                                                Data Fim
+
+                                                            </th>
+                                                            <th>
+                                                                Canal
+
+                                                            </th>
+                                                            <th>
+                                                                Prioridade
+
+                                                            </th>
+                                                            <th>
+                                                                Razão Contacto
+
+                                                            </th>
+                                                            <th>
+                                                                Ultima Recorrência
+
+                                                            </th>
+
+                                                            <th>Dias Recorrência</th>
+                                                        </tr>
+                                                    </thead>
+                                                    
+
+                                                    <tbody id="lines" style="font-size: 12px;">
+                                                        @foreach (var item in Model)
+                                                        {
+                                                            var DataInicio = String.Format("{0:d/M/yyyy}", item.DataInicio);
+                                                            var DataFim = String.Format("{0:d/M/yyyy}", item.DataFim);
+                                                            var DataRegistoLog= String.Format("{0:d/M/yyyy}", item.DataRegistoLog);
+                                                            <tr>
+                                                                <td>@item.CampanhaID</td>
+                                                                <td>@item.CodCampanha</td>
+                                                                <td>@item.NomeCampanha</td>
+                                                                <td>@item.Recorrencia</td>
+                                                                <td>@DataInicio</td>
+                                                                <td>@DataFim</td>
+                                                                <td>@item.Canal</td>
+                                                                <td>@item.Prioridade</td>
+                                                                <td>@item.RazaoContacto</td>
+                                                                <td>@DataRegistoLog</td>
+                                                                <td>@item.NumDiasLog</td>
+                                                            </tr>
+                                                        }
+                                                        
+                                                      
+                                                    </tbody>
+                                                </table>
+                                            <br />
+                                            <div class="Paginas"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*End div addnew*@
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+@section scripts{
+    
+<script src="~/Content/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="~/Content/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            //$('.js-basic-example').DataTable();
+        });
+    </script>
+    }
+

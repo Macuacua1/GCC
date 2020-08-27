@@ -1,0 +1,144 @@
+﻿@{
+    string serverName = Server.MachineName;
+}
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+
+        <div class="user-info">
+            <div class="image" style="margin-left :70px!important">
+                @if (Session["UserImage"] != null)
+                { <img src=@Session["UserImage"] width="70" height="70" alt="User" />}
+                else
+                {
+                    
+                    <img src="~/Images/images.png" width="70" height="70" alt="User" />
+                }
+
+                
+            </div>
+            @if (@Session["UserID"] != null)
+            {
+            <div class="info-container">
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   @Session["XnucName"]
+                </div>
+                <div class="email">
+                    @Session["UnidadeOrganicaDescricao"]
+                </div>
+            </div>
+            }
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MENU</li>
+                <li class="active">
+                    <a href="@Url.Action("Index", "Home")">
+                        <i class="material-icons">home</i>
+                        <span>Pagina Inicial</span>
+                    </a>
+                </li>
+               @{
+                   List<string> roles = new List<string>();
+                   if (@Session["UserRoles"] != null)
+                   {
+                       roles = (List<string>)Session["UserRoles"];
+                   }
+
+                   if (User.IsInRole("GCC_REGISTO_CAMPANHA") || (roles != null && roles.Contains("GCC_REGISTO_CAMPANHA")))
+                   {
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        @*<i class="material-icons">volume_up</i>*@
+                        <i class="material-icons">notifications_active</i>
+                        <span>Campanha</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="@Url.Action("Create", "Campanha")">
+                                <span>Registo da Campanha</span></a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Parametrizacao", "Home")">
+                                <span>Parametrização Geral</span>
+                            </a>
+                           
+                        </li>
+                        @*<li class="dropdown1">
+                            <a href="javascript:void(0);" class="menu-toggle">
+                                <span>Recorrência</span>
+                            </a>
+                            <ul class="ml-menu">
+                                <li>
+                                    <a href="@Url.Action("Index", "Recorrencia")"><span>Log de Recorrências</span></a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("RecorrenciaPorExecutar", "Recorrencia")"><span>Recorrências por Executar</span></a>
+                                </li>
+                                
+                            </ul>
+                        </li>*@
+                    </ul>
+                </li>
+                   }
+            }
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">cached</i>
+                        <span>Recorrência</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="@Url.Action("Index", "Recorrencia")"><span>Log de Recorrências</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("RecorrenciaPorExecutar", "Recorrencia")"><span>Recorrências por Executar</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li data-toggle="tooltip" data-placement="right" title="" data-original-title="Ver Manual do Utilizador">
+                    
+                    <a href="@Url.Action("DownloadUserManual", "Home")" class="waves-effect waves-block">
+                        <i class="material-icons">help</i>
+                        <span>Ajuda</span>
+                    </a>
+                </li>
+                <li data-toggle="tooltip" data-placement="right" title="" data-original-title="Sair da aplicação">
+                    <a href="@Url.Action("Logout", "Home")" class="waves-effect waves-block">
+                        <i class="material-icons">input</i>
+                        <span>Sair</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- #Menu -->
+        <!-- Footer -->
+        <div class="legal">
+            <div class="version">
+                <label ID="lblServidor" style="color:#B32251;margin-left: 25px">@serverName</label>
+            </div>
+            <div class="copyright" style="color:#B32251">
+                &copy;
+                <script>
+                        var CurrentYear = new Date().getFullYear()
+                        document.write(CurrentYear)
+                </script>
+
+                <a href="javascript:void(0);">
+                    <label ID="lblServidor" Text="Label">MillenniumBim</label>
+                </a>.
+            </div>
+            
+        </div>
+        <!-- #Footer -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+   
+</section>
+

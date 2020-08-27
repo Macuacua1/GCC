@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GCCModelStoreContainer" CdmEntityContainer="GCCEntities">
+    <EntitySetMapping Name="tblPrioridade">
+      <EntityTypeMapping TypeName="GCCModel.tblPrioridade">
+        <MappingFragment StoreEntitySet="tblPrioridade">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProvincia">
+      <EntityTypeMapping TypeName="GCCModel.tblProvincia">
+        <MappingFragment StoreEntitySet="tblProvincia">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRazaoContacto">
+      <EntityTypeMapping TypeName="GCCModel.tblRazaoContacto">
+        <MappingFragment StoreEntitySet="tblRazaoContacto">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRecorrencia">
+      <EntityTypeMapping TypeName="GCCModel.tblRecorrencia">
+        <MappingFragment StoreEntitySet="tblRecorrencia">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+          <ScalarProperty Name="NumDias" ColumnName="NumDias" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Campanha">
+      <EntityTypeMapping TypeName="GCCModel.VW_Campanha">
+        <MappingFragment StoreEntitySet="VW_Campanha">
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="NumDias" ColumnName="NumDias" />
+          <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+          <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+          <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+          <ScalarProperty Name="Canal" ColumnName="Canal" />
+          <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+          <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+          <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+          <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+          <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+          <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rede_da_Campanha">
+      <EntityTypeMapping TypeName="GCCModel.Rede_da_Campanha">
+        <MappingFragment StoreEntitySet="Rede_da_Campanha">
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Rede" ColumnName="Rede" />
+          <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+          <ScalarProperty Name="RedeID" ColumnName="RedeID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAssunto">
+      <EntityTypeMapping TypeName="GCCModel.tblAssunto">
+        <MappingFragment StoreEntitySet="tblAssunto">
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+          <ScalarProperty Name="ProdutoID" ColumnName="ProdutoID" />
+          <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+          <ScalarProperty Name="CodProduto" ColumnName="CodProduto" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCampanha_Por_Provincia">
+      <EntityTypeMapping TypeName="GCCModel.tblCampanha_Por_Provincia">
+        <MappingFragment StoreEntitySet="tblCampanha_Por_Provincia">
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+          <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCanal">
+      <EntityTypeMapping TypeName="GCCModel.tblCanal">
+        <MappingFragment StoreEntitySet="tblCanal">
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Canal" ColumnName="Canal" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRede">
+      <EntityTypeMapping TypeName="GCCModel.tblRede">
+        <MappingFragment StoreEntitySet="tblRede">
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Rede" ColumnName="Rede" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_Recorrencia">
+      <EntityTypeMapping TypeName="GCCModel.VW_Recorrencia">
+        <MappingFragment StoreEntitySet="VW_Recorrencia">
+          <ScalarProperty Name="EstadoRecorrencia" ColumnName="EstadoRecorrencia" />
+          <ScalarProperty Name="NumDiasLog" ColumnName="NumDiasLog" />
+          <ScalarProperty Name="DataRegistoLog" ColumnName="DataRegistoLog" />
+          <ScalarProperty Name="DataRegistoCampanha" ColumnName="DataRegistoCampanha" />
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="DiasRecorrencia" ColumnName="DiasRecorrencia" />
+          <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+          <ScalarProperty Name="RecorrenciaID" ColumnName="RecorrenciaID" />
+          <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+          <ScalarProperty Name="RazaoContactoID" ColumnName="RazaoContactoID" />
+          <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+          <ScalarProperty Name="PrioridadeID" ColumnName="PrioridadeID" />
+          <ScalarProperty Name="Canal" ColumnName="Canal" />
+          <ScalarProperty Name="CanalID" ColumnName="CanalID" />
+          <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+          <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+          <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+          <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+          <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+          <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+          <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_Log_Recorrencia">
+      <EntityTypeMapping TypeName="GCCModel.vw_Log_Recorrencia">
+        <MappingFragment StoreEntitySet="vw_Log_Recorrencia">
+          <ScalarProperty Name="DiasDecorridos" ColumnName="DiasDecorridos" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="ErroMessage" ColumnName="ErroMessage" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="NumDias" ColumnName="NumDias" />
+          <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+          <ScalarProperty Name="RecorrenciaID" ColumnName="RecorrenciaID" />
+          <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+          <ScalarProperty Name="RazaoContactoID" ColumnName="RazaoContactoID" />
+          <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+          <ScalarProperty Name="PrioridadeID" ColumnName="PrioridadeID" />
+          <ScalarProperty Name="Canal" ColumnName="Canal" />
+          <ScalarProperty Name="CanalID" ColumnName="CanalID" />
+          <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+          <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+          <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+          <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+          <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+          <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+          <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_Assunto">
+      <EntityTypeMapping TypeName="GCCModel.vw_Assunto">
+        <MappingFragment StoreEntitySet="vw_Assunto">
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+          <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+          <ScalarProperty Name="ProdutoID" ColumnName="ProdutoID" />
+          <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+          <ScalarProperty Name="CodProduto" ColumnName="CodProduto" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCampanha">
+      <EntityTypeMapping TypeName="GCCModel.tblCampanha">
+        <MappingFragment StoreEntitySet="tblCampanha">
+          <ScalarProperty Name="DataRecorrSemanal" ColumnName="DataRecorrSemanal" />
+          <ScalarProperty Name="DataRecorrMensal" ColumnName="DataRecorrMensal" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+          <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+          <ScalarProperty Name="RecorrenciaID" ColumnName="RecorrenciaID" />
+          <ScalarProperty Name="PrioridadeID" ColumnName="PrioridadeID" />
+          <ScalarProperty Name="CanalID" ColumnName="CanalID" />
+          <ScalarProperty Name="RazaoContactoID" ColumnName="RazaoContactoID" />
+          <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+          <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+          <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+          <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+          <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+          <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,374 @@
+﻿@model GCC.Models.Campanha
+
+@**@<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+
+    @*<link href="~/Content/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/plugins/node-waves/waves.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+    
+    <link href="~/Content/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+   @* <link href="~/Content/css/themes/theme-pink.css" rel="stylesheet" type="text/css" />
+   <script src="~/Content/plugins/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script src="~/Content/plugins/bootstrap-select/js/bootstrap-select.js" type="text/javascript"></script>
+    <script src="~/Scripts/waves.js"></script>
+
+    @*<script src="~/Content/plugins/autosize/autosize.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/waves.js"></script>
+    <script src="~/Content/plugins/momentjs/moment.js" type="text/javascript"></script>
+    <script src="~/Scripts/moment-with-locales.js"></script>
+    <script src="~/Content/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/js/admin.js" type="text/javascript"></script>
+    <script src="~/Scripts/js/pages/forms/basic-form-elements.js"></script>
+
+    
+   
+</head>
+<body>
+    <div>
+        <div class="row clearfix">
+            <div class="modal-header" style="background-color: #009688;color: white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="largeModalLabel">DADOS DA CAMPANHA :  @Model.NomeCampanha</h4>
+            </div>
+        </div>
+            @*Div abas*@
+            <div class="row clearfix abas" id="abas" aria-hidden="false" style="display :block">
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs tab-nav-right tab-col-pink" role="tablist" id="tablink">
+                    <li role="presentation" style="cursor: pointer;" id="campanhadata" class="active"><a data-target="#DadosGerais" id="dadoscampanhatab" data-toggle="tab">DADOS GERAIS</a></li>
+                    <li role="presentation" style="cursor: pointer;" id="catalogodata"><a data-target="#Produtos" data-toggle="tab">PRODUTOS DA CAMPANHA</a></li>
+
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" id="Produtos">
+                        <div class="contentor" style="padding: 0 10px">
+                            <form id="produto_campanha">
+                                <input type="hidden" id="CampanhaID" name="CampanhaID">
+                                <input type="hidden" id="PageIndex" name="PageIndex">
+                                <input type="hidden" id="Total" name="Total">
+                                <input type="hidden" id="Pagina" name="Pagina">
+                                <div class="row clearfix">
+                                    <div class="col-sm-3">
+                                        <div class="form-group form-float">
+                                            <div class="form-line">
+                                                @Html.DropDownListFor(model => model.produto.ProdutoRaiz, new SelectList(ViewBag.listaProduto, "ProductID", "ProductName"), "-- Seleccione o Produto (*)--", htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoRaiz", required = "true" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="form-line">
+
+                                                @Html.DropDownListFor(model => model.produto.ProdutoNivel1, new SelectList(""), htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoNivel1" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="form-line">
+
+                                                @Html.DropDownListFor(model => model.produto.ProdutoNivel2, new SelectList(""), htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoNivel2" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="form-line">
+
+                                                @Html.DropDownListFor(model => model.produto.ProdutoNivel3, new SelectList(""), htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoNivel3" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix botoes">
+                                    <div class="col-sm-9">
+
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                        <button type="button" id="btnCancelarProduto" class="btn btn-warning waves-effect btnCancelarProduto">CANCELAR</button>
+                                        <button type="submit" id="btnGravarProduto" class="btn btn-success waves-effect">GRAVAR</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div layout-wrap="" class="layout-wrap">
+
+                            <div class="productListDiv">
+                                <div>
+                                    <p><b> Lista de Produtos da Campanha</b></p>
+
+                                    <div class="body table-responsive">
+                                        <table id="MyTable" class="table table-bordered table-striped table-hover">
+                                            <thead>
+                                                <tr class="bg-pink">
+
+                                                    <th>
+                                                        #
+                                                    </th>
+                                                    <th>
+                                                        Código da Campanha
+
+                                                    </th>
+                                                    <th>
+                                                        Código do Produto
+
+                                                    </th>
+                                                    <th>
+                                                        Nome do Produto
+
+                                                    </th>
+                                                    <th>Acção</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody id="linhas" style="font-size: 12px;">
+                                                <tr></tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td><input type="text" class="form-control"  placeholder="Pesquisar" data-toggle="tooltip" data-placement="bottom" title="Pesquisa pelo Centro de Custo" aria-invalid="false"></td>
+                                                    <td><input type="text" class="form-control"  placeholder="Pesquisar" data-toggle="tooltip" data-placement="bottom" title="Pesquisa pelo Código da Unidade Orgânica" aria-invalid="false"></td>
+                                                    <td>
+                                                        <input type="text" class="form-control"  placeholder="Pesquisar" data-toggle="tooltip" data-placement="bottom" title="Pesquisa pela Descrição" aria-invalid="false">
+                                                    </td>
+                                                    <td></td>
+                                                </tr>
+                                                    @foreach (var item in Model.produtos)
+                                                    {
+                                                        <tr id="@("row"+@item.ID)">
+                                                            <td>@item.ID</td>
+                                                            <td>@item.CampanhaID</td>
+                                                            <td>@item.CodProduto</td>
+                                                            <td>@item.NomeProduto</td>
+                                                            <td>@item.Estado</td>
+                                                        </tr>
+                                                    }
+
+                                            </tbody>
+                                        </table>
+                                        <br />
+                                        <div class="Pager"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane active" id="DadosGerais">
+                        <div class="contentor" style="padding: 0 10px">
+                            <form id="frmcampanha">
+                                @Html.AntiForgeryToken()
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Cód. Campanha</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.CodCampanha, new { htmlAttributes = new { @class = "form-control", maxlength = "8", minlength = "8", required = "true" } })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Recorrência</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.DropDownListFor(model => model.RecorrenciaID, new SelectList(ViewBag.listaRecorrencia, "ID", "Recorrencia"), "-- Seleccione a Recorrencia(*) --", htmlAttributes: new { @class = "form-control selectpicker", required = "true" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Nome Campanha</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.NomeCampanha, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Razão Contact.</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.DropDownListFor(model => model.RazaoContactoID, new SelectList(ViewBag.listaRazaoContacto, "ID", "RazaoContacto"), "-- Seleccionea Razao de Contacto(*) --", htmlAttributes: new { @class = "form-control selectpicker", required = "true" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Data Inicio</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "DataHora form-control", required = "true", name = "DataInicio", placeholder = "Data Inicio/Hora" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Província(s)</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.DropDownListFor(model => model.IDProvincia, new SelectList(ViewBag.listaProvincia, "ID", "Provincia"), htmlAttributes: new { @class = "form-control selectpicker", multiple = "multiple", title = "-- Seleccione a(s) Provincia(s) --" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Data Fim</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @class = "DataHora form-control", required = "true", name = "DataFim", placeholder = "Data Fim/Hora" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Rede(s)</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.DropDownListFor(model => model.IDRede, new SelectList(ViewBag.listaRede, "ID", "Rede"), htmlAttributes: new { @class = "form-control selectpicker", multiple = "multiple", title = "-- Seleccione a(s) Rede(s) --" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Prioridade</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.DropDownListFor(model => model.PrioridadeID, new SelectList(ViewBag.listaPrioridade, "ID", "Prioridade"), "-- Seleccione a Prioridade --", htmlAttributes: new { @class = "form-control selectpicker" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Canal</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.DropDownListFor(model => model.CanalID, new SelectList(ViewBag.listaCanal, "ID", "Canal"), "-- Seleccione o Canal(*) --", htmlAttributes: new { @class = "form-control selectpicker", required = "true" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Máx.Alvos Balcão</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.MaxAlvosBalcao, new { htmlAttributes = new { @class = "form-control", type = "Number" } })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 form-control-label">
+                                        <label for="email_address_2">Máx. Alvos Gestor</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @Html.EditorFor(model => model.MaxAlvosGestor, new { htmlAttributes = new { @class = "form-control", type = "Number" } })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                           
+                                <div class="row clearfix">
+                                    <div class="col-sm-9">
+
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                        <button type="button" id="btnEditar" class="btn btn-warning waves-effect">EDITAR</button>
+                                        <button type="submit" id="btnActualizar" class="btn btn-success waves-effect" disabled>ACTUALIZAR</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            @*End div abas*@
+
+
+        </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var redes = [];
+            var provincias = [];
+           
+            $('.selectpicker').selectpicker('refresh');
+
+            redes.push(@ViewBag.redes);
+            provincias.push(@ViewBag.provincias);
+            //console.log(provincias);
+            //console.log(redes);
+            $('#IDProvincia').selectpicker('val', provincias).change();
+            $('#IDRede').selectpicker('val', redes).change();
+
+            $('#IDProvincia').on('change', function (e) {
+                e.preventDefault();
+
+                alert($(this).val());
+                
+            });
+
+          
+
+            $('#btnCancelar1').on('click', function (e) {
+                e.preventDefault();
+
+                alert('Botao cancelar');
+               
+
+            });
+        });
+        </script>
+      
+</body>
+</html>

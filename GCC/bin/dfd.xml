@@ -1,0 +1,50 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+dfd
+</name>
+</assembly>
+<members>
+<member name="P:dfd.MBimSettings.key">
+ <summary>
+ setting name
+ </summary>
+ <value></value>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="P:dfd.MBimSettings.value">
+ <summary>
+ setting value
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:dfd.MBimSettings.UpdateSetting(System.String,System.String,System.String)">
+ <summary>
+ Set a new setting value
+ </summary>
+ <param name="inAppName">Name of Application Setting</param>
+ <param name="inSettingName">Setting Name</param>
+ <param name="inNewSetting">New Setting Value</param>
+ <remarks></remarks>
+</member>
+<member name="M:dfd.MBimSettings.GetSetting(System.String,System.String)">
+ <summary>
+ get a setting value
+ </summary>
+ <param name="inAppName">Name of Application Setting</param>
+ <param name="inSettingName">Setting Name</param>
+ <returns>Setting Value</returns>
+ <remarks></remarks>
+</member>
+<member name="M:dfd.MBimSettings.GetAppSettings(System.String)">
+ <summary>
+ get settings
+ </summary>
+ <param name="appName">Name of Application Setting</param>
+ <returns>List of Settings </returns>
+ <remarks></remarks>
+</member>
+</members>
+</doc>

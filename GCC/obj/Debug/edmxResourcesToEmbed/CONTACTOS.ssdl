@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CONTACTOSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CONTACTOS.dbo.Colaborador' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Colaborador">
+    <Key>
+      <PropertyRef Name="NUM" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="NUM" Type="int" Nullable="false" />
+    <Property Name="EMPGRUPO" Type="nvarchar" MaxLength="255" />
+    <Property Name="NUMUNICO" Type="int" />
+    <Property Name="TITULO" Type="nvarchar" MaxLength="255" />
+    <Property Name="NOME" Type="nvarchar" MaxLength="255" />
+    <Property Name="DATANASCIM" Type="int" />
+    <Property Name="DATADMISSAO" Type="int" />
+    <Property Name="CATEGORIA" Type="nvarchar" MaxLength="255" />
+    <Property Name="FUNCAO" Type="nvarchar" MaxLength="255" />
+    <Property Name="CODUO" Type="int" />
+    <Property Name="CODIGO_UO" Type="nvarchar" MaxLength="12" />
+    <Property Name="DESCUO" Type="nvarchar" MaxLength="255" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="FOTO" Type="nvarchar" MaxLength="255" />
+    <Property Name="Username" Type="nvarchar" MaxLength="255" />
+    <Property Name="VCORP" Type="nvarchar" MaxLength="6" />
+    <Property Name="MORADA" Type="nvarchar" MaxLength="255" />
+    <Property Name="LOCALIDADE" Type="nvarchar" MaxLength="255" />
+    <Property Name="CODPOSTAL" Type="nvarchar" MaxLength="255" />
+    <Property Name="TELGERAL" Type="nvarchar" MaxLength="50" />
+    <Property Name="FAX" Type="nvarchar" MaxLength="50" />
+    <Property Name="TELDIRECTO" Type="nvarchar" MaxLength="255" />
+    <Property Name="EXTENSAO" Type="nvarchar" MaxLength="255" />
+    <Property Name="CELULAR" Type="nvarchar" MaxLength="255" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="255" />
+    <Property Name="AVALIADOR" Type="int" />
+    <Property Name="PASSWORD" Type="nvarchar" MaxLength="15" />
+    <Property Name="Telcasa" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tipoassina" Type="nvarchar" MaxLength="3" />
+    <Property Name="Assina" Type="nvarchar" MaxLength="15" />
+    <Property Name="TIPO_AVALIACAO" Type="tinyint" />
+    <Property Name="PASS" Type="bit" />
+    <Property Name="NIVEL" Type="nvarchar" MaxLength="255" />
+    <Property Name="HABILITACOES" Type="nvarchar" MaxLength="255" />
+    <Property Name="SITCONT" Type="nvarchar" MaxLength="50" />
+    <Property Name="NUIT" Type="nvarchar" MaxLength="50" />
+    <Property Name="NOMEABREV" Type="nchar" MaxLength="40" />
+    <Property Name="UserALT" Type="nvarchar" MaxLength="50" />
+    <Property Name="DataALT" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="CONTACTOSModelStoreContainer">
+    <EntitySet Name="Colaborador" EntityType="Self.Colaborador" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Colaborador].[NUM] AS [NUM], 
+[Colaborador].[EMPGRUPO] AS [EMPGRUPO], 
+[Colaborador].[NUMUNICO] AS [NUMUNICO], 
+[Colaborador].[TITULO] AS [TITULO], 
+[Colaborador].[NOME] AS [NOME], 
+[Colaborador].[DATANASCIM] AS [DATANASCIM], 
+[Colaborador].[DATADMISSAO] AS [DATADMISSAO], 
+[Colaborador].[CATEGORIA] AS [CATEGORIA], 
+[Colaborador].[FUNCAO] AS [FUNCAO], 
+[Colaborador].[CODUO] AS [CODUO], 
+[Colaborador].[CODIGO_UO] AS [CODIGO_UO], 
+[Colaborador].[DESCUO] AS [DESCUO], 
+[Colaborador].[ID] AS [ID], 
+[Colaborador].[FOTO] AS [FOTO], 
+[Colaborador].[Username] AS [Username], 
+[Colaborador].[VCORP] AS [VCORP], 
+[Colaborador].[MORADA] AS [MORADA], 
+[Colaborador].[LOCALIDADE] AS [LOCALIDADE], 
+[Colaborador].[CODPOSTAL] AS [CODPOSTAL], 
+[Colaborador].[TELGERAL] AS [TELGERAL], 
+[Colaborador].[FAX] AS [FAX], 
+[Colaborador].[TELDIRECTO] AS [TELDIRECTO], 
+[Colaborador].[EXTENSAO] AS [EXTENSAO], 
+[Colaborador].[CELULAR] AS [CELULAR], 
+[Colaborador].[EMAIL] AS [EMAIL], 
+[Colaborador].[AVALIADOR] AS [AVALIADOR], 
+[Colaborador].[PASSWORD] AS [PASSWORD], 
+[Colaborador].[Telcasa] AS [Telcasa], 
+[Colaborador].[Tipoassina] AS [Tipoassina], 
+[Colaborador].[Assina] AS [Assina], 
+[Colaborador].[TIPO_AVALIACAO] AS [TIPO_AVALIACAO], 
+[Colaborador].[PASS] AS [PASS], 
+[Colaborador].[NIVEL] AS [NIVEL], 
+[Colaborador].[HABILITACOES] AS [HABILITACOES], 
+[Colaborador].[SITCONT] AS [SITCONT], 
+[Colaborador].[NUIT] AS [NUIT], 
+[Colaborador].[NOMEABREV] AS [NOMEABREV], 
+[Colaborador].[UserALT] AS [UserALT], 
+[Colaborador].[DataALT] AS [DataALT]
+FROM [dbo].[Colaborador] AS [Colaborador]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

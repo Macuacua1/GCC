@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="wsValUsrPerfil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Rq_Page" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Perfil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="App" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsValUsrPerfilResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wsValUsrPerfilResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsValPerfilFuncao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="wsPerfil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="wsOperacao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsValPerfilFuncaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wsValPerfilFuncaoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsValUsr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Operacao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsValUsrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wsValUsrResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsAccessControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Operacao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Aplicacao" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsAccessControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="wsAccessControlResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsAuditoriaWebbank">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Operacao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Perfil" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Aplicacao" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pagina" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Descritivo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="wsAuditoriaWebbankResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="wsValUsrPerfilSoapIn">
+    <wsdl:part name="parameters" element="tns:wsValUsrPerfil" />
+  </wsdl:message>
+  <wsdl:message name="wsValUsrPerfilSoapOut">
+    <wsdl:part name="parameters" element="tns:wsValUsrPerfilResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsValPerfilFuncaoSoapIn">
+    <wsdl:part name="parameters" element="tns:wsValPerfilFuncao" />
+  </wsdl:message>
+  <wsdl:message name="wsValPerfilFuncaoSoapOut">
+    <wsdl:part name="parameters" element="tns:wsValPerfilFuncaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsValUsrSoapIn">
+    <wsdl:part name="parameters" element="tns:wsValUsr" />
+  </wsdl:message>
+  <wsdl:message name="wsValUsrSoapOut">
+    <wsdl:part name="parameters" element="tns:wsValUsrResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsAccessControlSoapIn">
+    <wsdl:part name="parameters" element="tns:wsAccessControl" />
+  </wsdl:message>
+  <wsdl:message name="wsAccessControlSoapOut">
+    <wsdl:part name="parameters" element="tns:wsAccessControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="wsAuditoriaWebbankSoapIn">
+    <wsdl:part name="parameters" element="tns:wsAuditoriaWebbank" />
+  </wsdl:message>
+  <wsdl:message name="wsAuditoriaWebbankSoapOut">
+    <wsdl:part name="parameters" element="tns:wsAuditoriaWebbankResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="wsValUsrPerfil">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validação do conjunto Page e Perfil na Webank (versao 1)</wsdl:documentation>
+      <wsdl:input message="tns:wsValUsrPerfilSoapIn" />
+      <wsdl:output message="tns:wsValUsrPerfilSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsValPerfilFuncao">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validacao do conjunto perfil e operacao na WebBank (Versao 1)</wsdl:documentation>
+      <wsdl:input message="tns:wsValPerfilFuncaoSoapIn" />
+      <wsdl:output message="tns:wsValPerfilFuncaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsValUsr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validação do Utilizador na Webank (versao 2)</wsdl:documentation>
+      <wsdl:input message="tns:wsValUsrSoapIn" />
+      <wsdl:output message="tns:wsValUsrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsAccessControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Acessos Webank (versao 3)</wsdl:documentation>
+      <wsdl:input message="tns:wsAccessControlSoapIn" />
+      <wsdl:output message="tns:wsAccessControlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="wsAuditoriaWebbank">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Auditoria do Utilizador na Webank</wsdl:documentation>
+      <wsdl:input message="tns:wsAuditoriaWebbankSoapIn" />
+      <wsdl:output message="tns:wsAuditoriaWebbankSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsValUsrPerfil">
+      <soap:operation soapAction="http://tempuri.org/wsValUsrPerfil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsValPerfilFuncao">
+      <soap:operation soapAction="http://tempuri.org/wsValPerfilFuncao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsValUsr">
+      <soap:operation soapAction="http://tempuri.org/wsValUsr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsAccessControl">
+      <soap:operation soapAction="http://tempuri.org/wsAccessControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsAuditoriaWebbank">
+      <soap:operation soapAction="http://tempuri.org/wsAuditoriaWebbank" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="wsValUsrPerfil">
+      <soap12:operation soapAction="http://tempuri.org/wsValUsrPerfil" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsValPerfilFuncao">
+      <soap12:operation soapAction="http://tempuri.org/wsValPerfilFuncao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsValUsr">
+      <soap12:operation soapAction="http://tempuri.org/wsValUsr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsAccessControl">
+      <soap12:operation soapAction="http://tempuri.org/wsAccessControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="wsAuditoriaWebbank">
+      <soap12:operation soapAction="http://tempuri.org/wsAuditoriaWebbank" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://semzseiqld11/WebServDFD/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://semzseiqld11/WebServDFD/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

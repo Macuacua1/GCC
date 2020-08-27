@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://semzseiqld11/ActiveDirectoryGroupUsers/Servico/UsersServiceAD.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ActiveDirectoryGroupUsers.Modelos" />
+  <xs:import schemaLocation="http://semzseiqld11/ActiveDirectoryGroupUsers/Servico/UsersServiceAD.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetUsersListAD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="inGroup" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersListADResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ActiveDirectoryGroupUsers.Modelos" minOccurs="0" name="GetUsersListADResult" nillable="true" type="q1:ArrayOfGroupUsers" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersByGroupName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="inGroup" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersByGroupNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ActiveDirectoryGroupUsers.Modelos" minOccurs="0" name="GetUsersByGroupNameResult" nillable="true" type="q2:GroupUsers" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersGroupMembers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUsersGroupMembersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetUsersGroupMembersResult" nillable="true" type="q3:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByXnuc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByXnucResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ActiveDirectoryGroupUsers.Modelos" minOccurs="0" name="GetUserByXnucResult" nillable="true" type="q4:Users" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

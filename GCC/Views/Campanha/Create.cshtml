@@ -1,0 +1,1228 @@
+﻿@model GCC.Models.Campanha
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section metatags
+{
+    <style>
+         label,.dataTables_info{
+            color:darkred;
+            font-weight:bold;
+        }
+        .pagination li.active a{
+            background-color:darkred;
+        }
+    </style>
+
+}
+<div class="container-fluid">
+
+    <div class="row clearfix">
+
+        <div class="row clearfix" aria-hidden="true">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header bg-pink">
+                        <h2>
+
+                            CAMPANHA
+                            <small><span id="spanCamposObrig" style="display :none">(*) Campos obrigatórios</span></small>
+                        </h2>
+                    </div>
+                    <div class="body">
+                        @*Div addnew*@
+                        <div class="form-group form-float addnew" id="addnew">
+                            <button type="button" class="btn bg-green waves-effect" id="btnaddnew" data-toggle="tooltip" data-placement="top" title="Novo registo">
+                                <i class="material-icons">add</i>
+                            </button>
+                            <button type="button" class="btn bg-blue-grey waves-effect" id="btnlist" data-toggle="tooltip" data-placement="top" title="Listar Campanhas">
+                                <i class="material-icons">autorenew</i>
+                            </button>
+                            <div layout-wrap="" class="layout-wrap" id="CampanhaListDiv" >
+
+                                <div>
+                                    <div>
+                                       
+                                        <hr />
+                                        @*<div class="row" style="margin-left: 15px;">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="search" name="search" class="form-control" placeholder="Pesquisar...">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4"></div>
+                                        </div>*@
+                                       
+                                            <div class="body table-responsive" style="padding-top: 0px;">
+                                                <table id="campanhaTable" class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                                    <thead>
+                                                        <tr class="bg-pink">
+
+                                                            <th>
+                                                                #
+                                                            </th>
+                                                            <th>
+                                                                Cód. Campanha
+
+                                                            </th>
+                                                            <th>
+                                                                Nome Campanha
+
+                                                            </th>
+                                                            <th>
+                                                                Recorrência
+
+                                                            </th>
+                                                            <th>
+                                                                Data Inicio
+
+                                                            </th>
+                                                            <th>
+                                                                Data Fim
+
+                                                            </th>
+                                                            <th>
+                                                                Canal
+
+                                                            </th>
+                                                            <th>
+                                                                Prioridade
+
+                                                            </th>
+                                                            <th>
+                                                                Razão Contacto
+
+                                                            </th>
+
+                                                            <th>Acção</th>
+                                                        </tr>
+                                                    </thead>
+                                                   
+                                                    <tbody id="lines" style="font-size: 12px;">
+                                                        @foreach (var item in ViewBag.listaCampanha)
+                                                        {
+                                                            var DataInicio = String.Format("{0:d/M/yyyy}", item.DataInicio);
+                                                            var DataFim = String.Format("{0:d/M/yyyy}", item.DataFim);
+                                                            <tr>
+                                                                <td>@item.ID</td>
+                                                                <td>@item.CodCampanha</td>
+                                                                <td>@item.NomeCampanha</td>
+                                                                <td>@item.Recorrencia</td>
+                                                                <td>@DataInicio</td>
+                                                                <td>@DataFim</td>
+                                                                <td>@item.Canal</td>
+                                                                <td>@item.Prioridade</td>
+                                                                <td>@item.RazaoContacto</td>
+                                                                @if (@item.Estado)
+                                                                {
+                                                                <td><button type="button" class="btn bg-green waves-effect ActivarCampanha" pid="0" data-id="@item.ID" data-toggle="tooltip" data-placement="top" title="Desactivar Campanha" style="padding : 3px 6px !important;"><i class='material-icons'>lock_open</i></button><a class='btn bg-green waves-effect' style='padding : 3px 6px !important;margin-left : 10px' href='@Url.Action("Details", "Campanha", new { id = @item.ID })' data-toggle='tooltip' data-placement='top' title='Ver Detalhes da Campanha'><i class='material-icons'>visibility</i></a></td> }
+                                                                else
+                                                                {
+                                                                <td><button type='button' class='btn bg-red waves-effect ActivarCampanha' pid='1' data-id="@item.ID" data-toggle='tooltip' data-placement='top' title='Activar Campanha' style='padding : 3px 6px !important;'><i class='material-icons'>lock_outline</i></button><a class='btn bg-green waves-effect' style='padding : 3px 6px !important;margin-left : 10px' href='@Url.Action("Details", "Campanha", new { id = @item.ID })' data-toggle='tooltip' data-placement='top' title='Ver Detalhes da Campanha'><i class='material-icons'>visibility</i></a></td>}
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+                                                <br />
+                                                @*<div class="Paginas"></div>*@
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*End div addnew*@
+
+                        @*Div abas*@
+                        <div class="row clearfix abas" id="abas" aria-hidden="false" style="display :none">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tab-nav-right tab-col-pink" role="tablist" id="tablink">
+                                <li role="presentation" style="cursor: pointer;" id="campanhadata" class="active"><a data-target="#dadoscampanha" id="dadoscampanhatab" data-toggle="tab">DADOS GERAIS</a></li>
+                                <li role="presentation" style="cursor: pointer;" id="catalogodata"><a data-target="#catalogo" data-toggle="tab">CATALOGO DE PRODUTO</a></li>
+
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane" id="catalogo">
+                                    <div class="contentor" style="padding: 0 10px">
+                                        <form id="produto_campanha">
+                                            <input type="hidden" id="CampanhaID" name="CampanhaID">
+                                            <input type="hidden" id="PaginaProduto" name="PaginaProduto">
+                                            @if (@Session["PaginaCampanha"] != null)
+                                            {
+                                                <input type="hidden" id="PaginaCampanha" name="PaginaCampanha" value="@Session["PaginaCampanha"]">
+                                            }
+                                              else 
+                                            { 
+                                            <input type="hidden" id="PaginaCampanha" name="PaginaCampanha" value="1">
+                                            }
+                                           
+                                           <div class="row clearfix">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group form-float">
+                                                        <div class="form-line">
+                                                            @Html.DropDownListFor(model => model.produto.ProdutoRaiz, new SelectList(ViewBag.listaProduto, "ProductID", "ProductName"), "-- Seleccione o Produto (*)--", htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoRaiz", required = "true" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+
+                                                            @Html.DropDownListFor(model => model.produto.ProdutoNivel1, new SelectList(""), htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoNivel1" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+
+                                                            @Html.DropDownListFor(model => model.produto.ProdutoNivel2, new SelectList(""), htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoNivel2" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+
+                                                            @Html.DropDownListFor(model => model.produto.ProdutoNivel3, new SelectList(""), htmlAttributes: new { @class = "form-control selectpicker", id = "ProdutoNivel3" })
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row clearfix botoes">
+                                                <div class="col-sm-9">
+
+                                                </div>
+                                                <div class="col-sm-3">
+
+                                                    <button type="button" id="btnCancelarProduto" class="btn btn-warning waves-effect btnCancelarProduto">CANCELAR</button>
+                                                    <button type="submit" id="btnGravarProduto" class="btn btn-success waves-effect">GRAVAR</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                    <div layout-wrap="" class="layout-wrap">
+
+                                        <div class="productListDiv">
+                                            <div>
+                                                <p><b> Lista de Produtos da Campanha</b></p>
+
+                                                <div class="body table-responsive">
+                                                    <table id="MyTable" class="table table-bordered table-striped table-hover">
+                                                        <thead>
+                                                            <tr class="bg-pink">
+
+                                                                <th>
+                                                                    #
+                                                                </th>
+                                                                <th>
+                                                                    Nome da Campanha
+                                                                   
+                                                                </th>
+                                                                <th>
+                                                                    Código do Produto
+                                                                   
+                                                                </th>
+                                                                <th >
+                                                                    Nome do Produto
+                                                                   
+                                                                </th>
+                                                                <th>Acção</th>
+                                                            </tr>
+                                                        </thead>
+
+                                                        <tbody id="linhas" style="font-size: 12px;">
+                                                            <tr>
+                                                               
+                                                               
+                                                            </tr>
+                                                         
+                                                        </tbody>
+                                                    </table>
+                                                    <br />
+                                                    <div class="Pager"></div>
+                                                   </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <div role="tabpanel" class="tab-pane active" id="dadoscampanha">
+                                        <div class="contentor" style="padding: 0 10px">
+                                            <form id="form_campanha">
+                                                @Html.AntiForgeryToken()
+                                          
+                                                <div class="row clearfix">
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                               
+                                                                @Html.EditorFor(model => model.CodCampanha, new { htmlAttributes = new { @class = "form-control", maxlength = "8", minlength = "8", required = "true" } })
+                                                                <label class="form-label" style="font: bold;color :black">Codigo da Campanha(*)</label>
+                                                            </div>
+                                                            <div class="help-info"><span class="titulo">Introduza 8 caracteres</span> </div>
+                                                        </div>
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                               @Html.EditorFor(model => model.NomeCampanha, new { htmlAttributes = new { @class = "form-control", required = "true"} })
+                                                                <label class="form-label titulos">Nome da Campanha(*)</label>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.DropDownListFor(model => model.RecorrenciaID, new SelectList(ViewBag.listaRecorrencia, "ID", "Recorrencia"), "-- Seleccione a Recorrência(*) --", htmlAttributes: new { @class = "form-control selectpicker", required = "true" })
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.DropDownListFor(model => model.RazaoContactoID, new SelectList(ViewBag.listaRazaoContacto, "ID", "RazaoContacto"), "-- Seleccione a Razão de Contacto (*)--", htmlAttributes: new { @class = "form-control selectpicker", required = "true" })
+
+                                                            </div>
+                                                        </div>*@
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                @Html.EditorFor(model => model.DataInicio, new { htmlAttributes = new { @class = "DataHora form-control", required = "true", name = "DataInicio", placeholder = "Data Inicio/Hora" } })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                               @Html.EditorFor(model => model.DataFim, new { htmlAttributes = new { @class = "DataHora form-control", required = "true", name = "DataFim", placeholder = "Data Fim/Hora" } })
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.DropDownListFor(model => model.CanalID, new SelectList(ViewBag.listaCanal, "ID", "Canal"), "-- Seleccione o Canal(*) --", htmlAttributes: new { @class = "form-control selectpicker", required = "true" })
+
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.DropDownListFor(model => model.PrioridadeID, new SelectList(ViewBag.listaPrioridade, "ID", "Prioridade"), "-- Seleccione a Prioridade --", htmlAttributes: new { @class = "form-control selectpicker" })
+
+                                                            </div>
+                                                        </div>*@
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                <select  multiple="multiple" id="ProvinciaID" class="form-control selectpicker select-all" title = "-- Seleccione a(s) Província(s) --" data-selected-text-format="count > 5">
+                                                                    <option value="[all]" class="select-all">Todas</option>
+                                                                    <option value="" data-divider="true"></option>
+                                                                    @foreach (var item in ViewBag.listaProvincia)
+                                                                    {
+                                                                    <option value="@item.ID">@item.Provincia</option>
+                                                                    }
+                                                                    
+                                                                </select>
+                                                                @*@Html.DropDownListFor(model => model.ProvinciaID, new SelectList(ViewBag.listaProvincia, "ID", "Provincia"), htmlAttributes: new { @class = "form-control selectpicker", multiple = "multiple", title = "-- Seleccione a(s) Província(s) --" })*@
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                <select multiple="multiple" id="RedeID" class="form-control selectpicker select-all" title="-- Seleccione a(s) Rede(s) --" data-selected-text-format="count > 5">
+                                                                    <option value="[all]" class="select-all">Todas</option>
+                                                                    <option value="" data-divider="true"></option>
+                                                                    @foreach (var item in ViewBag.listaRede)
+                                                                    {
+                                                                        <option value="@item.ID">@item.Rede</option>
+                                                                    }
+
+                                                                </select>
+                                                               @* @Html.DropDownListFor(model => model.RedeID, new SelectList(ViewBag.listaRede, "ID", "Rede"), htmlAttributes: new { @class = "form-control selectpicker", multiple = "multiple", title = "-- Seleccione a(s) Rede(s) --" })*@
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                 @Html.EditorFor(model => model.MaxAlvosBalcao, new { htmlAttributes = new { @class = "form-control", type = "Number"} })
+                                                                <label class="form-label titulos">Máx. Alvos por Balcao</label>
+                                                            </div>
+                                                            <div class="help-info"><span class="titulo">Somente numéricos </span> </div>
+                                                        </div>
+                                                        @*<div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                 @Html.EditorFor(model => model.MaxAlvosGestor, new { htmlAttributes = new { @class = "form-control", type = "Number" } })
+                                                                <label class="form-label titulos" id="lblMaxAlvosGestor">Máx. Alvos por Gestor</label>
+                                                            </div>
+                                                            <div class="help-info"><span class="titulo">Somente numéricos </span> </div>
+                                                        </div>*@
+                                                    </div>
+
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group form-float" id="semana" style="display:block">
+                                                            <div class="form-line">
+
+                                                                <select class="form-control selectpicker" id="DataRecorrSemanal" name="DataRecorrSemanal" title="-- Seleccione o Dia da Semana --">
+                                                                    <option value="1">Domingo</option>
+                                                                    <option value="2">Segunda</option>
+                                                                    <option value="3">Terça</option>
+                                                                    <option value="4">Quarta</option>
+                                                                    <option value="5">Quinta</option>
+                                                                    <option value="6">Sexta</option>
+                                                                    <option value="7">Sábado</option>
+                                                                </select>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-float" id="mes" style="display:none">
+                                                            <div class="form-line">
+                                                                <input type="text" class="datepicker form-control" id="DataRecorrMensal" name="DataRecorrMensal" placeholder="Data Recorrência Mensal" >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                         <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.DropDownListFor(model => model.RazaoContactoID, new SelectList(ViewBag.listaRazaoContacto, "ID", "RazaoContacto"), "-- Seleccione a Razão de Contacto (*)--", htmlAttributes: new { @class = "form-control selectpicker", required = "true" })
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                @Html.DropDownListFor(model => model.PrioridadeID, new SelectList(ViewBag.listaPrioridade, "ID", "Prioridade"), "-- Seleccione a Prioridade --", htmlAttributes: new { @class = "form-control selectpicker" })
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   
+                                                    <div class="col-sm-3">
+                                                        <div class="form-group form-float">
+                                                            <div class="form-line">
+                                                                 @Html.EditorFor(model => model.MaxAlvosGestor, new { htmlAttributes = new { @class = "form-control", type = "Number" } })
+                                                                <label class="form-label titulos" id="lblMaxAlvosGestor">Máx. Alvos por Gestor</label>
+                                                            </div>
+                                                            <div class="help-info"><span class="titulo">Somente numéricos </span> </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-sm-9">
+
+                                                    </div>
+                                                    <div class="col-sm-3">
+
+                                                        <button type="button" id="btnCancel" class="btn btn-warning waves-effect">CANCELAR</button>
+                                                        <button type="submit" id="btnGravar" class="btn btn-success waves-effect">GRAVAR</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                        </div>
+                        @*End div abas*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+@section scripts{
+<script src="~/Content/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="~/Content/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="~/Scripts/ASPSnippets_Pager.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            if (checkSession() == false) {
+                swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+            }
+
+            //CompareDate
+            var Provincias = [];
+            var Redes = [];
+            $("#Pagina").val(1)
+            var Pagina = $("#PaginaCampanha").val();
+           
+            //GetCampanhas(Pagina,valor);
+            $("#form_campanha").on("change", ".DataHora", function (e) {
+                var DataInicio = $("#DataInicio").val();
+                var DataFim = $("#DataFim").val();
+
+                if (DataInicio != '' && DataInicio != undefined && DataFim != '' && DataFim != undefined) {
+                    if (CompareDate(DataInicio, DataFim) == false) {
+                        $(this).val('');
+                        swal("ATENÇÃO!", "A Data Fim deve ser Superior a Data Inicio!", "info");
+                    }
+                };
+
+            });
+            $("#search").keyup(function () {
+
+               
+                var Pagina = $("#PaginaCampanha").val();
+                GetCampanhas(Pagina);
+            });
+            $('#ProvinciaID.select-all').on('change', function () {
+                var selectPicker = $(this);
+                var selectAllOption = selectPicker.find('option.select-all');
+                var checkedAll = selectAllOption.prop('selected');
+                var optionValues = selectPicker.find('option[value!="[all]"][data-divider!="true"]');
+
+                if (checkedAll) {
+                    // Process 'all/none' checking
+                    var allChecked = selectAllOption.data("all") || false;
+
+                    if (!allChecked) {
+                        optionValues.prop('selected', true).parent().selectpicker('refresh');
+                        selectAllOption.data("all", true);
+                    }
+                    else {
+                        optionValues.prop('selected', false).parent().selectpicker('refresh');
+                        selectAllOption.data("all", false);
+                    }
+
+                    selectAllOption.prop('selected', false).parent().selectpicker('refresh');
+                }
+                else {
+                    // Clicked another item, determine if all selected
+                    var allSelected = optionValues.filter(":selected").length == optionValues.length;
+                    selectAllOption.data("all", allSelected);
+                }
+            }).trigger('change');
+            $('#RedeID.select-all').on('change', function () {
+                var selectPicker = $(this);
+                var selectAllOption = selectPicker.find('option.select-all');
+                var checkedAll = selectAllOption.prop('selected');
+                var optionValues = selectPicker.find('option[value!="[all]"][data-divider!="true"]');
+
+                if (checkedAll) {
+
+                    // Process 'all/none' checking
+                    var allChecked = selectAllOption.data("all") || false;
+
+                    if (!allChecked) {
+                        optionValues.prop('selected', true).parent().selectpicker('refresh');
+                        selectAllOption.data("all", true);
+                        document.getElementById("MaxAlvosGestor").disabled = true;
+                    }
+                    else {
+                        optionValues.prop('selected', false).parent().selectpicker('refresh');
+                        selectAllOption.data("all", false);
+                        document.getElementById("MaxAlvosGestor").disabled = false;
+                    }
+
+                    selectAllOption.prop('selected', false).parent().selectpicker('refresh');
+                }
+                else {
+                    // Clicked another item, determine if all selected
+                    var allSelected = optionValues.filter(":selected").length == optionValues.length;
+                    selectAllOption.data("all", allSelected);
+                }
+            }).trigger('change');
+
+            $("#form_campanha").on("change", "#RecorrenciaID", function (e) {
+                //document.getElementById('abas').style.display = 'block';
+                var valor = $(this).val();
+
+                switch (valor) {
+
+                    case "1":
+                        document.getElementById('semana').style.display = 'block';
+                        document.getElementById("DataRecorrSemanal").disabled = true;
+                        document.getElementById('mes').style.display = 'none';
+                        $("#DataRecorrSemanal").val('default').selectpicker("refresh");
+                        $("#DataRecorrMensal").val('');
+                        break;
+                    case "2":
+                        $("#DataRecorrMensal").val('');
+                        document.getElementById('semana').style.display = 'block';
+                        document.getElementById("DataRecorrSemanal").disabled = false;
+                        document.getElementById('mes').style.display = 'none';
+                        $("#DataRecorrSemanal").val('default').selectpicker("refresh");
+                        $("#DataRecorrMensal").val('');
+
+                        break;
+                    case "3":
+                        $("#DataRecorrSemanal").val('default').selectpicker("refresh");
+                        document.getElementById('semana').style.display = 'none';
+                        document.getElementById('mes').style.display = 'block';
+
+                        break;
+                }
+            });
+
+        $('.addnew').on('click', '#btnaddnew', function (e) {
+            e.preventDefault();
+            document.getElementById('abas').style.display = 'block';
+            document.getElementById('spanCamposObrig').style.display = 'block';
+            document.getElementById('addnew').style.display = 'none';
+            document.getElementById('CampanhaListDiv').style.display = 'none';
+            $("#dadoscampanha").addClass("active");
+            $("#catalogo").removeClass("active");
+            $('#campanhadata').addClass('active');
+            $("#catalogodata").removeClass("active");
+            document.getElementById("btnGravar").disabled = false;
+            document.getElementById("btnCancel").disabled = false;
+            $("#form_campanha").trigger("reset");
+            $('.selectpicker').selectpicker('refresh');
+            $('#MyTable tbody > tr').remove();
+            $('#MyTable tbody').append("<tr>SEM DADOS POR LISTAR</tr>");
+
+        })
+
+        $('.addnew').on('click', '#btnlist', function (e) {
+            e.preventDefault();
+            document.getElementById('abas').style.display = 'none';
+            document.getElementById('spanCamposObrig').style.display = 'none';
+            document.getElementById('CampanhaListDiv').style.display = 'block';
+           
+            GetCampanhas(1);
+        })
+
+        $('#RedeID').on('change', function (e) {
+            e.preventDefault();
+            var selected = [];
+
+            var containMassMarket = false;
+            $('#RedeID :selected').each(function () {
+                selected[$(this).val()] = $(this).text();
+                if ($(this).text()=='Mass Market')
+                { containMassMarket =true}
+
+            });
+
+            if (containMassMarket == true)
+            { document.getElementById("MaxAlvosGestor").disabled = true; $('#lblMaxAlvosGestor').text='' }
+            else { document.getElementById("MaxAlvosGestor").disabled = false; }
+
+        });
+
+
+
+        //Submeter o registo da Campanha
+         $('#form_campanha').on('click', '#btnGravar', function (e) {
+             e.preventDefault();
+             if (checkSession() == false) {
+                 swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+                 return false;
+             }
+                var campanha = new Object();
+                campanha = Campanha();
+                if (ValidaCampanha()==true) { return false; }
+
+                $.ajax({
+                    url: "@Url.Action("Create", "Campanha")",
+                    type: "POST",
+                    data: {campanha :campanha},
+
+                    cache: false,
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function (r) {
+
+                        if (r.status) {
+
+                            document.getElementById("CampanhaID").value = r.IDcampanha;
+                            document.getElementById("btnGravar").disabled = true;
+                            document.getElementById("btnCancel").disabled = true;
+                            $("#dadoscampanha").removeClass("active");
+                           $("#catalogo").addClass("active");
+                           $('#catalogodata').addClass('active').siblings().removeClass('active');
+                           $('.selectpicker').selectpicker('refresh');
+
+                            //setTimeout(ReloadPage, 2000);
+
+                        } else
+                        {
+                            if (r.msg)
+                            {
+                                swal("Atenção!", r.msg, "info");
+                            }
+
+                        }
+                        //setTimeout(ReloadPage,2000);
+                    }
+            ,
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                        swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+                    },
+                    failure: function (response) {
+                        swal("Oops...","Erro Create Campanha","error")
+                    }
+                });
+         });
+            function ValidaCampanhaProduto()
+            {
+                var flag = false;
+               var raiz= $("#ProdutoRaiz").val();
+
+               if (raiz=='')
+               {
+                   flag = true;
+                   swal("Erro", "Seleccione pelo menos uma opção!", "error")
+               }
+               if ($("#CampanhaID").val() == '') {
+                   flag = true;
+                   swal("Erro", "Grave os dados da Campanha antes de associar o Produto!", "error")
+               }
+               return flag;
+            }
+            function ValidaCampanha()
+            {
+                var campanha = [];
+                var result = false;
+                var erros = [];
+                campanha.push({ nome: "Codigo", valor: $("#CodCampanha").val() });
+                campanha.push({ nome: "Nome", valor: $("#NomeCampanha").val() });
+                campanha.push({ nome: "DataInicio", valor: $("#DataInicio").val() });
+                campanha.push({ nome: "DataFim", valor: $("#DataFim").val() });
+                campanha.push({ nome: "Canal", valor: $("#CanalID").val() });
+                campanha.push({ nome: "Recorrencia", valor: $("#RecorrenciaID").val() });
+                campanha.push({ nome: "RazaoContacto", valor: $("#RazaoContactoID").val() });
+
+                var CodCampanha = "Introduza o Código da Campanha!";
+                var NomeCampanha = "Introduza o Nome da Campanha!";
+                var DataInicio = "Introduza a Data Inicio!";
+                var DataFim = "Introduza a Data Fim!";
+                var CanalID = "Seleccione o Canal!";
+                var RecorrenciaID = "Seleccione a Recorrência!";
+                var RazaoContactoID = "Seleccione a Razão de Contacto!";
+                var DataRecorrSemanal = "Seleccione a o dia da Semana da Recorrência Semanal!";
+                var DataRecorrMensal = "Introduza a Data da Recorrência Mensal!";
+
+                $.each(campanha, function (index, item) {
+                    if (item.nome == "Codigo" && item.valor == '') { erros.push({msg: CodCampanha}); }
+                    if (item.nome == "Nome" && item.valor == '') { erros.push({ msg: NomeCampanha }); }
+                    if (item.nome == "DataInicio" && item.valor == '') { erros.push({ msg: DataInicio }); }
+                    if (item.nome == "DataFim" && item.valor == '') { erros.push({ msg: DataFim }); }
+                    if (item.nome == "Canal" && item.valor == '') { erros.push({ msg: CanalID}); }
+                    if (item.nome == "Recorrencia" && item.valor == '') { erros.push({ msg: RecorrenciaID}); }
+                    if (item.nome == "RazaoContacto" && item.valor == '') { erros.push({ msg: RazaoContactoID }); }
+                });
+
+                if ($("#RecorrenciaID").val() == "2" && ($("#DataRecorrSemanal").val()=='' || $("#DataRecorrSemanal").val()==undefined))
+                { erros.push({ msg: DataRecorrSemanal }); }
+                if ($("#RecorrenciaID").val() == "3" && ($("#DataRecorrMensal").val() == '' || $("#DataRecorrMensal").val() == undefined))
+                { erros.push({ msg: DataRecorrMensal }); }
+
+                if (erros.length > 0)
+                {
+                    let string = '<h2>Lista de Erros</h2><div>';
+                    $.each(erros, function (index,item) { string += '</br> => <span style="color:red;">' + item.msg + '</span>' });
+                    string += '</div>';
+
+
+                swal({
+                    title: 'Atenção!',
+
+                        html: true,
+                        text: string,
+                    icon: 'error',
+                    });
+                    result= true;
+                }
+                else
+                {
+                    result= false;
+                }
+                return result;
+
+            }
+            //Submeter o registo dos Produtos da Campanha
+            $('#produto_campanha').on('click', '#btnGravarProduto', function (e) {
+                e.preventDefault();
+                if (checkSession() == false) {
+                    swal("Atenção!", "A SESSÃO EXPIROU P.F SAIA E VOLTE A ENTRAR NO PROGRAMA", "info");
+                    return false;
+                }
+                var produto = $("#produto_campanha").serialize();
+                if (ValidaCampanhaProduto()==true) {
+                    return false;
+                }
+
+                $.ajax({
+                    url: "@Url.Action("CreateProduto", "Campanha")",
+                    type: "POST",
+                    data: produto,
+
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (r) {
+                    var title = 'PRODUTO ADICIONADO!';
+                    if (r.status) {
+
+                       document.getElementById("CampanhaID").value = r.IDcampanha;
+                        $("#ProdutoRaiz").val('default').selectpicker("refresh");
+                        $("#ProdutoNivel1").val('default').selectpicker("refresh");
+                        $("#ProdutoNivel2").val('default').selectpicker("refresh");
+                        $("#ProdutoNivel3").val('default').selectpicker("refresh");
+                        getCampanhaProducts(1,r.IDcampanha);
+
+                        //setTimeout(ReloadPage, 2000);
+
+                    } else {
+                        if (r.msg) {
+                            swal("Atenção!", r.msg, "info");
+                        }
+
+                    }
+                    //setTimeout(ReloadPage,2000);
+                }
+                ,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                    swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+                },
+                failure: function (response) {
+                    swal("Oops...", "Erro Create Produto da Campanha", "error")
+                }
+            });
+        });
+
+            function ReloadPage() { window.location.reload(true); }
+
+        function Campanha() {
+            Provincias = [];
+            Redes = [];
+            $('#ProvinciaID :selected').each(function () {
+
+                Provincias.push({ ProvinciaID: $(this).val(), NomeProvincia: $(this).text() })
+            });
+
+
+            $('#RedeID :selected').each(function () {
+
+                Redes.push({ RedeID: $(this).val(), NomeRede: $(this).text() })
+            });
+            var obj = {
+                "CodCampanha": $("#CodCampanha").val(),
+                "NomeCampanha": $("#NomeCampanha").val(),
+                "DataInicio": $("#DataInicio").val(),
+                "DataFim": $("#DataFim").val(),
+                "MaxAlvosGestor": $("#MaxAlvosGestor").val(),
+                "MaxAlvosBalcao": $("#MaxAlvosBalcao").val(),
+                "RazaoContactoID": $("#RazaoContactoID").val(),
+                "CanalID": $("#CanalID").val(),
+                "RecorrenciaID": $("#RecorrenciaID").val(),
+                "PrioridadeID": $("#PrioridadeID").val(),
+                "DataRecorrSemanal": $("#DataRecorrSemanal").val(),
+                "DataRecorrMensal": $("#DataRecorrMensal").val(),
+                "rede": Redes,
+                "provincia": Provincias
+
+            }
+            return obj;
+        }
+        $('.btnCancelarProduto').on('click', function (e) {
+
+            e.preventDefault();
+
+            $("#ProdutoRaiz").val('default').selectpicker("refresh");
+            $("#ProdutoNivel1").val('default').selectpicker("refresh");
+            $("#ProdutoNivel2").val('default').selectpicker("refresh");
+            $("#ProdutoNivel3").val('default').selectpicker("refresh");
+        })
+        $('#btnCancel').on('click', function (e) {
+
+            e.preventDefault();
+            $("#form_campanha").trigger("reset");
+          $(".selectpicker").val('default').selectpicker("refresh");
+        })
+        $('#ProdutoRaiz').on('change', function (e) {
+            e.preventDefault();
+
+            var pid = $(this).val();
+
+            $.post("/GCC/Campanha/GetProductByParentID", { pid: pid }, function (response) {
+                $("#ProdutoNivel1").empty();
+                $("#ProdutoNivel2").empty();
+                $("#ProdutoNivel3").empty();
+
+                $("#ProdutoNivel1").append($('<option></option>').val('').text('--Seleccione a Opção--'));
+                $.each(response.data, function (index, item) {
+
+                    $("#ProdutoNivel1").append("<option value='" + item.ProductID + "'>" + item.ProductName + "</option>")
+                });
+                $('.selectpicker').selectpicker('refresh');
+            });
+        })
+
+        $('#ProdutoNivel1').on('change', function (e) {
+            e.preventDefault();
+            var pid = $(this).val();
+            $.post("/GCC/Campanha/GetProductByParentID", { pid: pid }, function (response) {
+                $("#ProdutoNivel2").empty();
+                $("#ProdutoNivel3").empty();
+                $("#ProdutoNivel2").append($('<option></option>').val('').text('--Seleccione a Opção--'));
+                $.each(response.data, function (index, item) {
+
+                    $("#ProdutoNivel2").append("<option value='" + item.ProductID + "'>" + item.ProductName + "</option>")
+                });
+                $('.selectpicker').selectpicker('refresh');
+            });
+        })
+        $('#ProdutoNivel2').on('change', function (e) {
+            e.preventDefault();
+            var pid = $(this).val();
+            $.post("/GCC/Campanha/GetProductByParentID", { pid: pid }, function (response) {
+                $("#ProdutoNivel3").empty();
+                $("#ProdutoNivel3").append($('<option></option>').val('').text('--Seleccione a Opção--'));
+                $.each(response.data, function (index, item) {
+
+                    $("#ProdutoNivel3").append("<option value='" + item.ProductID + "'>" + item.ProductName + "</option>")
+                });
+                $('.selectpicker').selectpicker('refresh');
+            });
+        })
+
+        function getCampanhaProducts()
+        {
+            $.post("/GCC/Campanha/GetProductRootList", function (response) {
+
+
+                        $("#ProdutoRaiz").append($('<option></option>').val('').text('--Seleccione a Opção--'));
+                        $.each(response.data, function (index, row) {
+
+                            $("#ProdutoRaiz").append("<option value='" + row.ProductID + "'>" + row.ProductName + "</option>")
+                        });
+                    });
+        }
+
+        $(".productListDiv").on("click", ".Pager .page", function () {
+            var index = $(this).attr('page');
+            document.getElementById("PaginaProduto").value = index;
+            var campanhaID = $("#CampanhaID").val();
+            getCampanhaProducts(index, campanhaID);
+        });
+        //$("#CampanhaListDiv").on("click", ".Paginas .page", function () {
+        //    var index = $(this).attr('page');
+        //    document.getElementById("PaginaCampanha").value = index;
+           
+        //    GetCampanhas(index);
+        //});
+
+        $("#campanhaTable").on("click", ".VerCampanha", function (e) {
+
+            e.preventDefault();
+
+            var id = $(this).attr('data-id');
+
+            $.ajax({
+         type: "GET",
+         url: "@Url.Action("Details", "Campanha")",
+                contentType: "application/json; charset=utf-8",
+            data: { id: id },
+            datatype: "html",
+            success: function (data) {
+
+                $('#CampanhaModalBody').html(data);
+                //$('#myModal').modal(options);
+                $('#CampanhaModal').modal('show');
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+            },
+            failure: function (response) {
+                swal("Oops...", "Erro Load Modal", "error")
+            }
+        });
+
+        });
+        $("#campanhaTable").on("click", ".ActivarCampanha", function (e) {
+            e.preventDefault();
+
+            var accao = "";
+            var texto = "";
+            var pagina = $("#PaginaCampanha").val();
+            var estado = $(this).attr('pid');
+            var campanhaID = $(this).attr('data-id');
+            if (estado == 1){accao = "Activar";}else {accao = "Desctivar"; }
+
+            swal({
+                title: "Tem certeza?",
+                text: "Deseja " + accao + "  Campanha?",
+                type: "warning",
+                showCancelButton: true,
+                closeOnConfirm: true,
+                closeOnCancel: true,
+                confirmButtonClass: "btn-success",
+                confirmButtonText: accao,
+                confirmButtonColor: "#4CAF50"
+            }, function () {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SetCampanhaStatus", "Campanha")",
+                        data: { pagina: pagina, estado: estado, campanhaID: campanhaID },
+                        dataType: 'json',
+                        cache: false,
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        success: function (response) {
+
+                            if (response.status) {
+
+                                toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                                
+                                GetCampanhas(pagina);
+                            } else { swal("Erro...", response.msg, "error"); }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                            swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+                        },
+                        failure: function (response) {
+                            swal("Oops...", "Erro Actualiza_Estado Campanha", "error")
+                        }
+                    });
+
+            });
+
+        })
+
+            $("#MyTable").on("click", ".RemoverProduto", function (e) {
+                e.preventDefault();
+
+                var ID = $(this).attr('data-id');
+                swal({
+                    title: "Tem certeza?",
+                    width: 500,
+                    text: "Deseja Remover o Produto?",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: true,
+                    closeOnCancel: true,
+                    confirmButtonClass: "btn-success",
+                    confirmButtonText: "Remover",
+                    confirmButtonColor: "#4CAF50"
+                }, function () {
+
+                        $.ajax({
+                            type: "POST",
+                            url:"@Url.Action("RemoveProduct", "Campanha")",
+                            data: {ID: ID },
+                            dataType: 'json',
+                            cache: false,
+                            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                            success: function (response) {
+
+                                if (response.status)
+                                {
+                                    $("#linha"+ID).remove();
+                                    toastr.success(response.msg, 'Sucesso', { timeOut: 3000, 'closeButton': true });
+                                } else { swal("Erro...", response.msg, "error"); }
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                                swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+                            },
+                            failure: function (response) {
+                                swal("Oops...", "Erro Remover Produto da campanha", "error")
+                            }
+                        });
+
+
+                });
+            })
+            function FormatDate(d) {
+
+                var data = d.toString();
+                var date_components = data.split("/");
+                var current_day = date_components[0];
+                var current_month = date_components[1].toString();
+                var current_year = date_components[2].toString().slice(0,5);
+                var datestring = current_day + "-" + current_month + "-" + current_year;
+
+                return datestring;
+            }
+            function getFormattedDate(data) {
+                debugger;
+                var date = new Date(data);
+                var year = date.getFullYear();
+
+                var month = (1 + date.getMonth()).toString();
+                month = month.length > 1 ? month : '0' + month;
+
+                var day = date.getDate().toString();
+                day = day.length > 1 ? day : '0' + day;
+
+                return day + '-' + month + '-' + year;
+            }
+        function GetCampanhas(pageIndex) {
+            $.post("/GCC/Campanha/GetCampanhas", { pagina: pageIndex}, function (response) {
+                document.getElementById("PaginaCampanha").value = pageIndex;
+                var Pagina = $("#PaginaCampanha").val();
+                var row = "";
+                $.each(response.data, function (index, item) {
+
+                    var DataInicio = FormatDate(new Date(moment.utc(item.DataInicio)).toLocaleString());
+                    var DataFim = FormatDate(new Date(moment.utc(item.DataFim)).toLocaleString());
+
+                    row += "<tr><td>" + item.ID + "</td><td>" + item.CodCampanha + "</td><td>" + item.NomeCampanha + "</td><td>" + item.Recorrencia + "</td><td>" + DataInicio + "</td><td>" + DataFim + "</td><td>" + item.Canal + "</td><td>" + item.Prioridade + "</td><td>" + item.RazaoContacto + "</td>";
+                    if (item.Estado == true) {
+                        row += "<td><button type='button' class='btn bg-green waves-effect ActivarCampanha' pid='0' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Desactivar Campanha' style='padding : 3px 6px !important;'><i class='material-icons'>lock_open</i></button><a class='btn bg-green waves-effect' style='padding : 3px 6px !important;margin-left : 10px' href='/GCC/Campanha/Details/?id=" + item.ID + "&pagina=" + Pagina + "' data-toggle='tooltip' data-placement='top' title='Ver Detalhes da Campanha'><i class='material-icons'>visibility</i></a></td></tr>"
+                    } else
+                    { row += "<td><button type='button' class='btn bg-red waves-effect ActivarCampanha' pid='1' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Activar Campanha' style='padding : 3px 6px !important;'><i class='material-icons'>lock_outline</i></button><a class='btn bg-green waves-effect' style='padding : 3px 6px !important;margin-left : 10px' href='/GCC/Campanha/Details/?id=" + item.ID + "&pagina=" + Pagina + "' data-toggle='tooltip' data-placement='top' title='Ver Detalhes da Campanha'><i class='material-icons'>visibility</i></a></td></tr>" }
+
+
+                });
+                $("#lines > tr").remove();
+                $("#lines").html(row);
+
+                //$(".Paginas").ASPSnippets_Pager({
+                //    ActiveCssClass: "current",
+                //    PagerCssClass: "pager",
+                //    PageIndex: response.pagina.PageIndex,
+                //    PageSize: response.pagina.PageSize,
+                //    RecordCount: response.pagina.RecordCount
+                //});
+
+            });
+
+        }
+
+        function getCampanhaProducts(pageIndex, campanhaID) {
+
+            $.ajax({
+                type: "POST",
+                url:"@Url.Action("BuscaProdutoCampanha", "Campanha")",
+                data: { campanhaID: campanhaID, pagina: pageIndex },
+                dataType: 'json',
+                cache: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+               success: OnSuccess,
+               error: function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", "Ocorreu um Erro Inesperado! Por Favor Contacte o HelpDesk!", "error");
+
+               },
+               failure: function (response) {
+                   swal("Oops...", "Erro Busca Produto da Campanha", "error")
+               }
+            });
+        };
+            function OnSuccess(response) {
+                document.getElementById("PaginaProduto").value = response.pagina.PageIndex;
+                var row = "";
+                $.each(response.data, function (index, item) {
+                    row += "<tr id='linha" + item.ID + "'><td>" + item.ID + "</td><td>" + item.NomeCampanha + "</td><td>" + item.CodProduto + "</td><td>" + item.NomeProduto + "</td><td><button type='button' class='btn bg-red waves-effect RemoverProduto' data-id='" + item.ID + "'  data-toggle='tooltip' data-placement='top' title='Remover Produto na Campanha' style='padding : 3px 6px !important;'><i class='material-icons'>delete</i></button></td></tr>";
+
+                });
+                $("#linhas").html(row);
+                document.getElementById('addnew').style.display = 'block';
+                document.getElementById('CampanhaListDiv').style.display = 'none';
+
+            $(".Pager").ASPSnippets_Pager({
+                ActiveCssClass: "current",
+                PagerCssClass: "pager",
+                PageIndex: response.pagina.PageIndex,
+                PageSize: response.pagina.PageSize,
+                RecordCount: response.pagina.RecordCount
+            });
+            };
+            function CompareDate(DataInicio,DataFim) {
+                //Note: 00 is month i.e. January
+                var result;
+                var dateOne = new Date(DataInicio); //Year, Month, Date
+                var dateTwo = new Date(DataFim); //Year, Month, Date
+
+                var DataInicial = new Date(dateOne.getFullYear(), dateOne.getMonth(), dateOne.getDate()); //Year, Month, Date
+                var DataFinal = new Date(dateTwo.getFullYear(), dateTwo.getMonth(), dateTwo.getDate()); //Year, Month, Date
+
+                if (DataFinal > DataInicial) {
+                    result = true;
+                } else {
+                    result = false;
+                }
+                return result;
+            }
+        function textFromHTMLString(html, target) {
+            if (!html || !target) {
+                return false;
+            }
+            else {
+                var fragment = document.createDocumentFragment(),
+                    container = document.createElement('div');
+                container.innerHTML = html;
+                fragment.appendChild(container);
+                var targets = fragment.firstChild.getElementsByTagName(target),
+                    result = [];
+
+                for (var i = 0, len = targets.length; i < len; i++) {
+                    result.push(targets[i].textContent || targets[i].innerText);
+                }
+                return result;
+            }
+        }
+         function checkSession()
+           {
+               var result;
+               $.ajax({
+
+                   type: 'POST',
+                   dataType: 'json',
+                   contentType: 'application/json',
+                   url: "@Url.Action("checkSession", "Home")",
+                   data: '{}',
+               success: function (data) {
+
+                   result = data.sessionValue;
+
+               },
+               error: function (XMLHttpRequest, textStatus, errorThrown) {
+                   var titleText = textFromHTMLString(XMLHttpRequest.responseText, 'title');
+                   swal("Erro...", titleText, "error");
+
+               }
+           });
+           return result;
+           }
+
+    })
+    </script>
+}
+
+   <!-- Large Size -->
+<div class="modal fade" id="CampanhaModal" tabindex="-1" role="dialog" style="">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-body" id="CampanhaModalBody">
+               
+            </div>
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+            </div>*@
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CONTACTOSModelStoreContainer" CdmEntityContainer="CONTACTOSEntities">
+    <EntitySetMapping Name="Colaborador">
+      <EntityTypeMapping TypeName="CONTACTOSModel.Colaborador">
+        <MappingFragment StoreEntitySet="Colaborador">
+          <ScalarProperty Name="NUM" ColumnName="NUM" />
+          <ScalarProperty Name="EMPGRUPO" ColumnName="EMPGRUPO" />
+          <ScalarProperty Name="NUMUNICO" ColumnName="NUMUNICO" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="DATANASCIM" ColumnName="DATANASCIM" />
+          <ScalarProperty Name="DATADMISSAO" ColumnName="DATADMISSAO" />
+          <ScalarProperty Name="CATEGORIA" ColumnName="CATEGORIA" />
+          <ScalarProperty Name="FUNCAO" ColumnName="FUNCAO" />
+          <ScalarProperty Name="CODUO" ColumnName="CODUO" />
+          <ScalarProperty Name="CODIGO_UO" ColumnName="CODIGO_UO" />
+          <ScalarProperty Name="DESCUO" ColumnName="DESCUO" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="VCORP" ColumnName="VCORP" />
+          <ScalarProperty Name="MORADA" ColumnName="MORADA" />
+          <ScalarProperty Name="LOCALIDADE" ColumnName="LOCALIDADE" />
+          <ScalarProperty Name="CODPOSTAL" ColumnName="CODPOSTAL" />
+          <ScalarProperty Name="TELGERAL" ColumnName="TELGERAL" />
+          <ScalarProperty Name="FAX" ColumnName="FAX" />
+          <ScalarProperty Name="TELDIRECTO" ColumnName="TELDIRECTO" />
+          <ScalarProperty Name="EXTENSAO" ColumnName="EXTENSAO" />
+          <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="AVALIADOR" ColumnName="AVALIADOR" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="Telcasa" ColumnName="Telcasa" />
+          <ScalarProperty Name="Tipoassina" ColumnName="Tipoassina" />
+          <ScalarProperty Name="Assina" ColumnName="Assina" />
+          <ScalarProperty Name="TIPO_AVALIACAO" ColumnName="TIPO_AVALIACAO" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+          <ScalarProperty Name="NIVEL" ColumnName="NIVEL" />
+          <ScalarProperty Name="HABILITACOES" ColumnName="HABILITACOES" />
+          <ScalarProperty Name="SITCONT" ColumnName="SITCONT" />
+          <ScalarProperty Name="NUIT" ColumnName="NUIT" />
+          <ScalarProperty Name="NOMEABREV" ColumnName="NOMEABREV" />
+          <ScalarProperty Name="UserALT" ColumnName="UserALT" />
+          <ScalarProperty Name="DataALT" ColumnName="DataALT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

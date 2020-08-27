@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WSCatalogoProdutos" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://semzseiqld13/WSCatalogoProdutos/WSCatalogoProdutos.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://semzseiqld13/WSCatalogoProdutos/WSCatalogoProdutos.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://semzseiqld13/WSCatalogoProdutos/WSCatalogoProdutos.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WSCatalogoProdutos.BLL.Models" />
+      <xsd:import schemaLocation="http://semzseiqld13/WSCatalogoProdutos/WSCatalogoProdutos.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IWSCatalogoProdutos_GetProdutobyID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdutobyID" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProdutobyID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdutobyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProdutobyCod_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdutobyCod" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProdutobyCod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProdutobyCodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductList" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetAllProductList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductList" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetAllProductList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProductListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductListbyID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductListbyID" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductListbyID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductListbyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductListbyCod_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductListbyCod" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductListbyCod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductListbyCodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductListbyLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductListbyLevel" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetProductListbyLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProductListbyLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetFichaProdutoFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFichaProdutoFiles" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetFichaProdutoFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFichaProdutoFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetFichaProduto_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFichaProduto" />
+  </wsdl:message>
+  <wsdl:message name="IWSCatalogoProdutos_GetFichaProduto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFichaProdutoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IWSCatalogoProdutos">
+    <wsdl:operation name="GetProdutobyID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProdutobyID" message="tns:IWSCatalogoProdutos_GetProdutobyID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProdutobyIDResponse" message="tns:IWSCatalogoProdutos_GetProdutobyID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProdutobyCod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProdutobyCod" message="tns:IWSCatalogoProdutos_GetProdutobyCod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProdutobyCodResponse" message="tns:IWSCatalogoProdutos_GetProdutobyCod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductList" message="tns:IWSCatalogoProdutos_GetProductList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductListResponse" message="tns:IWSCatalogoProdutos_GetProductList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProductList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetAllProductList" message="tns:IWSCatalogoProdutos_GetAllProductList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetAllProductListResponse" message="tns:IWSCatalogoProdutos_GetAllProductList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListbyID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyID" message="tns:IWSCatalogoProdutos_GetProductListbyID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyIDResponse" message="tns:IWSCatalogoProdutos_GetProductListbyID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListbyCod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyCod" message="tns:IWSCatalogoProdutos_GetProductListbyCod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyCodResponse" message="tns:IWSCatalogoProdutos_GetProductListbyCod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListbyLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyLevel" message="tns:IWSCatalogoProdutos_GetProductListbyLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyLevelResponse" message="tns:IWSCatalogoProdutos_GetProductListbyLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFichaProdutoFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetFichaProdutoFiles" message="tns:IWSCatalogoProdutos_GetFichaProdutoFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetFichaProdutoFilesResponse" message="tns:IWSCatalogoProdutos_GetFichaProdutoFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFichaProduto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetFichaProduto" message="tns:IWSCatalogoProdutos_GetFichaProduto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWSCatalogoProdutos/GetFichaProdutoResponse" message="tns:IWSCatalogoProdutos_GetFichaProduto_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IWSCatalogoProdutos" type="tns:IWSCatalogoProdutos">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProdutobyID">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetProdutobyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProdutobyCod">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetProdutobyCod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductList">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetProductList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProductList">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetAllProductList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListbyID">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListbyCod">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyCod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductListbyLevel">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetProductListbyLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFichaProdutoFiles">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetFichaProdutoFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFichaProduto">
+      <soap:operation soapAction="http://tempuri.org/IWSCatalogoProdutos/GetFichaProduto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSCatalogoProdutos">
+    <wsdl:port name="BasicHttpBinding_IWSCatalogoProdutos" binding="tns:BasicHttpBinding_IWSCatalogoProdutos">
+      <soap:address location="http://semzseiqld13/WSCatalogoProdutos/WSCatalogoProdutos.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

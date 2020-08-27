@@ -1,0 +1,838 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Rede_da_Campanha">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RedeID" Type="int" Nullable="false" />
+          <Property Name="CampanhaID" Type="int" Nullable="false" />
+          <Property Name="Rede" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblAssunto">
+          <Key>
+            <PropertyRef Name="ProdutoID" />
+            <PropertyRef Name="CampanhaID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodProduto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NomeProduto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProdutoID" Type="bigint" Nullable="false" />
+          <Property Name="CampanhaID" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblCampanha">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodCampanha" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="NomeCampanha" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" Nullable="false" />
+          <Property Name="DataFim" Type="datetime" Nullable="false" />
+          <Property Name="MaxAlvosBalcao" Type="int" />
+          <Property Name="MaxAlvosGestor" Type="int" />
+          <Property Name="RazaoContactoID" Type="int" Nullable="false" />
+          <Property Name="CanalID" Type="int" Nullable="false" />
+          <Property Name="PrioridadeID" Type="int" />
+          <Property Name="RecorrenciaID" Type="int" Nullable="false" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="DataRecorrMensal" Type="datetime" />
+          <Property Name="DataRecorrSemanal" Type="int" />
+        </EntityType>
+        <EntityType Name="tblCampanha_Por_Provincia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProvinciaID" Type="int" Nullable="false" />
+          <Property Name="CampanhaID" Type="int" Nullable="false" />
+          <Property Name="Provincia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblCanal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Canal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblPrioridade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Prioridade" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProvincia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Provincia" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblRazaoContacto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RazaoContacto" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="51" />
+        </EntityType>
+        <EntityType Name="tblRecorrencia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Recorrencia" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumDias" Type="int" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblRede">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rede" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GCC.dbo.vw_Assunto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Assunto">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CodProduto" />
+            <PropertyRef Name="NomeProduto" />
+            <PropertyRef Name="ProdutoID" />
+            <PropertyRef Name="CampanhaID" />
+            <PropertyRef Name="NomeCampanha" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CodProduto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NomeProduto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProdutoID" Type="bigint" Nullable="false" />
+          <Property Name="CampanhaID" Type="int" Nullable="false" />
+          <Property Name="NomeCampanha" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GCC.dbo.VW_Campanha' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_Campanha">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CodCampanha" Type="nvarchar" MaxLength="8" />
+          <Property Name="NomeCampanha" Type="nvarchar" MaxLength="50" />
+          <Property Name="DataInicio" Type="datetime" />
+          <Property Name="DataFim" Type="datetime" />
+          <Property Name="MaxAlvosBalcao" Type="int" />
+          <Property Name="MaxAlvosGestor" Type="int" />
+          <Property Name="Canal" Type="nvarchar" MaxLength="50" />
+          <Property Name="Prioridade" Type="nvarchar" MaxLength="50" />
+          <Property Name="RazaoContacto" Type="nvarchar" MaxLength="50" />
+          <Property Name="Recorrencia" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumDias" Type="int" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+          <Property Name="DataRegisto" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GCC.dbo.vw_Log_Recorrencia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Log_Recorrencia">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CampanhaID" />
+            <PropertyRef Name="CodCampanha" />
+            <PropertyRef Name="NomeCampanha" />
+            <PropertyRef Name="DataInicio" />
+            <PropertyRef Name="DataFim" />
+            <PropertyRef Name="CanalID" />
+            <PropertyRef Name="RazaoContactoID" />
+            <PropertyRef Name="RecorrenciaID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="CampanhaID" Type="int" Nullable="false" />
+          <Property Name="CodCampanha" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="NomeCampanha" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" Nullable="false" />
+          <Property Name="DataFim" Type="datetime" Nullable="false" />
+          <Property Name="MaxAlvosBalcao" Type="int" />
+          <Property Name="MaxAlvosGestor" Type="int" />
+          <Property Name="CanalID" Type="int" Nullable="false" />
+          <Property Name="Canal" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrioridadeID" Type="int" />
+          <Property Name="Prioridade" Type="nvarchar" MaxLength="50" />
+          <Property Name="RazaoContactoID" Type="int" Nullable="false" />
+          <Property Name="RazaoContacto" Type="nvarchar" MaxLength="50" />
+          <Property Name="RecorrenciaID" Type="int" Nullable="false" />
+          <Property Name="Recorrencia" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumDias" Type="int" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="ErroMessage" Type="varchar(max)" />
+          <Property Name="DataRegisto" Type="datetime" />
+          <Property Name="DiasDecorridos" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GCC.dbo.VW_Recorrencia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_Recorrencia">
+          <Key>
+            <PropertyRef Name="CampanhaID" />
+            <PropertyRef Name="CodCampanha" />
+            <PropertyRef Name="NomeCampanha" />
+            <PropertyRef Name="DataInicio" />
+            <PropertyRef Name="DataFim" />
+            <PropertyRef Name="MaxAlvosBalcao" />
+            <PropertyRef Name="MaxAlvosGestor" />
+            <PropertyRef Name="CanalID" />
+            <PropertyRef Name="RazaoContactoID" />
+            <PropertyRef Name="RecorrenciaID" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="NumDiasLog" />
+            <PropertyRef Name="EstadoRecorrencia" />
+          </Key>
+          <Property Name="CampanhaID" Type="int" Nullable="false" />
+          <Property Name="CodCampanha" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="NomeCampanha" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataInicio" Type="datetime" Nullable="false" />
+          <Property Name="DataFim" Type="datetime" Nullable="false" />
+          <Property Name="MaxAlvosBalcao" Type="int" Nullable="false" />
+          <Property Name="MaxAlvosGestor" Type="int" Nullable="false" />
+          <Property Name="CanalID" Type="int" Nullable="false" />
+          <Property Name="Canal" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrioridadeID" Type="int" />
+          <Property Name="Prioridade" Type="nvarchar" MaxLength="50" />
+          <Property Name="RazaoContactoID" Type="int" Nullable="false" />
+          <Property Name="RazaoContacto" Type="nvarchar" MaxLength="50" />
+          <Property Name="RecorrenciaID" Type="int" Nullable="false" />
+          <Property Name="Recorrencia" Type="nvarchar" MaxLength="20" />
+          <Property Name="DiasRecorrencia" Type="int" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="UserRegisto" Type="nvarchar" MaxLength="10" />
+          <Property Name="DataRegistoCampanha" Type="datetime" />
+          <Property Name="DataRegistoLog" Type="datetime" />
+          <Property Name="NumDiasLog" Type="int" Nullable="false" />
+          <Property Name="EstadoRecorrencia" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GCCModelStoreContainer">
+          <EntitySet Name="Rede_da_Campanha" EntityType="Self.Rede_da_Campanha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAssunto" EntityType="Self.tblAssunto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCampanha" EntityType="Self.tblCampanha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCampanha_Por_Provincia" EntityType="Self.tblCampanha_Por_Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCanal" EntityType="Self.tblCanal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPrioridade" EntityType="Self.tblPrioridade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProvincia" EntityType="Self.tblProvincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRazaoContacto" EntityType="Self.tblRazaoContacto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRecorrencia" EntityType="Self.tblRecorrencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRede" EntityType="Self.tblRede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_Assunto" EntityType="Self.vw_Assunto" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_Assunto].[ID] AS [ID], 
+[vw_Assunto].[CodProduto] AS [CodProduto], 
+[vw_Assunto].[NomeProduto] AS [NomeProduto], 
+[vw_Assunto].[ProdutoID] AS [ProdutoID], 
+[vw_Assunto].[CampanhaID] AS [CampanhaID], 
+[vw_Assunto].[NomeCampanha] AS [NomeCampanha], 
+[vw_Assunto].[Estado] AS [Estado], 
+[vw_Assunto].[DataRegisto] AS [DataRegisto], 
+[vw_Assunto].[UserRegisto] AS [UserRegisto]
+FROM [dbo].[vw_Assunto] AS [vw_Assunto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_Campanha" EntityType="Self.VW_Campanha" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VW_Campanha].[ID] AS [ID], 
+[VW_Campanha].[CodCampanha] AS [CodCampanha], 
+[VW_Campanha].[NomeCampanha] AS [NomeCampanha], 
+[VW_Campanha].[DataInicio] AS [DataInicio], 
+[VW_Campanha].[DataFim] AS [DataFim], 
+[VW_Campanha].[MaxAlvosBalcao] AS [MaxAlvosBalcao], 
+[VW_Campanha].[MaxAlvosGestor] AS [MaxAlvosGestor], 
+[VW_Campanha].[Canal] AS [Canal], 
+[VW_Campanha].[Prioridade] AS [Prioridade], 
+[VW_Campanha].[RazaoContacto] AS [RazaoContacto], 
+[VW_Campanha].[Recorrencia] AS [Recorrencia], 
+[VW_Campanha].[NumDias] AS [NumDias], 
+[VW_Campanha].[Estado] AS [Estado], 
+[VW_Campanha].[UserRegisto] AS [UserRegisto], 
+[VW_Campanha].[DataRegisto] AS [DataRegisto]
+FROM [dbo].[VW_Campanha] AS [VW_Campanha]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Log_Recorrencia" EntityType="Self.vw_Log_Recorrencia" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[vw_Log_Recorrencia].[ID] AS [ID], 
+[vw_Log_Recorrencia].[CampanhaID] AS [CampanhaID], 
+[vw_Log_Recorrencia].[CodCampanha] AS [CodCampanha], 
+[vw_Log_Recorrencia].[NomeCampanha] AS [NomeCampanha], 
+[vw_Log_Recorrencia].[DataInicio] AS [DataInicio], 
+[vw_Log_Recorrencia].[DataFim] AS [DataFim], 
+[vw_Log_Recorrencia].[MaxAlvosBalcao] AS [MaxAlvosBalcao], 
+[vw_Log_Recorrencia].[MaxAlvosGestor] AS [MaxAlvosGestor], 
+[vw_Log_Recorrencia].[CanalID] AS [CanalID], 
+[vw_Log_Recorrencia].[Canal] AS [Canal], 
+[vw_Log_Recorrencia].[PrioridadeID] AS [PrioridadeID], 
+[vw_Log_Recorrencia].[Prioridade] AS [Prioridade], 
+[vw_Log_Recorrencia].[RazaoContactoID] AS [RazaoContactoID], 
+[vw_Log_Recorrencia].[RazaoContacto] AS [RazaoContacto], 
+[vw_Log_Recorrencia].[RecorrenciaID] AS [RecorrenciaID], 
+[vw_Log_Recorrencia].[Recorrencia] AS [Recorrencia], 
+[vw_Log_Recorrencia].[NumDias] AS [NumDias], 
+[vw_Log_Recorrencia].[Estado] AS [Estado], 
+[vw_Log_Recorrencia].[ErroMessage] AS [ErroMessage], 
+[vw_Log_Recorrencia].[DataRegisto] AS [DataRegisto], 
+[vw_Log_Recorrencia].[DiasDecorridos] AS [DiasDecorridos]
+FROM [dbo].[vw_Log_Recorrencia] AS [vw_Log_Recorrencia]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_Recorrencia" EntityType="Self.VW_Recorrencia" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[VW_Recorrencia].[CampanhaID] AS [CampanhaID], 
+[VW_Recorrencia].[CodCampanha] AS [CodCampanha], 
+[VW_Recorrencia].[NomeCampanha] AS [NomeCampanha], 
+[VW_Recorrencia].[DataInicio] AS [DataInicio], 
+[VW_Recorrencia].[DataFim] AS [DataFim], 
+[VW_Recorrencia].[MaxAlvosBalcao] AS [MaxAlvosBalcao], 
+[VW_Recorrencia].[MaxAlvosGestor] AS [MaxAlvosGestor], 
+[VW_Recorrencia].[CanalID] AS [CanalID], 
+[VW_Recorrencia].[Canal] AS [Canal], 
+[VW_Recorrencia].[PrioridadeID] AS [PrioridadeID], 
+[VW_Recorrencia].[Prioridade] AS [Prioridade], 
+[VW_Recorrencia].[RazaoContactoID] AS [RazaoContactoID], 
+[VW_Recorrencia].[RazaoContacto] AS [RazaoContacto], 
+[VW_Recorrencia].[RecorrenciaID] AS [RecorrenciaID], 
+[VW_Recorrencia].[Recorrencia] AS [Recorrencia], 
+[VW_Recorrencia].[DiasRecorrencia] AS [DiasRecorrencia], 
+[VW_Recorrencia].[Estado] AS [Estado], 
+[VW_Recorrencia].[UserRegisto] AS [UserRegisto], 
+[VW_Recorrencia].[DataRegistoCampanha] AS [DataRegistoCampanha], 
+[VW_Recorrencia].[DataRegistoLog] AS [DataRegistoLog], 
+[VW_Recorrencia].[NumDiasLog] AS [NumDiasLog], 
+[VW_Recorrencia].[EstadoRecorrencia] AS [EstadoRecorrencia]
+FROM [dbo].[VW_Recorrencia] AS [VW_Recorrencia]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GCCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblPrioridade">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prioridade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="UserRegisto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblProvincia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblRazaoContacto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RazaoContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="UserRegisto" Type="String" MaxLength="51" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblRecorrencia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Recorrencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumDias" Type="Int32" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="GCCEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblPrioridade" EntityType="Self.tblPrioridade" />
+          <EntitySet Name="tblProvincia" EntityType="Self.tblProvincia" />
+          <EntitySet Name="tblRazaoContacto" EntityType="Self.tblRazaoContacto" />
+          <EntitySet Name="tblRecorrencia" EntityType="Self.tblRecorrencia" />
+          <EntitySet Name="VW_Campanha" EntityType="GCCModel.VW_Campanha" />
+          <EntitySet Name="Rede_da_Campanha" EntityType="GCCModel.Rede_da_Campanha" />
+          <EntitySet Name="tblAssunto" EntityType="GCCModel.tblAssunto" />
+          <EntitySet Name="tblCampanha_Por_Provincia" EntityType="GCCModel.tblCampanha_Por_Provincia" />
+          <EntitySet Name="tblCanal" EntityType="GCCModel.tblCanal" />
+          <EntitySet Name="tblRede" EntityType="GCCModel.tblRede" />
+          <EntitySet Name="VW_Recorrencia" EntityType="GCCModel.VW_Recorrencia" />
+          <EntitySet Name="vw_Log_Recorrencia" EntityType="GCCModel.vw_Log_Recorrencia" />
+          <EntitySet Name="vw_Assunto" EntityType="GCCModel.vw_Assunto" />
+          <EntitySet Name="tblCampanha" EntityType="GCCModel.tblCampanha" />
+        </EntityContainer>
+        <EntityType Name="VW_Campanha">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CodCampanha" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="NomeCampanha" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataInicio" Type="DateTime" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Precision="3" />
+          <Property Name="MaxAlvosBalcao" Type="Int32" />
+          <Property Name="MaxAlvosGestor" Type="Int32" />
+          <Property Name="Canal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Prioridade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RazaoContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Recorrencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumDias" Type="Int32" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Rede_da_Campanha">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RedeID" Type="Int32" Nullable="false" />
+          <Property Name="CampanhaID" Type="Int32" Nullable="false" />
+          <Property Name="Rede" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblAssunto">
+          <Key>
+            <PropertyRef Name="ProdutoID" />
+            <PropertyRef Name="CampanhaID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodProduto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NomeProduto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProdutoID" Type="Int64" Nullable="false" />
+          <Property Name="CampanhaID" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCampanha_Por_Provincia">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProvinciaID" Type="Int32" Nullable="false" />
+          <Property Name="CampanhaID" Type="Int32" Nullable="false" />
+          <Property Name="Provincia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCanal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Canal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblRede">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rede" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VW_Recorrencia">
+          <Key>
+            <PropertyRef Name="CampanhaID" />
+            <PropertyRef Name="CodCampanha" />
+            <PropertyRef Name="NomeCampanha" />
+            <PropertyRef Name="DataInicio" />
+            <PropertyRef Name="DataFim" />
+            <PropertyRef Name="MaxAlvosBalcao" />
+            <PropertyRef Name="MaxAlvosGestor" />
+            <PropertyRef Name="CanalID" />
+            <PropertyRef Name="RazaoContactoID" />
+            <PropertyRef Name="RecorrenciaID" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="NumDiasLog" />
+            <PropertyRef Name="EstadoRecorrencia" />
+          </Key>
+          <Property Name="CampanhaID" Type="Int32" Nullable="false" />
+          <Property Name="CodCampanha" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="NomeCampanha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaxAlvosBalcao" Type="Int32" Nullable="false" />
+          <Property Name="MaxAlvosGestor" Type="Int32" Nullable="false" />
+          <Property Name="CanalID" Type="Int32" Nullable="false" />
+          <Property Name="Canal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrioridadeID" Type="Int32" />
+          <Property Name="Prioridade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RazaoContactoID" Type="Int32" Nullable="false" />
+          <Property Name="RazaoContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecorrenciaID" Type="Int32" Nullable="false" />
+          <Property Name="Recorrencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DiasRecorrencia" Type="Int32" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DataRegistoCampanha" Type="DateTime" Precision="3" />
+          <Property Name="DataRegistoLog" Type="DateTime" Precision="3" />
+          <Property Name="NumDiasLog" Type="Int32" Nullable="false" />
+          <Property Name="EstadoRecorrencia" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_Log_Recorrencia">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CampanhaID" />
+            <PropertyRef Name="CodCampanha" />
+            <PropertyRef Name="NomeCampanha" />
+            <PropertyRef Name="DataInicio" />
+            <PropertyRef Name="DataFim" />
+            <PropertyRef Name="CanalID" />
+            <PropertyRef Name="RazaoContactoID" />
+            <PropertyRef Name="RecorrenciaID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CampanhaID" Type="Int32" Nullable="false" />
+          <Property Name="CodCampanha" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="NomeCampanha" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaxAlvosBalcao" Type="Int32" />
+          <Property Name="MaxAlvosGestor" Type="Int32" />
+          <Property Name="CanalID" Type="Int32" Nullable="false" />
+          <Property Name="Canal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrioridadeID" Type="Int32" />
+          <Property Name="Prioridade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RazaoContactoID" Type="Int32" Nullable="false" />
+          <Property Name="RazaoContacto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecorrenciaID" Type="Int32" Nullable="false" />
+          <Property Name="Recorrencia" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumDias" Type="Int32" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="ErroMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="DiasDecorridos" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_Assunto">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="CodProduto" />
+            <PropertyRef Name="NomeProduto" />
+            <PropertyRef Name="ProdutoID" />
+            <PropertyRef Name="CampanhaID" />
+            <PropertyRef Name="NomeCampanha" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="CodProduto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NomeProduto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProdutoID" Type="Int64" Nullable="false" />
+          <Property Name="CampanhaID" Type="Int32" Nullable="false" />
+          <Property Name="NomeCampanha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCampanha">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodCampanha" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="NomeCampanha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DataInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataFim" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaxAlvosBalcao" Type="Int32" />
+          <Property Name="MaxAlvosGestor" Type="Int32" />
+          <Property Name="RazaoContactoID" Type="Int32" Nullable="false" />
+          <Property Name="CanalID" Type="Int32" Nullable="false" />
+          <Property Name="PrioridadeID" Type="Int32" />
+          <Property Name="RecorrenciaID" Type="Int32" Nullable="false" />
+          <Property Name="UserRegisto" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DataRegisto" Type="DateTime" Precision="3" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="DataRecorrMensal" Type="DateTime" Precision="3" />
+          <Property Name="DataRecorrSemanal" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GCCModelStoreContainer" CdmEntityContainer="GCCEntities">
+          <EntitySetMapping Name="tblPrioridade">
+            <EntityTypeMapping TypeName="GCCModel.tblPrioridade">
+              <MappingFragment StoreEntitySet="tblPrioridade">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProvincia">
+            <EntityTypeMapping TypeName="GCCModel.tblProvincia">
+              <MappingFragment StoreEntitySet="tblProvincia">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRazaoContacto">
+            <EntityTypeMapping TypeName="GCCModel.tblRazaoContacto">
+              <MappingFragment StoreEntitySet="tblRazaoContacto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRecorrencia">
+            <EntityTypeMapping TypeName="GCCModel.tblRecorrencia">
+              <MappingFragment StoreEntitySet="tblRecorrencia">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+                <ScalarProperty Name="NumDias" ColumnName="NumDias" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_Campanha">
+            <EntityTypeMapping TypeName="GCCModel.VW_Campanha">
+              <MappingFragment StoreEntitySet="VW_Campanha">
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NumDias" ColumnName="NumDias" />
+                <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+                <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+                <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+                <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+                <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rede_da_Campanha">
+            <EntityTypeMapping TypeName="GCCModel.Rede_da_Campanha">
+              <MappingFragment StoreEntitySet="Rede_da_Campanha">
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Rede" ColumnName="Rede" />
+                <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+                <ScalarProperty Name="RedeID" ColumnName="RedeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAssunto">
+            <EntityTypeMapping TypeName="GCCModel.tblAssunto">
+              <MappingFragment StoreEntitySet="tblAssunto">
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+                <ScalarProperty Name="ProdutoID" ColumnName="ProdutoID" />
+                <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+                <ScalarProperty Name="CodProduto" ColumnName="CodProduto" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCampanha_Por_Provincia">
+            <EntityTypeMapping TypeName="GCCModel.tblCampanha_Por_Provincia">
+              <MappingFragment StoreEntitySet="tblCampanha_Por_Provincia">
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+                <ScalarProperty Name="ProvinciaID" ColumnName="ProvinciaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCanal">
+            <EntityTypeMapping TypeName="GCCModel.tblCanal">
+              <MappingFragment StoreEntitySet="tblCanal">
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRede">
+            <EntityTypeMapping TypeName="GCCModel.tblRede">
+              <MappingFragment StoreEntitySet="tblRede">
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Rede" ColumnName="Rede" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_Recorrencia">
+            <EntityTypeMapping TypeName="GCCModel.VW_Recorrencia">
+              <MappingFragment StoreEntitySet="VW_Recorrencia">
+                <ScalarProperty Name="EstadoRecorrencia" ColumnName="EstadoRecorrencia" />
+                <ScalarProperty Name="NumDiasLog" ColumnName="NumDiasLog" />
+                <ScalarProperty Name="DataRegistoLog" ColumnName="DataRegistoLog" />
+                <ScalarProperty Name="DataRegistoCampanha" ColumnName="DataRegistoCampanha" />
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DiasRecorrencia" ColumnName="DiasRecorrencia" />
+                <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+                <ScalarProperty Name="RecorrenciaID" ColumnName="RecorrenciaID" />
+                <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+                <ScalarProperty Name="RazaoContactoID" ColumnName="RazaoContactoID" />
+                <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+                <ScalarProperty Name="PrioridadeID" ColumnName="PrioridadeID" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="CanalID" ColumnName="CanalID" />
+                <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+                <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+                <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+                <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Log_Recorrencia">
+            <EntityTypeMapping TypeName="GCCModel.vw_Log_Recorrencia">
+              <MappingFragment StoreEntitySet="vw_Log_Recorrencia">
+                <ScalarProperty Name="DiasDecorridos" ColumnName="DiasDecorridos" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="ErroMessage" ColumnName="ErroMessage" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NumDias" ColumnName="NumDias" />
+                <ScalarProperty Name="Recorrencia" ColumnName="Recorrencia" />
+                <ScalarProperty Name="RecorrenciaID" ColumnName="RecorrenciaID" />
+                <ScalarProperty Name="RazaoContacto" ColumnName="RazaoContacto" />
+                <ScalarProperty Name="RazaoContactoID" ColumnName="RazaoContactoID" />
+                <ScalarProperty Name="Prioridade" ColumnName="Prioridade" />
+                <ScalarProperty Name="PrioridadeID" ColumnName="PrioridadeID" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="CanalID" ColumnName="CanalID" />
+                <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+                <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+                <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+                <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Assunto">
+            <EntityTypeMapping TypeName="GCCModel.vw_Assunto">
+              <MappingFragment StoreEntitySet="vw_Assunto">
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+                <ScalarProperty Name="CampanhaID" ColumnName="CampanhaID" />
+                <ScalarProperty Name="ProdutoID" ColumnName="ProdutoID" />
+                <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+                <ScalarProperty Name="CodProduto" ColumnName="CodProduto" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCampanha">
+            <EntityTypeMapping TypeName="GCCModel.tblCampanha">
+              <MappingFragment StoreEntitySet="tblCampanha">
+                <ScalarProperty Name="DataRecorrSemanal" ColumnName="DataRecorrSemanal" />
+                <ScalarProperty Name="DataRecorrMensal" ColumnName="DataRecorrMensal" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DataRegisto" ColumnName="DataRegisto" />
+                <ScalarProperty Name="UserRegisto" ColumnName="UserRegisto" />
+                <ScalarProperty Name="RecorrenciaID" ColumnName="RecorrenciaID" />
+                <ScalarProperty Name="PrioridadeID" ColumnName="PrioridadeID" />
+                <ScalarProperty Name="CanalID" ColumnName="CanalID" />
+                <ScalarProperty Name="RazaoContactoID" ColumnName="RazaoContactoID" />
+                <ScalarProperty Name="MaxAlvosGestor" ColumnName="MaxAlvosGestor" />
+                <ScalarProperty Name="MaxAlvosBalcao" ColumnName="MaxAlvosBalcao" />
+                <ScalarProperty Name="DataFim" ColumnName="DataFim" />
+                <ScalarProperty Name="DataInicio" ColumnName="DataInicio" />
+                <ScalarProperty Name="NomeCampanha" ColumnName="NomeCampanha" />
+                <ScalarProperty Name="CodCampanha" ColumnName="CodCampanha" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

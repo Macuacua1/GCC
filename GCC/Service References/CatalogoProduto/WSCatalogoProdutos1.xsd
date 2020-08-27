@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WSCatalogoProdutos.BLL.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WSCatalogoProdutos.BLL.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://semzseiqld13/WSCatalogoProdutos/WSCatalogoProdutos.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="Produto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ArrayOfProduto" />
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ParentProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductCod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductLevel" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isLast" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Produto" nillable="true" type="tns:Produto" />
+  <xs:complexType name="ArrayOfProduto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Produto" nillable="true" type="tns:Produto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProduto" nillable="true" type="tns:ArrayOfProduto" />
+  <xs:complexType name="ArrayOfProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProduct" nillable="true" type="tns:ArrayOfProduct" />
+  <xs:complexType name="Product">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ParentProductID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductCod" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductLevel" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isLast" nillable="true" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Product" nillable="true" type="tns:Product" />
+  <xs:complexType name="ArrayOfProdutoFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProdutoFile" nillable="true" type="tns:ProdutoFile" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProdutoFile" nillable="true" type="tns:ArrayOfProdutoFile" />
+  <xs:complexType name="ProdutoFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FileID" type="xs:int" />
+      <xs:element minOccurs="0" name="FileLink" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProdutoFile" nillable="true" type="tns:ProdutoFile" />
+  <xs:complexType name="FichaProduto">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="FichaDados" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FichaProduto" nillable="true" type="tns:FichaProduto" />
+</xs:schema>
